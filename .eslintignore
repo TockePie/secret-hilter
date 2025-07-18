@@ -1,0 +1,4 @@
+prettier.config.*
+postcss.config.*
+next.config.*
+tailwind.config.*
