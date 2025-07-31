@@ -6,39 +6,40 @@ import Link from 'next/link'
 
 import CreditsDialog from './credits-dialog'
 
-const Home = () => {
-  return (
-    <main className="flex min-h-screen flex-col items-center p-4 justify-between max-w-xl mx-auto">
-      <div className="flex flex-col items-center gap-6 my-8">
-        <Image
-          src="/secret-hitler-logo.png"
-          alt="Secret Hitler Logo"
-          width={200}
-          height={200}
-        />
-        <div className="flex flex-col text-center gap-2">
-          <h1 className="text-5xl font-bold text-stone-800">Secret Hitler</h1>
-          <p className="text-xl text-stone-500">Web app by Maxim Rocky</p>
-        </div>
+const Home = () => (
+  <main className="mx-auto flex min-h-screen max-w-xl flex-col items-center justify-between p-4">
+    <div className="my-8 flex flex-col items-center gap-6">
+      <Image
+        src="/secret-hitler-logo.png"
+        alt="Secret Hitler Logo"
+        width={200}
+        height={200}
+      />
+      <div className="flex flex-col gap-2 text-center">
+        <h1 className="text-5xl font-bold">Secret Hitler</h1>
+        <p className="text-xl text-stone-500">Web app by Maxim Rocky</p>
       </div>
+    </div>
 
-      <div className="flex flex-col gap-4 w-full">
-        <Button size="mobile">Start game</Button>
-        <Link
-          href="https://www.secrethitler.com/assets/Secret_Hitler_Rules.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Button variant="secondary" size="mobile">
-            Rules
-            <ExternalLink color="#292524" />
-          </Button>
-        </Link>
+    <div className="flex w-full flex-col gap-4">
+      <Link href="/newgame">
+        <Button size="mobile">New game</Button>
+      </Link>
 
-        <CreditsDialog />
-      </div>
-    </main>
-  )
-}
+      <Link
+        href="https://www.secrethitler.com/assets/Secret_Hitler_Rules.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Button variant="secondary" size="mobile">
+          Rules
+          <ExternalLink color="#292524" />
+        </Button>
+      </Link>
+
+      <CreditsDialog />
+    </div>
+  </main>
+)
 
 export default Home
