@@ -3,14 +3,27 @@
 import React, { useEffect } from 'react'
 import { Button } from '@ui/button'
 import { Plus } from 'lucide-react'
+import Link from 'next/link'
 
 import usePlayers from '@/hooks/use-players'
+import useGameStore from '@/lib/store'
 
 import PlayerCard from './player-card'
 
 export default function NewGamePage() {
-  const { players, handleAddPlayer, handleRemovePlayer, handleRenamePlayer } =
-    usePlayers()
+  const {
+    players,
+    handleAddPlayer,
+    handleRemovePlayer,
+    handleRenamePlayer,
+    recordPlayers
+  } = usePlayers()
+  const resetPlayers = useGameStore((state) => state.resetPlayers)
+
+  const handleStartGame = () => {
+    resetPlayers()
+    recordPlayers()
+  }
 
   useEffect(() => handleAddPlayer(), [])
 
@@ -50,12 +63,14 @@ export default function NewGamePage() {
         <p className="text-stone-500">
           Recommended to have from 5 to 10 players.
         </p>
+
         <Button
           size="mobile"
           className="max-w-134"
           disabled={players.length < 5}
+          onClick={handleStartGame}
         >
-          Start game
+          <Link href="/game">Start game</Link>
         </Button>
       </footer>
     </div>
