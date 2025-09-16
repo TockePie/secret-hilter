@@ -1,29 +1,29 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { KeyboardEvent, useState } from 'react'
 import { Input } from '@ui/input'
 import clsx from 'clsx'
 import { Pencil, Trash2 } from 'lucide-react'
 
 import { playerBackgroundColorClasses } from '@/styles/color-classes'
-import PlayerColor from '@/types/enums/player-color'
+import { LobbyPlayer } from '@/types/player'
 
-interface Props {
-  name: string
-  color: PlayerColor
+interface Props extends LobbyPlayer {
   renameFn: (newName: string) => void
   removeFn: () => void
+  addPlayerFn: () => void
 }
 
 const PlayerCard = (props: Props) => {
-  const { name, color, renameFn, removeFn } = props
+  const { name, color, renameFn, removeFn, addPlayerFn } = props
 
-  const [editName, setEditName] = useState(name)
   const [isEditing, setIsEditing] = useState(true)
 
-  const handleSave = () => {
-    renameFn(editName)
+  const handleEnter = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key !== 'Enter') return
+
     setIsEditing(false)
+    addPlayerFn()
   }
 
   return (
@@ -39,11 +39,12 @@ const PlayerCard = (props: Props) => {
         {isEditing ? (
           <Input
             id={`player-name-${color}`}
-            value={editName}
-            onChange={(e) => setEditName(e.target.value)}
-            onBlur={handleSave}
-            autoFocus
+            value={name}
+            onChange={(e) => renameFn(e.target.value)}
+            onBlur={() => setIsEditing(false)}
+            onKeyDown={handleEnter}
             className="max-w-fit flex-1 text-2xl text-stone-600 sm:max-w-64 md:max-w-96"
+            autoFocus
           />
         ) : (
           <h3 className="max-w-44 flex-1 truncate text-2xl text-stone-600 sm:max-w-64 md:max-w-96">

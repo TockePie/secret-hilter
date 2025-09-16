@@ -13,11 +13,15 @@ const usePlayers = () => {
   const [players, setPlayers] = useState<LobbyPlayer[]>([])
 
   const handleAddPlayer = () => {
+    if (players.length >= 10) return
+
     const usedColors = players.map((player) => player.color)
     const randomColor = getRandomAvailableColor(usedColors)
 
     const newPlayer = {
-      id: crypto.randomUUID(),
+      // XXX: Removed as it causes crash on local network. Return when the app will be released
+      // id: crypto.randomUUID(),
+      id: `${Date.now()}-${Math.floor(Math.random() * 10000)}`,
       name: `Player ${players.length + 1}`,
       color: randomColor
     } as LobbyPlayer
