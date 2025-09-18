@@ -8,15 +8,19 @@ import { Pencil, Trash2 } from 'lucide-react'
 import { playerBackgroundColorClasses } from '@/styles/color-classes'
 import { LobbyPlayer } from '@/types/player'
 
-interface Props extends LobbyPlayer {
+interface PlayerCardProps extends LobbyPlayer {
   renameFn: (newName: string) => void
   removeFn: () => void
   addPlayerFn: () => void
 }
 
-const PlayerCard = (props: Props) => {
-  const { name, color, renameFn, removeFn, addPlayerFn } = props
-
+const PlayerCard: React.FC<PlayerCardProps> = ({
+  name,
+  color,
+  renameFn,
+  removeFn,
+  addPlayerFn
+}) => {
   const [isEditing, setIsEditing] = useState(true)
 
   const handleEnter = (event: KeyboardEvent<HTMLInputElement>) => {
