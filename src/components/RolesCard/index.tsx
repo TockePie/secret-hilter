@@ -2,27 +2,17 @@ import React from 'react'
 import clsx from 'clsx'
 import Image from 'next/image'
 
+import { ROLE_CONFIG } from '@/common/constants'
 import { playerTextColorClasses } from '@/styles/color-classes'
 import { Player } from '@/types/player'
 
 import Flip from '../Flip'
 
-const ROLE_CONFIG: Record<Player['role'], { image: string; color: string }> = {
-  liberal: {
-    image: '/liberal.png',
-    color: 'text-blue-800'
-  },
-  fascist: {
-    image: '/fascist.png',
-    color: 'text-red-800'
-  },
-  hitler: {
-    image: '/hitler.png',
-    color: 'text-red-800'
-  }
+interface RolesCardProps extends Player {
+  nextFn?: (() => void) | undefined
 }
 
-const RolesCard: React.FC<Player> = ({ name, color, role }) => {
+const RolesCard: React.FC<RolesCardProps> = ({ name, color, role, nextFn }) => {
   const roleConfig = ROLE_CONFIG[role]
 
   return (
@@ -42,7 +32,10 @@ const RolesCard: React.FC<Player> = ({ name, color, role }) => {
           </div>
         }
         backPart={
-          <div className="flex size-full flex-col justify-between rounded-3xl border border-stone-400 bg-stone-50 text-center">
+          <div
+            className="flex size-full flex-col justify-between rounded-3xl border border-stone-400 bg-stone-50 text-center"
+            onClick={nextFn}
+          >
             <div className="flex flex-col gap-3">
               <Image
                 src={roleConfig.image}

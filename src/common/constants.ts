@@ -1,4 +1,6 @@
-export const ROLE_CONFIG = {
+import { Player } from '@/types/player'
+
+export const PLAYER_CONFIG = {
   5: {
     liberals: 3,
     fascists: 1,
@@ -28,5 +30,23 @@ export const ROLE_CONFIG = {
     liberals: 6,
     fascists: 3,
     hitler: 1
+  }
+}
+
+export const ROLE_CONFIG: Record<
+  Player['role'],
+  { image: string; color: string }
+> = {
+  liberal: {
+    image: '/liberal.png',
+    color: 'text-blue-800'
+  },
+  fascist: {
+    image: '/fascist.png',
+    color: 'text-red-800'
+  },
+  hitler: {
+    image: '/hitler.png',
+    color: 'text-red-800'
   }
 }
