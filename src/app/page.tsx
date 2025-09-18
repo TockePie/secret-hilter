@@ -4,7 +4,7 @@ import { ExternalLink } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import CreditsDialog from './credits-dialog'
+import CreditsDialog from '../components/CreditsDialog'
 
 const Home = () => (
   <main className="mx-auto flex min-h-screen max-w-xl flex-col items-center justify-between p-4">
