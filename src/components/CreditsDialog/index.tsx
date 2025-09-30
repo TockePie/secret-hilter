@@ -17,7 +17,11 @@ const CreditsDialog = () => (
       </Button>
     </DialogTrigger>
 
-    <DialogContent className="text-stone-800" showCloseButton={false}>
+    <DialogContent
+      className="text-stone-800"
+      aria-describedby="credits dialog"
+      showCloseButton={false}
+    >
       <DialogTitle>Credits</DialogTitle>
       <div>
         <ul>

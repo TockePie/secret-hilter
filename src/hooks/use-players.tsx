@@ -2,26 +2,29 @@
 
 import { useState } from 'react'
 
-import PlayerColor from '@/types/enums/player-color'
-import { Player } from '@/types/player'
+import useGameStore from '@/lib/store'
+import { LobbyPlayer } from '@/types/player'
+import getRandomAvailableColor from '@/utils/get-random-available-color'
+import getRoles from '@/utils/get-roles-array'
+import shuffleArray from '@/utils/shuffle-array'
 
 const usePlayers = () => {
-  const [players, setPlayers] = useState<Player[]>([])
+  const addPlayers = useGameStore((state) => state.addPlayers)
+  const [players, setPlayers] = useState<LobbyPlayer[]>([])
 
   const handleAddPlayer = () => {
-    const allColors = Object.values(PlayerColor)
+    if (players.length >= 10) return
+
     const usedColors = players.map((player) => player.color)
-    const availableColors = allColors.filter(
-      (color) => !usedColors.includes(color)
-    )
-    const randomColor =
-      availableColors[Math.floor(Math.random() * availableColors.length)]
+    const randomColor = getRandomAvailableColor(usedColors)
 
     const newPlayer = {
-      id: `${Date.now()}-${Math.random().toString().split('.')[1]}`,
+      // XXX: Removed as it causes crash on local network. Return when the app will be released
+      // id: crypto.randomUUID(),
+      id: `${Date.now()}-${Math.floor(Math.random() * 10000)}`,
       name: `Player ${players.length + 1}`,
       color: randomColor
-    } as Player
+    } as LobbyPlayer
     setPlayers([...players, newPlayer])
   }
 
@@ -36,11 +39,23 @@ const usePlayers = () => {
     setPlayers(playerObject)
   }
 
+  const recordPlayers = () => {
+    const rolesArray = shuffleArray(getRoles(players.length))
+
+    addPlayers(
+      players.map((player: LobbyPlayer, index: number) => ({
+        ...player,
+        role: rolesArray[index]
+      }))
+    )
+  }
+
   return {
     players,
     handleAddPlayer,
     handleRemovePlayer,
-    handleRenamePlayer
+    handleRenamePlayer,
+    recordPlayers
   }
 }
 
