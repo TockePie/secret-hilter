@@ -1,10 +1,9 @@
 import React from 'react'
 import clsx from 'clsx'
-import Image from 'next/image'
 
 import { ROLE_CONFIG } from '@/common/constants'
 import { playerTextColorClasses } from '@/styles/color-classes'
-import { Player } from '@/types/player'
+import type { Player } from '@/types/player'
 
 import Flip from '../Flip'
 
@@ -37,12 +36,10 @@ const RolesCard: React.FC<RolesCardProps> = ({ name, color, role, nextFn }) => {
             onClick={nextFn}
           >
             <div className="flex flex-col gap-3">
-              <Image
+              <img
                 src={roleConfig.image}
-                width={256}
-                height={256}
                 alt={`${role} role image`}
-                className="mx-auto mt-4"
+                className="mx-auto mt-4 size-[256px]"
               />
               <span
                 className={clsx('w-full text-5xl font-bold', roleConfig.color)}

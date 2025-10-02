@@ -1,12 +1,10 @@
-'use client'
-
-import React, { KeyboardEvent, useState } from 'react'
+import React, { type KeyboardEvent, useState } from 'react'
 import { Input } from '@ui/input'
 import clsx from 'clsx'
 import { Pencil, Trash2 } from 'lucide-react'
 
 import { playerBackgroundColorClasses } from '@/styles/color-classes'
-import { LobbyPlayer } from '@/types/player'
+import type { LobbyPlayer } from '@/types/player'
 
 interface PlayerCardProps extends LobbyPlayer {
   renameFn: (newName: string) => void
