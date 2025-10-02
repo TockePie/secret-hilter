@@ -3,6 +3,7 @@ import { ArrowLeft, X } from 'lucide-react'
 
 import useGameStore from '@/lib/store'
 
+import NoGamePage from './components/NoGamePage'
 import RolesPage from './components/RolesPage'
 import SleepStagePage from './components/SleepStagePage'
 
@@ -13,6 +14,10 @@ const GamePage = () => {
     typeof status,
     { page: React.JSX.Element; title: string }
   > = {
+    'new-game': {
+      page: <NoGamePage />,
+      title: ''
+    },
     'role-revealing': {
       page: <RolesPage />,
       title: 'Roles'
