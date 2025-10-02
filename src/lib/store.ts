@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-import { Player } from '@/types/player'
+import type { Player } from '@/types/player'
 
 type Store = {
   players: Player[]

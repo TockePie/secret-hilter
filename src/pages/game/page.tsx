@@ -1,5 +1,3 @@
-'use client'
-
 import React from 'react'
 import { ArrowLeft, X } from 'lucide-react'
 
@@ -30,14 +28,12 @@ const GamePage = () => {
       <nav className="flex w-full items-center justify-between p-6">
         <ArrowLeft size={32} />
         <span className="text-center text-4xl font-bold">
-          {/* {PAGE_CONFIG[status].title} */}
-          Sleep stage
+          {PAGE_CONFIG[status].title}
         </span>
         <X size={32} />
       </nav>
 
-      {/* {PAGE_CONFIG[status]?.page} */}
-      <SleepStagePage />
+      {PAGE_CONFIG[status]?.page}
     </div>
   )
 }

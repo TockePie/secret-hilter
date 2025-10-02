@@ -1,9 +1,7 @@
-'use client'
-
 import { useState } from 'react'
 
 import useGameStore from '@/lib/store'
-import { LobbyPlayer } from '@/types/player'
+import type { LobbyPlayer } from '@/types/player'
 import getRandomAvailableColor from '@/utils/get-random-available-color'
 import getRoles from '@/utils/get-roles-array'
 import shuffleArray from '@/utils/shuffle-array'

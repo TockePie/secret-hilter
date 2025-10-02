@@ -1,5 +1,5 @@
 import { PLAYER_CONFIG } from '@/common/constants'
-import { Player } from '@/types/player'
+import type { Player } from '@/types/player'
 
 const getRoles = (playerCount: number): Player['role'][] => {
   const config = PLAYER_CONFIG[playerCount as keyof typeof PLAYER_CONFIG]!

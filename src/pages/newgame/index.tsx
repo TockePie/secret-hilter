@@ -1,9 +1,7 @@
-'use client'
-
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
+import { Link } from 'react-router'
 import { Button } from '@ui/button'
 import { Plus } from 'lucide-react'
-import Link from 'next/link'
 
 import usePlayers from '@/hooks/use-players'
 import useGameStore from '@/lib/store'
@@ -71,7 +69,7 @@ const NewGamePage = () => {
           disabled={players.length < 5}
           onClick={handleStartGame}
         >
-          <Link href="/game">Start game</Link>
+          <Link to="/game">Start game</Link>
         </Button>
       </footer>
     </div>

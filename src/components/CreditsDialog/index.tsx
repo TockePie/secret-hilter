@@ -1,4 +1,4 @@
-import React from 'react'
+import { Link } from 'react-router'
 import { Button } from '@ui/button'
 import {
   Dialog,
@@ -7,7 +7,6 @@ import {
   DialogTitle,
   DialogTrigger
 } from '@ui/dialog'
-import Link from 'next/link'
 
 const CreditsDialog = () => (
   <Dialog>
@@ -41,7 +40,7 @@ const CreditsDialog = () => (
         <p className="mt-3 flex flex-col gap-2">
           This game is licensed under the Creative Commons.
           <Link
-            href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+            to="https://creativecommons.org/licenses/by-nc-sa/4.0/"
             target="_blank"
             rel="noreferrer"
             className="text-blue-600 hover:underline"
