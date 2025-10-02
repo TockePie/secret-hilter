@@ -11,6 +11,7 @@ type Actions = {
   addPlayers: (players: Player[]) => void
   resetPlayers: () => void
   updateStatus: (status: Store['status']) => void
+  abortGame: () => void
 }
 
 const useGameStore = create<Store & Actions>((set) => ({
@@ -19,7 +20,8 @@ const useGameStore = create<Store & Actions>((set) => ({
   addPlayers: (players) =>
     set((state) => ({ players: [...state.players, ...players] })),
   resetPlayers: () => set({ players: [] }),
-  updateStatus: (status) => set({ status })
+  updateStatus: (status) => set({ status }),
+  abortGame: () => set({ players: [], status: 'new-game' })
 }))
 
 export default useGameStore

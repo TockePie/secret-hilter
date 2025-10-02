@@ -1,6 +1,7 @@
 import React from 'react'
 import { ArrowLeft, X } from 'lucide-react'
 
+import AbortDialog from '@/components/AbortDialog'
 import useGameStore from '@/lib/store'
 
 import NoGamePage from './components/NoGamePage'
@@ -35,7 +36,7 @@ const GamePage = () => {
         <span className="text-center text-4xl font-bold">
           {PAGE_CONFIG[status].title}
         </span>
-        <X size={32} />
+        <AbortDialog triggerComp={<X size={32} />} />
       </nav>
 
       {PAGE_CONFIG[status]?.page}
