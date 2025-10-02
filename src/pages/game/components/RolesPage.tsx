@@ -11,8 +11,7 @@ import useGameStore from '@/lib/store'
 
 const RolesPage = () => {
   const nextButton = useRef<HTMLButtonElement>(null)
-  const players = useGameStore((state) => state.players)
-  const updateStatus = useGameStore((state) => state.updateStatus)
+  const { players, updateStatus } = useGameStore.getState()
 
   const handleNext = (index: number) => () => {
     if (index === players.length - 1) {
