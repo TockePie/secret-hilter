@@ -37,6 +37,7 @@ const SleepStagePage = () => {
           ))}
         </div>
       </main>
+
       <footer className="fixed inset-x-0 bottom-0 z-10 flex flex-col items-center gap-2 bg-stone-100/90 p-6 pt-3 backdrop-blur-md">
         <Button className="max-w-134" size="mobile">
           Next
