@@ -4,6 +4,7 @@ import { ArrowLeft, X } from 'lucide-react'
 import AbortDialog from '@/components/AbortDialog'
 import useGameStore from '@/lib/store'
 
+import ChooseCancelourPage from './components/ChooseCancelour'
 import NoGamePage from './components/NoGamePage'
 import RolesPage from './components/RolesPage'
 import SleepStagePage from './components/SleepStagePage'
@@ -26,13 +27,17 @@ const GamePage = () => {
     'sleep-stage': {
       page: <SleepStagePage />,
       title: 'Sleep stage'
+    },
+    'choose-cancelour': {
+      page: <ChooseCancelourPage />,
+      title: ''
     }
   }
 
   return (
     <div className="mx-auto flex h-screen max-w-146 flex-col items-center">
       <nav className="flex w-full items-center justify-between p-6">
-        <ArrowLeft size={32} />
+        <div className="size-8"></div>
         <span className="text-center text-4xl font-bold">
           {PAGE_CONFIG[status].title}
         </span>
