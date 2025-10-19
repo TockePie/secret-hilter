@@ -1,10 +1,11 @@
 import React from 'react'
-import { ArrowLeft, X } from 'lucide-react'
+import { X } from 'lucide-react'
 
 import AbortDialog from '@/components/AbortDialog'
 import useGameStore from '@/lib/store'
 
 import ChooseCancelourPage from './components/ChooseCancelour'
+import ConfirmCandidates from './components/ConfirmCandidates'
 import NoGamePage from './components/NoGamePage'
 import RolesPage from './components/RolesPage'
 import SleepStagePage from './components/SleepStagePage'
@@ -31,6 +32,10 @@ const GamePage = () => {
     'choose-cancelour': {
       page: <ChooseCancelourPage />,
       title: ''
+    },
+    'confirm-candidates': {
+      page: <ConfirmCandidates />,
+      title: 'Voting'
     }
   }
 
