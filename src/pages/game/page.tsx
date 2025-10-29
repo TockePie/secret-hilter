@@ -10,34 +10,34 @@ import NoGamePage from './components/NoGamePage'
 import RolesPage from './components/RolesPage'
 import SleepStagePage from './components/SleepStagePage'
 
-const GamePage = () => {
-  const status = useGameStore((state) => state.status)
-
-  const PAGE_CONFIG: Record<
-    typeof status,
-    { page: React.JSX.Element; title: string }
-  > = {
-    'new-game': {
-      page: <NoGamePage />,
-      title: ''
-    },
-    'role-revealing': {
-      page: <RolesPage />,
-      title: 'Roles'
-    },
-    'sleep-stage': {
-      page: <SleepStagePage />,
-      title: 'Sleep stage'
-    },
-    'choose-cancelour': {
-      page: <ChooseCancelourPage />,
-      title: ''
-    },
-    'confirm-candidates': {
-      page: <ConfirmCandidates />,
-      title: 'Voting'
-    }
+const PAGE_CONFIG: Record<
+  typeof status,
+  { page: React.JSX.Element; title: string }
+> = {
+  'new-game': {
+    page: <NoGamePage />,
+    title: ''
+  },
+  'role-revealing': {
+    page: <RolesPage />,
+    title: 'Roles'
+  },
+  'sleep-stage': {
+    page: <SleepStagePage />,
+    title: 'Sleep stage'
+  },
+  'choose-cancelour': {
+    page: <ChooseCancelourPage />,
+    title: ''
+  },
+  'confirm-candidates': {
+    page: <ConfirmCandidates />,
+    title: 'Voting'
   }
+}
+
+export default function GamePage() {
+  const status = useGameStore((state) => state.status)
 
   return (
     <div className="mx-auto flex h-screen max-w-146 flex-col items-center">
@@ -53,5 +53,3 @@ const GamePage = () => {
     </div>
   )
 }
-
-export default GamePage

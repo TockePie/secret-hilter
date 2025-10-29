@@ -1,4 +1,4 @@
-import React, { type KeyboardEvent, useState } from 'react'
+import { type KeyboardEvent, useState } from 'react'
 import { Input } from '@ui/input'
 import clsx from 'clsx'
 import { Pencil, Trash2 } from 'lucide-react'
@@ -12,13 +12,13 @@ interface PlayerCardProps extends LobbyPlayer {
   addPlayerFn: () => void
 }
 
-const PlayerCard: React.FC<PlayerCardProps> = ({
+export default function PlayerCard({
   name,
   color,
   renameFn,
   removeFn,
   addPlayerFn
-}) => {
+}: PlayerCardProps) {
   const [isEditing, setIsEditing] = useState(true)
 
   const handleEnter = (event: KeyboardEvent<HTMLInputElement>) => {
@@ -72,5 +72,3 @@ const PlayerCard: React.FC<PlayerCardProps> = ({
     </div>
   )
 }
-
-export default PlayerCard

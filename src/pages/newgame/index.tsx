@@ -8,7 +8,7 @@ import useGameStore from '@/lib/store'
 
 import PlayerCard from './player-card'
 
-const NewGamePage = () => {
+export default function NewGamePage() {
   const {
     players,
     handleAddPlayer,
@@ -76,5 +76,3 @@ const NewGamePage = () => {
     </div>
   )
 }
-
-export default NewGamePage

@@ -1,4 +1,4 @@
-const shuffleArray = <T>(array: T[]): T[] => {
+export default function shuffleArray<T>(array: T[]): T[] {
   const result = [...array]
 
   for (let i = result.length - 1; i > 0; i--) {
@@ -8,5 +8,3 @@ const shuffleArray = <T>(array: T[]): T[] => {
 
   return result
 }
-
-export default shuffleArray

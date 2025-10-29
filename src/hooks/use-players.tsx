@@ -6,7 +6,7 @@ import getRandomAvailableColor from '@/utils/get-random-available-color'
 import getRoles from '@/utils/get-roles-array'
 import shuffleArray from '@/utils/shuffle-array'
 
-const usePlayers = () => {
+export default function usePlayers() {
   const addPlayers = useGameStore((state) => state.addPlayers)
   const [players, setPlayers] = useState<LobbyPlayer[]>([])
 
@@ -56,5 +56,3 @@ const usePlayers = () => {
     recordPlayers
   }
 }
-
-export default usePlayers
