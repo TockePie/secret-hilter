@@ -2,7 +2,7 @@ import { create } from 'zustand'
 
 import type { Player } from '@/types/player'
 
-type Store = {
+export type Store = {
   players: Player[]
   president: Player['id'] | undefined
   chancelour: Player['id'] | undefined
@@ -14,30 +14,29 @@ type Store = {
     | 'sleep-stage'
     | 'choose-cancelour'
     | 'confirm-candidates'
+    | 'prepresident-move'
 }
 
-type Actions = {
+export type Actions = {
   addPlayers: (players: Player[]) => void
   resetPlayers: () => void
-  abortGame: () => void
   updateStatus: (status: Store['status']) => void
   initiatePresident: () => void
   setCandidateChancellor: (id: Player['id']) => void
+  setNewGovernment: () => void
 }
 
 const useGameStore = create<Store & Actions>((set) => ({
   players: [],
+  status: 'new-game',
   president: undefined,
   chancelour: undefined,
   candidatePresident: undefined,
   candidateChancellor: undefined,
-  status: 'new-game',
 
-  addPlayers: (players) => {
-    set((state) => ({ players: [...state.players, ...players] }))
-  },
+  addPlayers: (players) =>
+    set((state) => ({ players: [...state.players, ...players] })),
   resetPlayers: () => set({ players: [] }),
-  abortGame: () => set({ players: [], status: 'new-game' }),
   updateStatus: (status) => set({ status }),
   initiatePresident: () => {
     set((state) => {
@@ -51,6 +50,13 @@ const useGameStore = create<Store & Actions>((set) => ({
   },
   setCandidateChancellor: (playerId) => {
     set(() => ({ candidateChancellor: playerId }))
+  },
+  setNewGovernment: () => {
+    set((state) => ({
+      ...state,
+      president: state.candidatePresident,
+      chancelour: state.candidateChancellor
+    }))
   }
 }))
 
