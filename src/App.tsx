@@ -4,7 +4,7 @@ import { ExternalLink } from 'lucide-react'
 
 import CreditsDialog from './components/CreditsDialog'
 
-function App() {
+export default function App() {
   return (
     <main className="mx-auto flex min-h-screen max-w-xl flex-col items-center justify-between p-4">
       <div className="my-8 flex flex-col items-center gap-6">
@@ -40,5 +40,3 @@ function App() {
     </main>
   )
 }
-
-export default App

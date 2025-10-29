@@ -8,7 +8,7 @@ import useGameStore from '@/lib/store'
 
 import PlayerCard from './player-card'
 
-const NewGamePage = () => {
+export default function NewGamePage() {
   const {
     players,
     handleAddPlayer,
@@ -16,12 +16,13 @@ const NewGamePage = () => {
     handleRenamePlayer,
     recordPlayers
   } = usePlayers()
-  const resetPlayers = useGameStore((state) => state.resetPlayers)
-  const updateStatus = useGameStore((state) => state.updateStatus)
+  const { resetPlayers, initiatePresident, updateStatus } =
+    useGameStore.getState()
 
   const handleStartGame = () => {
     resetPlayers()
     recordPlayers()
+    initiatePresident()
     updateStatus('role-revealing')
   }
 
@@ -75,5 +76,3 @@ const NewGamePage = () => {
     </div>
   )
 }
-
-export default NewGamePage

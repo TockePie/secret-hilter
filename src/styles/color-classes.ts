@@ -1,6 +1,6 @@
 import PlayerColor from '@/types/enums/player-color'
 
-const playerTextColorClasses: Record<PlayerColor, string> = {
+export const playerTextColorClasses: Record<PlayerColor, string> = {
   [PlayerColor.NEUTRAL]: 'text-neutral-600',
   [PlayerColor.SLATE]: 'text-slate-600',
   [PlayerColor.RED]: 'text-red-600',
@@ -13,7 +13,7 @@ const playerTextColorClasses: Record<PlayerColor, string> = {
   [PlayerColor.PINK]: 'text-pink-600'
 }
 
-const playerBackgroundColorClasses: Record<PlayerColor, string> = {
+export const playerBackgroundColorClasses: Record<PlayerColor, string> = {
   [PlayerColor.NEUTRAL]: 'bg-neutral-600',
   [PlayerColor.SLATE]: 'bg-slate-600',
   [PlayerColor.RED]: 'bg-red-600',
@@ -25,5 +25,3 @@ const playerBackgroundColorClasses: Record<PlayerColor, string> = {
   [PlayerColor.PURPLE]: 'bg-purple-600',
   [PlayerColor.PINK]: 'bg-pink-600'
 }
-
-export { playerBackgroundColorClasses, playerTextColorClasses }
