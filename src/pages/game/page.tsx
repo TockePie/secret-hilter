@@ -2,16 +2,17 @@ import React from 'react'
 import { X } from 'lucide-react'
 
 import AbortDialog from '@/components/AbortDialog'
-import useGameStore from '@/lib/store'
+import useGameStore, { type Store } from '@/lib/store'
 
 import ChooseCancelourPage from './components/ChooseCancelour'
 import ConfirmCandidates from './components/ConfirmCandidates'
 import NoGamePage from './components/NoGamePage'
+import PlayersMove from './components/PlayersMove'
 import RolesPage from './components/RolesPage'
 import SleepStagePage from './components/SleepStagePage'
 
 const PAGE_CONFIG: Record<
-  typeof status,
+  Store['status'],
   { page: React.JSX.Element; title: string }
 > = {
   'new-game': {
@@ -33,6 +34,10 @@ const PAGE_CONFIG: Record<
   'confirm-candidates': {
     page: <ConfirmCandidates />,
     title: 'Voting'
+  },
+  'prepresident-move': {
+    page: <PlayersMove role="president" />,
+    title: 'Enacting'
   }
 }
 

@@ -23,7 +23,7 @@ const ChooseCancelourPage = () => {
       <div className="flex flex-col items-center gap-3">
         <h2
           className={clsx(
-            playerTextColorClasses[presidentData?.color],
+            playerTextColorClasses[presidentData?.color ?? 'slate'],
             'text-5xl font-bold'
           )}
         >
