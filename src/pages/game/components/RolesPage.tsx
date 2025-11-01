@@ -22,7 +22,7 @@ const RolesPage = () => {
   }
 
   return (
-    <main className="w-full px-6 pb-[140px]">
+    <main className="w-full px-6">
       <Carousel className="w-full" opts={{ watchDrag: false }}>
         <CarouselContent>
           {players.map((player, index) => (

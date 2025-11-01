@@ -6,7 +6,7 @@ import CreditsDialog from './components/CreditsDialog'
 
 export default function App() {
   return (
-    <main className="mx-auto flex min-h-screen max-w-xl flex-col items-center justify-between p-4">
+    <main className="standalone:pb-12 mx-auto flex min-h-screen max-w-xl flex-col items-center justify-between p-4">
       <div className="my-8 flex flex-col items-center gap-6">
         <img
           src="/secret-hitler-logo.png"

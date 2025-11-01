@@ -23,7 +23,7 @@ const ConfirmCandidates = () => {
         <CandidatesCard />
       </div>
 
-      <div className="flex w-full flex-col gap-3 pb-6">
+      <div className="max-sm:standalone:pb-10 flex w-full flex-col gap-3 pb-6">
         <span className="text-center text-2xl text-stone-700">
           Did the majority of players vote to accept new government?
         </span>

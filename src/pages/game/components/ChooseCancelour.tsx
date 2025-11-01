@@ -19,7 +19,7 @@ const ChooseCancelourPage = () => {
   }
 
   return (
-    <main className="flex w-full flex-col items-center gap-4 px-6">
+    <main className="max-sm:standalone:pb-10 flex w-full flex-col items-center gap-4 px-6">
       <div className="flex flex-col items-center gap-3">
         <h2
           className={clsx(

@@ -50,7 +50,7 @@ const RolesCard: React.FC<RolesCardProps> = ({ name, color, role, nextFn }) => {
   )
 
   return (
-    <div className="h-115 w-full">
+    <div className="h-115 w-full select-none">
       <Flip frontPart={<FrontPart />} backPart={<BackPart />} />
     </div>
   )
