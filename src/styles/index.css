@@ -123,3 +123,5 @@
     @apply bg-stone-100 text-stone-800;
   }
 }
+
+@custom-variant standalone (@media (display-mode: standalone));
