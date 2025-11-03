@@ -1,4 +1,3 @@
-import clsx from 'clsx'
 import { Crown, Landmark } from 'lucide-react'
 
 import useGameStore from '@/lib/store'
@@ -27,15 +26,14 @@ const CandidatesCard = () => {
           }
         />
         <div className="flex flex-col">
-          <span
-            className={clsx(
-              playerTextColorClasses[candidates.president?.color ?? 'slate'],
-              'text-4xl font-semibold'
-            )}
+          <h2
+            className={
+              playerTextColorClasses[candidates.president?.color ?? 'slate']
+            }
           >
             {candidates.president?.name}
-          </span>
-          <span className="text-xl text-stone-600">as president</span>
+          </h2>
+          <p className="body-2">as president</p>
         </div>
       </div>
 
@@ -50,15 +48,14 @@ const CandidatesCard = () => {
           }
         />
         <div className="flex flex-col">
-          <span
-            className={clsx(
-              playerTextColorClasses[candidates.chancellor?.color ?? 'slate'],
-              'text-4xl font-semibold'
-            )}
+          <h2
+            className={
+              playerTextColorClasses[candidates.chancellor?.color ?? 'slate']
+            }
           >
             {candidates.chancellor?.name}
-          </span>
-          <span className="text-xl text-stone-600">as chancellor</span>
+          </h2>
+          <p className="body-2">as chancellor</p>
         </div>
       </div>
     </div>
