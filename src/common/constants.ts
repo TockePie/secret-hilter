@@ -1,4 +1,5 @@
 import type { Player } from '@/types/player'
+import type { PolicyTilesType } from '@/types/policy-tiles'
 
 export const PLAYER_CONFIG = {
   5: {
@@ -32,6 +33,80 @@ export const PLAYER_CONFIG = {
     hitler: 1
   }
 }
+
+export const POLICY_TILES: {
+  id: number
+  type: PolicyTilesType
+}[] = [
+  {
+    id: 1,
+    type: 'Fascist'
+  },
+  {
+    id: 2,
+    type: 'Fascist'
+  },
+  {
+    id: 3,
+    type: 'Fascist'
+  },
+  {
+    id: 4,
+    type: 'Fascist'
+  },
+  {
+    id: 5,
+    type: 'Fascist'
+  },
+  {
+    id: 6,
+    type: 'Fascist'
+  },
+  {
+    id: 7,
+    type: 'Fascist'
+  },
+  {
+    id: 8,
+    type: 'Fascist'
+  },
+  {
+    id: 9,
+    type: 'Fascist'
+  },
+  {
+    id: 10,
+    type: 'Fascist'
+  },
+  {
+    id: 11,
+    type: 'Fascist'
+  },
+  {
+    id: 12,
+    type: 'Liberal'
+  },
+  {
+    id: 13,
+    type: 'Liberal'
+  },
+  {
+    id: 14,
+    type: 'Liberal'
+  },
+  {
+    id: 15,
+    type: 'Liberal'
+  },
+  {
+    id: 16,
+    type: 'Liberal'
+  },
+  {
+    id: 17,
+    type: 'Liberal'
+  }
+]
 
 export const ROLE_CONFIG: Record<
   Player['role'],
