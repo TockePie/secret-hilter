@@ -1,37 +1,22 @@
 import { Button } from '@ui/button'
 
+import { SLEEP_STAGE_INSTR } from '@/common/constants'
 import useGameStore from '@/lib/store'
 
-const instruction = {
-  smallTeam: `1. Close your eyes. 
-    (Wait for everyone to do this.)
-    2. Fascists and Hitler, open your eyes and acknowledge each other.
-    (Take a moment to connect silently.)
-    3. Open your eyes.
-    (When everyone is ready, proceed.)`,
-  bigTeam: `1. Close your eyes. 
-    (Wait for everyone to do this.)
-    2. Fascists who are NOT Hitler, open your eyes and acknowledge each other.
-    (Take a moment to connect silently.)
-    3. Hitler, keep your eyes closed but raise your hand
-    4. Open your eyes.
-    (When everyone is ready, proceed.)`
-}
-
-const SleepStagePage = () => {
+export default function SleepStagePage() {
   const updateStatus = useGameStore((state) => state.updateStatus)
 
   return (
     <>
       <main className="flex w-full flex-col items-center gap-4 px-6 pt-3 pb-[140px]">
         <span className="text-8xl">😴</span>
-        <h2 className="text-center text-2xl font-medium">
+        <h4 className="text-center">
           Get ready for the next stage!
           <br /> Instruction for All Players:
-        </h2>
+        </h4>
         <div>
-          {instruction.smallTeam.split('\n').map((line, idx) => (
-            <div key={idx} className="m-1 text-xl text-stone-500">
+          {SLEEP_STAGE_INSTR.smallTeam.split('\n').map((line, idx) => (
+            <div key={idx} className="body-2 m-1">
               {line.startsWith('(') && line.endsWith(')') ? (
                 <i>{line}</i>
               ) : (
@@ -54,5 +39,3 @@ const SleepStagePage = () => {
     </>
   )
 }
-
-export default SleepStagePage

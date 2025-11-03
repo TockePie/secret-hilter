@@ -1,4 +1,5 @@
 import React from 'react'
+import { Button } from '@ui/button'
 import { X } from 'lucide-react'
 
 import AbortDialog from '@/components/AbortDialog'
@@ -45,13 +46,17 @@ export default function GamePage() {
   const status = useGameStore((state) => state.status)
 
   return (
-    <div className="mx-auto flex h-screen max-w-146 flex-col items-center">
+    <div className="page">
       <nav className="flex w-full items-center justify-between p-6">
         <div className="size-8"></div>
-        <span className="text-center text-4xl font-bold">
-          {PAGE_CONFIG[status].title}
-        </span>
-        <AbortDialog triggerComp={<X size={32} />} />
+        <h2>{PAGE_CONFIG[status].title}</h2>
+        <AbortDialog
+          triggerComp={
+            <Button size="icon" variant="ghost">
+              <X className="size-7" strokeWidth={2.5} />
+            </Button>
+          }
+        />
       </nav>
 
       {PAGE_CONFIG[status]?.page}

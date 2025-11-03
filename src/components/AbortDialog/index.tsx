@@ -40,7 +40,7 @@ const AbortDialog: React.FC<AbortDialogProps> = ({ triggerComp }) => {
           All the progress will be terminated
         </DialogDescription>
 
-        <DialogFooter className="flex flex-col gap-3">
+        <DialogFooter className="flex flex-col flex-wrap gap-3">
           <Button variant="destructive" size="mobile" onClick={handleAbort}>
             Abort
           </Button>

@@ -19,9 +19,9 @@ const PlayerListItem: React.FC<PlayerListItemProps> = ({
     onClick={disabled ? undefined : actionFn}
     className={clsx(
       disabled
-        ? 'border-stone-300 bg-stone-300'
-        : 'border-stone-400 bg-stone-50',
-      'flex w-full items-center gap-2 rounded-3xl border-2 p-5'
+        ? 'cursor-not-allowed border-stone-200 bg-stone-200'
+        : 'cursor-pointer border-stone-400 bg-stone-50 hover:bg-stone-100 active:bg-stone-200',
+      'flex items-center gap-3 rounded-3xl border-2 p-5 select-none'
     )}
   >
     <div
@@ -31,9 +31,14 @@ const PlayerListItem: React.FC<PlayerListItemProps> = ({
       )}
     />
 
-    <h3 className="max-w-44 flex-1 truncate text-2xl text-stone-600 sm:max-w-64 md:max-w-96">
+    <p
+      className={clsx(
+        disabled ? 'text-2xl text-stone-500' : 'body-1',
+        'max-w-44 flex-1 truncate sm:max-w-64 md:max-w-96'
+      )}
+    >
       {name}
-    </h3>
+    </p>
   </div>
 )
 

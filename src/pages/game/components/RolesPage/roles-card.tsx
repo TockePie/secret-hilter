@@ -2,10 +2,9 @@ import React from 'react'
 import clsx from 'clsx'
 
 import { ROLE_CONFIG } from '@/common/constants'
+import Flip from '@/components/Flip'
 import { playerTextColorClasses } from '@/styles/color-classes'
 import type { Player } from '@/types/player'
-
-import Flip from '../Flip'
 
 interface RolesCardProps extends Player {
   nextFn?: (() => void) | undefined
@@ -16,15 +15,10 @@ const RolesCard: React.FC<RolesCardProps> = ({ name, color, role, nextFn }) => {
 
   const FrontPart = () => (
     <div className="flex size-full flex-col rounded-3xl border border-stone-400 bg-stone-50 text-center">
-      <span
-        className={clsx(
-          'my-auto w-full text-5xl font-bold',
-          playerTextColorClasses[color]
-        )}
-      >
+      <h1 className={clsx('my-auto w-full', playerTextColorClasses[color])}>
         {name}
-      </span>
-      <p className="mb-2 text-xl text-stone-500">Press to reveal role</p>
+      </h1>
+      <p className="body-2 mb-2">Press to reveal role</p>
     </div>
   )
 
@@ -39,13 +33,11 @@ const RolesCard: React.FC<RolesCardProps> = ({ name, color, role, nextFn }) => {
           alt={`${role} role image`}
           className="mx-auto mt-4 size-[256px]"
         />
-        <span className={clsx('w-full text-5xl font-bold', roleConfig.color)}>
+        <h1 className={clsx('w-full', roleConfig.color)}>
           {role.charAt(0).toUpperCase() + role.slice(1)}
-        </span>
+        </h1>
       </div>
-      <p className="mb-2 text-xl text-stone-500">
-        Press to move to the next player
-      </p>
+      <p className="body-2 mb-2">Press to move to the next player</p>
     </div>
   )
 

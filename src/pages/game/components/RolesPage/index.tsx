@@ -6,10 +6,10 @@ import {
   CarouselNext
 } from '@ui/carousel'
 
-import RolesCard from '@/components/RolesCard'
 import useGameStore from '@/lib/store'
+import RolesCard from '@/pages/game/components/RolesPage/roles-card'
 
-const RolesPage = () => {
+export default function RolesPage() {
   const nextButton = useRef<HTMLButtonElement>(null)
   const { players, updateStatus } = useGameStore.getState()
 
@@ -36,5 +36,3 @@ const RolesPage = () => {
     </main>
   )
 }
-
-export default RolesPage

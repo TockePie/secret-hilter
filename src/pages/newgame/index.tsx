@@ -29,10 +29,10 @@ export default function NewGamePage() {
   useEffect(() => handleAddPlayer(), [])
 
   return (
-    <div className="mx-auto flex h-screen max-w-146 flex-col items-center">
-      <nav className="flex w-full items-center justify-between p-6">
+    <div className="page">
+      <nav className="flex w-full items-center justify-between p-6 text-center">
         <div className="size-8" />
-        <span className="text-center text-4xl font-bold">Players</span>
+        <h2>Players</h2>
         <Button
           size="icon"
           variant="ghost"
@@ -60,9 +60,7 @@ export default function NewGamePage() {
       </main>
 
       <footer className="max-sm:standalone:pb-10 fixed inset-x-0 bottom-0 z-10 flex flex-col items-center gap-2 bg-stone-100/90 p-6 pt-3 backdrop-blur-md">
-        <p className="text-stone-500">
-          Recommended to have from 5 to 10 players.
-        </p>
+        <p className="body-3">Recommended to have from 5 to 10 players.</p>
 
         <Button
           size="mobile"

@@ -45,13 +45,13 @@ export default function PlayerCard({
             onChange={(e) => renameFn(e.target.value)}
             onBlur={() => setIsEditing(false)}
             onKeyDown={handleEnter}
-            className="max-w-fit flex-1 text-2xl text-stone-600 sm:max-w-64 md:max-w-96"
+            className="body-1 max-w-fit flex-1 sm:max-w-64 md:max-w-96"
             autoFocus
           />
         ) : (
-          <h3 className="max-w-44 flex-1 truncate text-2xl text-stone-600 sm:max-w-64 md:max-w-96">
+          <p className="body-1 max-w-44 flex-1 truncate sm:max-w-64 md:max-w-96">
             {name}
-          </h3>
+          </p>
         )}
       </div>
 

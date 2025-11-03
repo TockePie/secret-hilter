@@ -6,16 +6,16 @@ import CreditsDialog from './components/CreditsDialog'
 
 export default function App() {
   return (
-    <main className="standalone:pb-12 mx-auto flex min-h-screen max-w-xl flex-col items-center justify-between p-4">
+    <main className="standalone:pb-10 page justify-between p-4">
       <div className="my-8 flex flex-col items-center gap-6">
         <img
           src="/secret-hitler-logo.png"
           alt="Secret Hitler Logo"
           className="size-[200px]"
         />
-        <div className="flex flex-col gap-2 text-center">
-          <h1 className="text-5xl font-bold">Secret Hitler</h1>
-          <p className="text-xl text-stone-500">Web app by Maxim Rocky</p>
+        <div className="text-con">
+          <h1>Secret Hitler</h1>
+          <p className="body-2">Web app by Maxim Rocky</p>
         </div>
       </div>
 
