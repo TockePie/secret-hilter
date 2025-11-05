@@ -3,10 +3,16 @@ import { Button } from '@ui/button'
 import useGameStore from '@/lib/store'
 
 import CandidatesCard from './candidates-card'
+import ElectionAlert from './election-alert'
 
 const ConfirmCandidates = () => {
-  const { setNewGovernment, setNewCandidatePresident, updateStatus } =
-    useGameStore.getState()
+  const {
+    electionTracker,
+    setNewGovernment,
+    setNewCandidatePresident,
+    updateStatus,
+    increaseElectionTracker
+  } = useGameStore.getState()
 
   const handleYes = () => {
     setNewGovernment()
@@ -14,7 +20,8 @@ const ConfirmCandidates = () => {
   }
 
   const handleNo = () => {
-    setNewCandidatePresident('from-candidate')
+    setNewCandidatePresident()
+    increaseElectionTracker()
     updateStatus('choose-cancelour')
   }
 
@@ -26,6 +33,8 @@ const ConfirmCandidates = () => {
       </div>
 
       <div className="max-sm:standalone:pb-10 flex w-full flex-col gap-3 pb-6 text-center">
+        {electionTracker === 2 && <ElectionAlert />}
+
         <p className="body-2">
           Did the majority of players vote to accept new government?
         </p>
