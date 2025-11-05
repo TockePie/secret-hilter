@@ -1,1 +1,6 @@
-export type PolicyTilesType = 'Fascist' | 'Liberal'
+export type PolicyTilesType = 'fascist' | 'liberal'
+
+export interface PolicyTilesProps {
+  id: number
+  type: PolicyTilesType
+}
