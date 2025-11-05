@@ -3,7 +3,8 @@ import { Button } from '@ui/button'
 import { X } from 'lucide-react'
 
 import AbortDialog from '@/components/AbortDialog'
-import useGameStore, { type Store } from '@/lib/store'
+import useGameStore from '@/lib/store'
+import type { Store } from '@/lib/store/store'
 
 import ChooseCancelourPage from './components/ChooseCancelour'
 import ConfirmCandidates from './components/ConfirmCandidates'
