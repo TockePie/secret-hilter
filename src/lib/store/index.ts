@@ -7,15 +7,16 @@ const useGameStore = create<Store & Actions>((set, get) => ({
   ...initialState,
 
   // Player management actions
-  abortGame: () => set({ ...initialState }),
-  addPlayers: (players) =>
-    set((state) => ({ players: [...state.players, ...players] })),
-  resetPlayers: () => set({ players: [] }),
   killPlayer: (playerId) => {
-    const { players, updateStatus, setVictoryDetails } = get()
+    const { players, killedPlayers, updateStatus, setVictoryDetails } = get()
 
     const killedPlayerObj = players.find((player) => player.id === playerId)
     if (!killedPlayerObj) return
+
+    set({
+      players: players.filter((p) => p.id !== playerId),
+      killedPlayers: [...killedPlayers, killedPlayerObj]
+    })
 
     if (killedPlayerObj.role === 'hitler') {
       updateStatus('victory')
@@ -23,16 +24,32 @@ const useGameStore = create<Store & Actions>((set, get) => ({
         whoWon: 'liberals',
         whatHappened: 'Hitler was killed'
       })
-      return
     }
+  },
+  setIneligblePlayers: () => {
+    const { president, chancellor, players } = get()
 
-    set({
-      players: players.filter((p) => p.id !== playerId),
-      killedPlayers: [...get().killedPlayers, killedPlayerObj]
-    })
+    if (chancellor === undefined || president === undefined) return
+
+    if (players.length <= 5) {
+      set({
+        ineligiblePlayers: [chancellor]
+      })
+    } else {
+      set({
+        ineligiblePlayers: [chancellor, president]
+      })
+    }
   },
 
   // Game state management actions
+  abortGame: () => set({ ...initialState }),
+  initiateGame: (players) => {
+    set((state) => ({
+      players: [...state.players, ...players],
+      candidatePresident: players[0].id
+    }))
+  },
 
   // updateStatus: (status) => set({ status }),
   //XXX: Used for controllig state, remove on prod
@@ -48,6 +65,8 @@ const useGameStore = create<Store & Actions>((set, get) => ({
       electionTracker: (state.electionTracker + 1) % 4
     }))
   },
+  //TODO
+  handleChaos: () => {},
   setVictoryDetails: (obj) => {
     set({
       victoryDetails: {
@@ -58,15 +77,6 @@ const useGameStore = create<Store & Actions>((set, get) => ({
   },
 
   // Government management actions
-  initiatePresident: () => {
-    const { players } = get()
-
-    if (players.length === 0) return
-
-    set({
-      candidatePresident: players[0].id
-    })
-  },
   setNewCandidatePresident: () => {
     const { players, candidatePresident } = get()
 
@@ -96,6 +106,11 @@ const useGameStore = create<Store & Actions>((set, get) => ({
       setVictoryDetails
     } = get()
 
+    set((state) => ({
+      president: state.candidatePresident,
+      chancellor: state.candidateChancellor
+    }))
+
     const getChancellorProps = players.find(
       (player) => player.id === candidateChancellor
     )
@@ -107,20 +122,28 @@ const useGameStore = create<Store & Actions>((set, get) => ({
         whatHappened:
           'Hitler was enacted as a chancellor after 3 Fascist Policies'
       })
-
-      return
     }
-
-    set((state) => ({
-      president: state.candidatePresident,
-      chancellor: state.candidateChancellor
-    }))
   },
-  setPolicy: ({ type }) => {
-    const { fascistPolicy, liberalPolicy, updateStatus, setVictoryDetails } =
-      get()
+  discardTile: (tileId) => {
+    const { policyTiles, discartedTiles } = get()
 
-    if (type === 'fascist') {
+    const discartedTileObj = policyTiles.find((tile) => tile.id === tileId)
+
+    set({
+      policyTiles: policyTiles.filter((tile) => tile.id !== tileId),
+      discartedTiles: [...discartedTiles, discartedTileObj]
+    })
+  },
+  setPolicy: (obj) => {
+    const {
+      policyTiles,
+      fascistPolicy,
+      liberalPolicy,
+      updateStatus,
+      setVictoryDetails
+    } = get()
+
+    if (obj.type === 'fascist') {
       const newCount = fascistPolicy + 1
 
       if (newCount >= 6) {
@@ -133,7 +156,7 @@ const useGameStore = create<Store & Actions>((set, get) => ({
       }
 
       set({ fascistPolicy: newCount })
-    } else if (type === 'liberal') {
+    } else if (obj.type === 'liberal') {
       const newCount = liberalPolicy + 1
 
       if (newCount >= 5) {
@@ -147,6 +170,10 @@ const useGameStore = create<Store & Actions>((set, get) => ({
 
       set({ liberalPolicy: newCount })
     }
+
+    set({
+      policyTiles: policyTiles.filter((tile) => tile.id !== obj.id)
+    })
   }
 }))
 

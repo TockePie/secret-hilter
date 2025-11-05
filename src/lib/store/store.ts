@@ -1,6 +1,6 @@
 import { POLICY_TILES } from '@/common/constants'
 import type { Player } from '@/types/player'
-import type { PolicyTilesType } from '@/types/policy-tiles'
+import type { PolicyTilesProps } from '@/types/policy-tiles'
 import shuffleArray from '@/utils/shuffle-array'
 
 export type Store = {
@@ -29,10 +29,8 @@ export type Store = {
   } | null
 
   // Policy tiles-related state
-  policyTiles: {
-    id: number
-    type: PolicyTilesType
-  }[]
+  policyTiles: PolicyTilesProps[]
+  discartedTiles: PolicyTilesProps[]
   fascistPolicy: number
   liberalPolicy: number
 }
@@ -54,6 +52,7 @@ export const initialState: Store = {
 
   // Initializing policy tiles
   policyTiles: shuffleArray(POLICY_TILES),
+  discartedTiles: [],
   fascistPolicy: 0,
   liberalPolicy: 0
 }
