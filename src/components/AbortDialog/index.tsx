@@ -16,6 +16,7 @@ interface AbortDialogProps {
   triggerComp: React.ReactNode
 }
 
+//TODO: Make a dialog in design of the app
 const AbortDialog: React.FC<AbortDialogProps> = ({ triggerComp }) => {
   const navigate = useNavigate()
   const abortGame = useGameStore((state) => state.abortGame)

@@ -7,7 +7,7 @@ import getRoles from '@/utils/get-roles-array'
 import shuffleArray from '@/utils/shuffle-array'
 
 export default function usePlayers() {
-  const addPlayers = useGameStore((state) => state.addPlayers)
+  const initiateGame = useGameStore((state) => state.initiateGame)
   const [players, setPlayers] = useState<LobbyPlayer[]>([])
 
   const handleAddPlayer = () => {
@@ -40,7 +40,7 @@ export default function usePlayers() {
   const recordPlayers = () => {
     const rolesArray = shuffleArray(getRoles(players.length))
 
-    addPlayers(
+    initiateGame(
       players.map((player: LobbyPlayer, index: number) => ({
         ...player,
         role: rolesArray[index]

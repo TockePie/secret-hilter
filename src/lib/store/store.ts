@@ -21,6 +21,7 @@ export type Store = {
     | 'choose-cancelour'
     | 'confirm-candidates'
     | 'prepresident-move'
+    | 'chaos'
     | 'victory'
   electionTracker: number
   victoryDetails: {

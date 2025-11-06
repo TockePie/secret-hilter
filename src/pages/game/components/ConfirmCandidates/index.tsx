@@ -8,6 +8,7 @@ import ElectionAlert from './election-alert'
 const ConfirmCandidates = () => {
   const {
     electionTracker,
+    handleChaos,
     setNewGovernment,
     setNewCandidatePresident,
     updateStatus,
@@ -20,8 +21,16 @@ const ConfirmCandidates = () => {
   }
 
   const handleNo = () => {
-    setNewCandidatePresident()
     increaseElectionTracker()
+    setNewCandidatePresident()
+
+    if (electionTracker === 2) {
+      updateStatus('chaos')
+      handleChaos()
+
+      return
+    }
+
     updateStatus('choose-cancelour')
   }
 

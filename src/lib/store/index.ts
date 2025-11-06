@@ -1,5 +1,7 @@
 import { create } from 'zustand'
 
+import shuffleArray from '@/utils/shuffle-array'
+
 import type { Actions } from './actions'
 import { initialState, type Store } from './store'
 
@@ -41,6 +43,11 @@ const useGameStore = create<Store & Actions>((set, get) => ({
       })
     }
   },
+  clearIneligiblePlayers: () => {
+    set({
+      ineligiblePlayers: []
+    })
+  },
 
   // Game state management actions
   abortGame: () => set({ ...initialState }),
@@ -66,7 +73,12 @@ const useGameStore = create<Store & Actions>((set, get) => ({
     }))
   },
   //TODO
-  handleChaos: () => {},
+  handleChaos: () => {
+    const { policyTiles, setPolicy, clearIneligiblePlayers } = get()
+
+    setPolicy(policyTiles[0])
+    clearIneligiblePlayers()
+  },
   setVictoryDetails: (obj) => {
     set({
       victoryDetails: {
@@ -102,20 +114,22 @@ const useGameStore = create<Store & Actions>((set, get) => ({
       players,
       fascistPolicy,
       candidateChancellor,
+      candidatePresident,
       updateStatus,
       setVictoryDetails
     } = get()
 
-    set((state) => ({
-      president: state.candidatePresident,
-      chancellor: state.candidateChancellor
-    }))
+    set({
+      president: candidatePresident,
+      chancellor: candidateChancellor
+    })
 
     const getChancellorProps = players.find(
       (player) => player.id === candidateChancellor
     )
+    if (!getChancellorProps) return
 
-    if (fascistPolicy >= 3 && getChancellorProps?.role === 'hitler') {
+    if (fascistPolicy >= 3 && getChancellorProps.role === 'hitler') {
       updateStatus('victory')
       setVictoryDetails({
         whoWon: 'fascists',
@@ -127,12 +141,22 @@ const useGameStore = create<Store & Actions>((set, get) => ({
   discardTile: (tileId) => {
     const { policyTiles, discartedTiles } = get()
 
-    const discartedTileObj = policyTiles.find((tile) => tile.id === tileId)
+    const tileToDiscard = policyTiles.find((tile) => tile.id === tileId)
+    if (!tileToDiscard) return
 
     set({
       policyTiles: policyTiles.filter((tile) => tile.id !== tileId),
-      discartedTiles: [...discartedTiles, discartedTileObj]
+      discartedTiles: [...discartedTiles, tileToDiscard]
     })
+  },
+  checkTiles: () => {
+    const { policyTiles, discartedTiles } = get()
+
+    if (policyTiles.length < 3) {
+      set({
+        policyTiles: shuffleArray([policyTiles, discartedTiles])
+      })
+    }
   },
   setPolicy: (obj) => {
     const {
@@ -146,18 +170,19 @@ const useGameStore = create<Store & Actions>((set, get) => ({
     if (obj.type === 'fascist') {
       const newCount = fascistPolicy + 1
 
+      set({ fascistPolicy: newCount })
+
       if (newCount >= 6) {
         updateStatus('victory')
         setVictoryDetails({
           whoWon: 'fascists',
           whatHappened: '6 Fascist Policies have been enacted'
         })
-        return
       }
-
-      set({ fascistPolicy: newCount })
     } else if (obj.type === 'liberal') {
       const newCount = liberalPolicy + 1
+
+      set({ liberalPolicy: newCount })
 
       if (newCount >= 5) {
         updateStatus('victory')
@@ -165,10 +190,7 @@ const useGameStore = create<Store & Actions>((set, get) => ({
           whoWon: 'liberals',
           whatHappened: '5 Liberal Policies have been enacted'
         })
-        return
       }
-
-      set({ liberalPolicy: newCount })
     }
 
     set({

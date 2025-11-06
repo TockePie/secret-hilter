@@ -16,13 +16,11 @@ export default function NewGamePage() {
     handleRenamePlayer,
     recordPlayers
   } = usePlayers()
-  const { resetPlayers, initiatePresident, updateStatus } =
-    useGameStore.getState()
+  const { abortGame, updateStatus } = useGameStore.getState()
 
   const handleStartGame = () => {
-    resetPlayers()
+    abortGame()
     recordPlayers()
-    initiatePresident()
     updateStatus('role-revealing')
   }
 
