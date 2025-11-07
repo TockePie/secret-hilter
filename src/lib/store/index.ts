@@ -154,7 +154,7 @@ const useGameStore = create<Store & Actions>((set, get) => ({
 
     if (policyTiles.length < 3) {
       set({
-        policyTiles: shuffleArray([policyTiles, discartedTiles])
+        policyTiles: shuffleArray([...policyTiles, ...discartedTiles])
       })
     }
   },

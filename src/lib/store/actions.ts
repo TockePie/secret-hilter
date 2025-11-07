@@ -25,5 +25,6 @@ export type Actions = {
   setCandidateChancellor: (id: Player['id']) => void
   setNewGovernment: () => void // Sets new president and chancellor. If 3 fascist policy is enacted and hitler is chosen as a chancellor - sets a victory
   discardTile: (tileId: PolicyTilesProps['id']) => void
+  checkTiles: () => void
   setPolicy: (obj: PolicyTilesProps) => void // Checks if there are enought tiles to win; if so - sets a victory. Then, sets new policy and moves to discartedTiles
 }
