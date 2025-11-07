@@ -8,7 +8,7 @@ export default function SleepStagePage() {
 
   return (
     <>
-      <main className="flex w-full flex-col items-center gap-4 px-6 pt-3 pb-[140px]">
+      <main className="page pb-35">
         <span className="text-8xl">😴</span>
         <h4 className="text-center">
           Get ready for the next stage!
@@ -27,7 +27,7 @@ export default function SleepStagePage() {
         </div>
       </main>
 
-      <footer className="max-sm:standalone:pb-10 fixed inset-x-0 bottom-0 z-10 flex flex-col items-center gap-2 bg-stone-100/90 p-6 pt-3 backdrop-blur-md">
+      <footer className="fixed-bottom">
         <Button
           className="max-w-134"
           size="mobile"

@@ -22,7 +22,7 @@ export default function RolesPage() {
   }
 
   return (
-    <main className="w-full px-6">
+    <main className="page">
       <Carousel className="w-full" opts={{ watchDrag: false }}>
         <CarouselContent>
           {players.map((player, index) => (

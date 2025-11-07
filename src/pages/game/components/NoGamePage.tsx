@@ -4,7 +4,7 @@ import { Button } from '@ui/button'
 export default function NoGamePage() {
   return (
     <>
-      <main className="flex w-full flex-col items-center gap-2 px-6 pb-[140px]">
+      <main className="page pb-35">
         <img
           src="/broken-game-console.png"
           alt="Broken game console"
@@ -18,7 +18,7 @@ export default function NoGamePage() {
         </div>
       </main>
 
-      <footer className="max-sm:standalone:pb-10 fixed inset-x-0 bottom-0 z-10 flex flex-col items-center gap-2 bg-stone-100/90 p-6 pt-3 backdrop-blur-md">
+      <footer className="fixed-bottom">
         <Button className="max-w-134" size="mobile" asChild>
           <Link to="/newgame">New game</Link>
         </Button>

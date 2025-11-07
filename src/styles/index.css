@@ -32,6 +32,22 @@
   h4 {
     @apply text-2xl font-medium;
   }
+
+  .page {
+    @apply mx-auto flex h-screen max-w-146 flex-col items-center;
+  }
+
+  main.page {
+    @apply flex w-full flex-col items-center gap-4 px-6 pt-3;
+  }
+
+  div.text-con {
+    @apply flex flex-col gap-2 text-center;
+  }
+
+  footer.fixed-bottom {
+    @apply max-sm:standalone:pb-10 fixed inset-x-0 bottom-0 z-10 flex flex-col items-center gap-2 bg-stone-100/90 p-6 pt-3 backdrop-blur-md;
+  }
 }
 
 .body-1 {
@@ -44,14 +60,6 @@
 
 .body-3 {
   @apply text-stone-500;
-}
-
-div.text-con {
-  @apply flex flex-col gap-2 text-center;
-}
-
-.page {
-  @apply mx-auto flex h-screen max-w-146 flex-col items-center;
 }
 
 @custom-variant standalone (@media (display-mode: standalone));
