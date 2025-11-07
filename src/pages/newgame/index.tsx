@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Link } from 'react-router'
+import { useNavigate } from 'react-router'
 import { Button } from '@ui/button'
 import { Plus } from 'lucide-react'
 
@@ -9,6 +9,7 @@ import useGameStore from '@/lib/store'
 import PlayerCard from './player-card'
 
 export default function NewGamePage() {
+  const navigate = useNavigate()
   const {
     players,
     handleAddPlayer,
@@ -22,6 +23,7 @@ export default function NewGamePage() {
     abortGame()
     recordPlayers()
     updateStatus('role-revealing')
+    navigate('/game/role-revealing', { replace: true })
   }
 
   useEffect(() => handleAddPlayer(), [])
@@ -66,7 +68,7 @@ export default function NewGamePage() {
           disabled={players.length < 5}
           onClick={handleStartGame}
         >
-          <Link to="/game">Start game</Link>
+          Start game
         </Button>
       </footer>
     </div>

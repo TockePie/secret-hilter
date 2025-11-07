@@ -1,56 +1,26 @@
-import React from 'react'
+import { useEffect } from 'react'
+import { Outlet, useNavigate } from 'react-router'
 import { Button } from '@ui/button'
 import { X } from 'lucide-react'
 
 import AbortDialog from '@/components/AbortDialog'
 import useGameStore from '@/lib/store'
-import type { Store } from '@/lib/store/store'
 
-import ChooseCancelourPage from './components/ChooseCancelour'
-import ConfirmCandidates from './components/ConfirmCandidates'
-import NoGamePage from './components/NoGamePage'
-import PlayersMove from './components/PlayersMove'
-import RolesPage from './components/RolesPage'
-import SleepStagePage from './components/SleepStagePage'
+import { TITLE_MAP } from './common/constants'
 
-const PAGE_CONFIG: Record<
-  Store['status'],
-  { page: React.JSX.Element; title: string }
-> = {
-  'new-game': {
-    page: <NoGamePage />,
-    title: ''
-  },
-  'role-revealing': {
-    page: <RolesPage />,
-    title: 'Roles'
-  },
-  'sleep-stage': {
-    page: <SleepStagePage />,
-    title: 'Sleep stage'
-  },
-  'choose-cancelour': {
-    page: <ChooseCancelourPage />,
-    title: ''
-  },
-  'confirm-candidates': {
-    page: <ConfirmCandidates />,
-    title: 'Voting'
-  },
-  'prepresident-move': {
-    page: <PlayersMove role="president" />,
-    title: 'Enacting'
-  }
-}
-
-export default function GamePage() {
+export default function GameLayout() {
+  const navigate = useNavigate()
   const status = useGameStore((state) => state.status)
+
+  useEffect(() => {
+    navigate(status === 'new-game' ? '/' : `/game/${status}`, { replace: true })
+  }, [status, navigate])
 
   return (
     <div className="page">
       <nav className="flex w-full items-center justify-between p-6">
         <div className="size-8"></div>
-        <h2>{PAGE_CONFIG[status].title}</h2>
+        <h2>{TITLE_MAP[status]}</h2>
         <AbortDialog
           triggerComp={
             <Button size="icon" variant="ghost">
@@ -60,7 +30,7 @@ export default function GamePage() {
         />
       </nav>
 
-      {PAGE_CONFIG[status]?.page}
+      <Outlet />
     </div>
   )
 }
