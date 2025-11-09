@@ -35,9 +35,9 @@ const ConfirmCandidates = () => {
   }
 
   return (
-    <main className="page h-full justify-between">
+    <main className="page-main h-full justify-between">
       <div className="flex w-full flex-col items-center gap-4">
-        <h4 className="text-center">The government for the next term:</h4>
+        <h4>The government for the next term:</h4>
         <CandidatesCard />
       </div>
 

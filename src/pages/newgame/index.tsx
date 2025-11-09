@@ -43,7 +43,7 @@ export default function NewGamePage() {
         </Button>
       </nav>
 
-      <main className="standalone:pb-39 flex w-full flex-col items-center gap-2 px-6 pb-35">
+      <main className="standalone:pb-39 page-main pb-35">
         {players.map((player) => (
           <PlayerCard
             key={player.id}
@@ -59,12 +59,11 @@ export default function NewGamePage() {
         ))}
       </main>
 
-      <footer className="max-sm:standalone:pb-10 fixed inset-x-0 bottom-0 z-10 flex flex-col items-center gap-2 bg-stone-100/90 p-6 pt-3 backdrop-blur-md">
+      <footer className="fixed-bottom">
         <p className="body-3">Recommended to have from 5 to 10 players.</p>
 
         <Button
           size="mobile"
-          className="max-w-134"
           disabled={players.length < 5}
           onClick={handleStartGame}
         >

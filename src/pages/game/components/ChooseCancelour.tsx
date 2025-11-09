@@ -17,7 +17,7 @@ export default function ChooseCancelourPage() {
   }
 
   return (
-    <main className="max-sm:standalone:pb-10 page gap-8">
+    <main className="page-main max-sm:standalone:pb-10 gap-8">
       <div className="text-con">
         <h1 className={playerTextColorClasses[presidentData?.color ?? 'slate']}>
           {presidentData?.name}

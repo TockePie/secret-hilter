@@ -8,9 +8,9 @@ export default function SleepStagePage() {
 
   return (
     <>
-      <main className="page pb-35">
+      <main className="page-main pb-35">
         <span className="text-8xl">😴</span>
-        <h4 className="text-center">
+        <h4>
           Get ready for the next stage!
           <br /> Instruction for All Players:
         </h4>
@@ -28,11 +28,7 @@ export default function SleepStagePage() {
       </main>
 
       <footer className="fixed-bottom">
-        <Button
-          className="max-w-134"
-          size="mobile"
-          onClick={() => updateStatus('choose-cancelour')}
-        >
+        <Button size="mobile" onClick={() => updateStatus('choose-cancelour')}>
           Next
         </Button>
       </footer>

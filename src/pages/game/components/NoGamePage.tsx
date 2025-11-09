@@ -4,7 +4,7 @@ import { Button } from '@ui/button'
 export default function NoGamePage() {
   return (
     <>
-      <main className="page pb-35">
+      <main className="page-main pb-35">
         <img
           src="/broken-game-console.png"
           alt="Broken game console"
