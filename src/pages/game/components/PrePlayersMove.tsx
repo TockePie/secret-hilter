@@ -10,16 +10,21 @@ export default function PrePlayersMove({
 }: {
   role: 'president' | 'chancellor'
 }) {
-  const { players, president, chancellor } = useGameStore.getState()
+  const { players, president, chancellor, updateStatus } =
+    useGameStore.getState()
 
   const currentPlayer =
     role === 'president'
       ? players.find((player) => player.id === president)
       : players.find((player) => player.id === chancellor)
 
+  const handleNext = () => {
+    updateStatus(role === 'president' ? 'president-move' : 'chancellor-move')
+  }
+
   return (
     <>
-      <main className="page h-full pb-35">
+      <main className="page-main pb-35">
         <p className="my-auto flex flex-col gap-4 text-center">
           <span
             className={clsx(
@@ -41,7 +46,9 @@ export default function PrePlayersMove({
           </span>
         </div>
 
-        <Button size="mobile">Next</Button>
+        <Button size="mobile" onClick={handleNext}>
+          Next
+        </Button>
       </footer>
     </>
   )

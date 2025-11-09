@@ -1,6 +1,6 @@
 import { POLICY_TILES } from '@/common/constants'
 import type { Player } from '@/types/player'
-import type { PolicyTilesProps } from '@/types/policy-tiles'
+import type { PolicyTilesProps, TilesSnapshotProps } from '@/types/policy-tiles'
 import shuffleArray from '@/utils/shuffle-array'
 
 export type Store = {
@@ -22,6 +22,9 @@ export type Store = {
     | 'confirm-candidates'
     | 'prepresident-move'
     | 'president-move'
+    | 'prechancellor-move'
+    | 'chancellor-move'
+    | 'results'
     | 'chaos'
     | 'victory'
   electionTracker: number
@@ -32,6 +35,7 @@ export type Store = {
 
   // Policy tiles-related state
   policyTiles: PolicyTilesProps[]
+  tilesSnapshot: TilesSnapshotProps[] | null
   discartedTiles: PolicyTilesProps[]
   fascistPolicy: number
   liberalPolicy: number
@@ -54,6 +58,7 @@ export const initialState: Store = {
 
   // Initializing policy tiles
   policyTiles: shuffleArray(POLICY_TILES),
+  tilesSnapshot: null,
   discartedTiles: [],
   fascistPolicy: 0,
   liberalPolicy: 0

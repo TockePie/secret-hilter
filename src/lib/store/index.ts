@@ -138,14 +138,22 @@ const useGameStore = create<Store & Actions>((set, get) => ({
       })
     }
   },
+  setTilesSnapshot: () => {
+    set((state) => ({
+      tilesSnapshot: state.policyTiles.slice(0, 3)
+    }))
+  },
   discardTile: (tileId) => {
-    const { policyTiles, discartedTiles } = get()
+    const { policyTiles, tilesSnapshot, discartedTiles } = get()
 
     const tileToDiscard = policyTiles.find((tile) => tile.id === tileId)
     if (!tileToDiscard) return
 
     set({
       policyTiles: policyTiles.filter((tile) => tile.id !== tileId),
+      tilesSnapshot: tilesSnapshot?.map((tile) =>
+        tile.id === tileId ? { ...tile, disabled: true } : tile
+      ),
       discartedTiles: [...discartedTiles, tileToDiscard]
     })
   },

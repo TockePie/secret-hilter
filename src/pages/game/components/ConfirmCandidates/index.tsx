@@ -11,12 +11,14 @@ const ConfirmCandidates = () => {
     handleChaos,
     setNewGovernment,
     setNewCandidatePresident,
+    setTilesSnapshot,
     updateStatus,
     increaseElectionTracker
   } = useGameStore.getState()
 
   const handleYes = () => {
     setNewGovernment()
+    setTilesSnapshot()
     updateStatus('prepresident-move')
   }
 
@@ -35,7 +37,7 @@ const ConfirmCandidates = () => {
   }
 
   return (
-    <main className="page-main h-full justify-between">
+    <main className="page-main justify-between">
       <div className="flex w-full flex-col items-center gap-4">
         <h4>The government for the next term:</h4>
         <CandidatesCard />

@@ -32,6 +32,11 @@ createRoot(document.getElementById('root')!).render(
             element={<PrePlayersMove role="president" />}
           />
           <Route path="president-move" element={<PlayersMove />} />
+          <Route
+            path="prechancellor-move"
+            element={<PrePlayersMove role="chancellor" />}
+          />
+          <Route path="chancellor-move" element={<PlayersMove />} />
         </Route>
       </Routes>
     </BrowserRouter>
