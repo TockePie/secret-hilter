@@ -14,15 +14,18 @@ import useGameStore from '@/lib/store'
 
 interface AbortDialogProps {
   triggerComp: React.ReactNode
+  onAbort?: () => void
 }
 
 //TODO: Make a dialog in design of the app
-const AbortDialog: React.FC<AbortDialogProps> = ({ triggerComp }) => {
+const AbortDialog: React.FC<AbortDialogProps> = ({ triggerComp, onAbort }) => {
   const navigate = useNavigate()
   const abortGame = useGameStore((state) => state.abortGame)
 
   const handleAbort = () => {
     abortGame()
+    sessionStorage.removeItem('game-storage')
+    onAbort?.()
     navigate('/', { replace: true })
   }
 
