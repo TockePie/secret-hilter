@@ -6,7 +6,7 @@ import type { Store } from './store'
 export type Actions = {
   // Player management actions
   killPlayer: (id: Player['id']) => void // Removes a player from an array. If it's hitler - sets a victory
-  setIneligblePlayers: () => void
+  setIneligiblePlayers: () => void
   clearIneligiblePlayers: () => void
 
   // Game state management actions
@@ -22,7 +22,7 @@ export type Actions = {
 
   // Government management actions
   setNewCandidatePresident: () => void
-  setCandidateChancellor: (id: Player['id']) => void
+  setCandidateChancellor: (id: Store['candidateChancellor']) => void
   setNewGovernment: () => void // Sets new president and chancellor. If 3 fascist policy is enacted and hitler is chosen as a chancellor - sets a victory
   setTilesSnapshot: () => void
   discardTile: (tileId: PolicyTilesProps['id']) => void

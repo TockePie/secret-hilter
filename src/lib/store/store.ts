@@ -35,7 +35,7 @@ export type Store = {
 
   // Policy tiles-related state
   policyTiles: PolicyTilesProps[]
-  tilesSnapshot: TilesSnapshotProps[] | null
+  tilesSnapshot: TilesSnapshotProps[]
   discartedTiles: PolicyTilesProps[]
   fascistPolicy: number
   liberalPolicy: number
@@ -58,7 +58,7 @@ export const initialState: Store = {
 
   // Initializing policy tiles
   policyTiles: shuffleArray(POLICY_TILES),
-  tilesSnapshot: null,
+  tilesSnapshot: [],
   discartedTiles: [],
   fascistPolicy: 0,
   liberalPolicy: 0
