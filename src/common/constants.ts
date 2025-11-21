@@ -125,20 +125,3 @@ export const ROLE_CONFIG: Record<
     border: 'border-red-800'
   }
 }
-
-//TODO: Adapt instructions for big team
-export const SLEEP_STAGE_INSTR = {
-  smallTeam: `1. Close your eyes. 
-    (Wait for everyone to do this.)
-    2. fascists and Hitler, open your eyes and acknowledge each other.
-    (Take a moment to connect silently.)
-    3. Open your eyes.
-    (When everyone is ready, proceed.)`,
-  bigTeam: `1. Close your eyes. 
-    (Wait for everyone to do this.)
-    2. fascists who are NOT Hitler, open your eyes and acknowledge each other.
-    (Take a moment to connect silently.)
-    3. Hitler, keep your eyes closed but raise your hand
-    4. Open your eyes.
-    (When everyone is ready, proceed.)`
-}

@@ -1,0 +1,21 @@
+interface InstructionCardProps {
+  number: number
+  title: string
+  content: string
+}
+
+export default function InstructionCard({
+  number,
+  title,
+  content
+}: InstructionCardProps) {
+  return (
+    <div className="flex gap-6">
+      <h1 className="w-8 text-center">{number}</h1>
+      <div className="w-[90%]">
+        <h4 className="text-left">«{title}»</h4>
+        <p className="body-2">{content}</p>
+      </div>
+    </div>
+  )
+}
