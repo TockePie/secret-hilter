@@ -6,7 +6,7 @@ interface FlipProps {
   backPart: React.ReactNode
 }
 
-const Flip: React.FC<FlipProps> = ({ frontPart, backPart }) => {
+export default function Flip({ frontPart, backPart }: FlipProps) {
   const [isFlipped, setFlipped] = useState(false)
 
   return (
@@ -28,5 +28,3 @@ const Flip: React.FC<FlipProps> = ({ frontPart, backPart }) => {
     </div>
   )
 }
-
-export default Flip

@@ -24,7 +24,7 @@ export default function PrePlayersMove({
 
   return (
     <>
-      <main className="page-main pb-35">
+      <main className="page-main h-full pb-35">
         <p className="my-auto flex flex-col gap-4 text-center">
           <span
             className={clsx(

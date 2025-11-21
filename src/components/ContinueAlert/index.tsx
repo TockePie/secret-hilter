@@ -21,7 +21,7 @@ export default function ContinueAlert() {
       </div>
 
       <Button size="mobile" asChild>
-        <Link to="/game">Return </Link>
+        <Link to="/game">Return</Link>
       </Button>
     </div>
   )

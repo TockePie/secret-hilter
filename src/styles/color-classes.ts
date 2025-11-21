@@ -1,4 +1,4 @@
-import PlayerColor from '@/types/enums/player-color'
+import { PlayerColor } from '@/types/enums/player-color'
 
 export const playerTextColorClasses: Record<PlayerColor, string> = {
   [PlayerColor.NEUTRAL]: 'text-neutral-600',

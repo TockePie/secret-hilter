@@ -29,7 +29,7 @@ export default function PlayerCard({
   }
 
   return (
-    <div className="flex w-full items-center justify-between gap-3 rounded-3xl border-2 border-stone-400 bg-stone-50 p-5">
+    <div className="flex h-20 w-full items-center justify-between gap-3 rounded-3xl border-2 border-stone-400 bg-stone-50 p-5">
       <div className="flex items-center gap-3">
         <div
           className={clsx(

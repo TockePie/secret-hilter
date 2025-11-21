@@ -1,4 +1,4 @@
-enum PlayerColor {
+export enum PlayerColor {
   NEUTRAL = 'neutral',
   SLATE = 'slate',
   RED = 'red',
@@ -10,5 +10,3 @@ enum PlayerColor {
   PURPLE = 'purple',
   PINK = 'pink'
 }
-
-export default PlayerColor

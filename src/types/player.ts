@@ -1,13 +1,11 @@
-import PlayerColor from '@/types/enums/player-color'
+import type { PlayerColor } from './enums/player-color'
 
-interface LobbyPlayer {
+export interface LobbyPlayer {
   id: `${number}-${number}`
   name: string
   color: PlayerColor
 }
 
-interface Player extends LobbyPlayer {
+export interface Player extends LobbyPlayer {
   role: 'liberal' | 'fascist' | 'hitler'
 }
-
-export type { LobbyPlayer, Player }

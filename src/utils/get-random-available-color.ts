@@ -1,4 +1,4 @@
-import PlayerColor from '@/types/enums/player-color'
+import { PlayerColor } from '@/types/enums/player-color'
 
 export default function getRandomAvailableColor(
   usedColors: PlayerColor[]

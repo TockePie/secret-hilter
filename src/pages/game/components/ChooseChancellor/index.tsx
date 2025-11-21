@@ -1,11 +1,21 @@
-import PlayerListItem from '@/components/PlayerListItem'
 import useGameStore from '@/lib/store'
 import { playerTextColorClasses } from '@/styles/color-classes'
 import type { Player } from '@/types/player'
 
+import PlayerListItem from './player-list-item'
+
 export default function ChooseCancelourPage() {
-  const { players, candidatePresident, setCandidateChancellor, updateStatus } =
-    useGameStore.getState()
+  const {
+    players,
+    candidatePresident,
+    ineligiblePlayers,
+    setCandidateChancellor,
+    updateStatus
+  } = useGameStore.getState()
+
+  const noPresidentPlayers = players.filter(
+    (player) => player.id !== candidatePresident
+  )
 
   const presidentData = players.find(
     (player) => player.id === candidatePresident
@@ -28,13 +38,13 @@ export default function ChooseCancelourPage() {
       <div className="flex w-full flex-col items-center gap-4">
         <h4>Choose a cancelour</h4>
         <div className="flex w-full flex-col gap-3">
-          {players.map((player) => (
+          {noPresidentPlayers.map((player) => (
             <PlayerListItem
               id={player.id}
               name={player.name}
               color={player.color}
               key={player.id}
-              disabled={player.id === presidentData?.id}
+              disabled={ineligiblePlayers.some((item) => item === player.id)}
               actionFn={handleCandidates(player.id)}
             />
           ))}

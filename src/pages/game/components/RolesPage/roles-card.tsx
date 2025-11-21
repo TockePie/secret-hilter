@@ -1,17 +1,22 @@
-import React from 'react'
 import clsx from 'clsx'
 
 import { ROLE_CONFIG } from '@/common/constants'
-import Flip from '@/components/Flip'
 import { playerTextColorClasses } from '@/styles/color-classes'
 import type { Player } from '@/types/player'
 import capitalizeFirstLetter from '@/utils/capital-word'
+
+import Flip from './flip'
 
 interface RolesCardProps extends Player {
   nextFn?: (() => void) | undefined
 }
 
-const RolesCard: React.FC<RolesCardProps> = ({ name, color, role, nextFn }) => {
+export default function RolesCard({
+  name,
+  color,
+  role,
+  nextFn
+}: RolesCardProps) {
   const roleConfig = ROLE_CONFIG[role]
 
   const FrontPart = () => (
@@ -43,10 +48,8 @@ const RolesCard: React.FC<RolesCardProps> = ({ name, color, role, nextFn }) => {
   )
 
   return (
-    <div className="h-115 w-full select-none">
+    <div className="h-123 w-full select-none">
       <Flip frontPart={<FrontPart />} backPart={<BackPart />} />
     </div>
   )
 }
-
-export default RolesCard

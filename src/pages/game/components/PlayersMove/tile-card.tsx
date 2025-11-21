@@ -27,7 +27,7 @@ export default function TileCard({
         discarted ? 'text-stone-600' : roleConfig.text,
         discarted ? 'border-stone-600' : roleConfig.border
       )}
-      onClick={actionFn}
+      onClick={discarted ? undefined : actionFn}
     >
       <h1>{discarted ? 'Discarted' : capitalizeFirstLetter(type)}</h1>
       {!discarted && (

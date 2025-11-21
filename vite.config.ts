@@ -17,7 +17,7 @@ export default defineConfig({
       },
       manifest: {
         name: 'Secret Hitler',
-        short_name: 'SecHit',
+        short_name: 'SecretHitler',
         start_url: '/',
         display: 'standalone',
         background_color: '#f5f5f4',
