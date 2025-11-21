@@ -9,8 +9,10 @@ const ConfirmCandidates = () => {
   const {
     electionTracker,
     handleChaos,
+    checkTiles,
     setNewGovernment,
     setNewCandidatePresident,
+    setCandidateChancellor,
     setTilesSnapshot,
     updateStatus,
     increaseElectionTracker
@@ -18,12 +20,15 @@ const ConfirmCandidates = () => {
 
   const handleYes = () => {
     setNewGovernment()
+    setCandidateChancellor(undefined)
+    checkTiles()
     setTilesSnapshot()
     updateStatus('prepresident-move')
   }
 
   const handleNo = () => {
     increaseElectionTracker()
+    setCandidateChancellor(undefined)
     setNewCandidatePresident()
 
     if (electionTracker === 2) {
@@ -37,7 +42,7 @@ const ConfirmCandidates = () => {
   }
 
   return (
-    <main className="page-main justify-between">
+    <main className="page-main h-full justify-between">
       <div className="flex w-full flex-col items-center gap-4">
         <h4>The government for the next term:</h4>
         <CandidatesCard />

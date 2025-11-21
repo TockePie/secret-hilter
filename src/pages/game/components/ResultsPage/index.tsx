@@ -1,0 +1,64 @@
+import { useState } from 'react'
+import { Button } from '@ui/button'
+import clsx from 'clsx'
+
+import useGameStore from '@/lib/store'
+
+import PolicyCard from './policy-card'
+
+export default function ResultsPage() {
+  const [showResults, setShowResults] = useState(false)
+  const {
+    tilesSnapshot,
+    clearIneligiblePlayers,
+    setPolicy,
+    setIneligiblePlayers,
+    setNewCandidatePresident,
+    updateStatus
+  } = useGameStore.getState()
+
+  const policy = tilesSnapshot.find((tile) => !('disabled' in tile))
+
+  const handleShow = () => {
+    if (!showResults) {
+      setShowResults(true)
+    }
+  }
+
+  const handleContinue = () => {
+    clearIneligiblePlayers()
+    setIneligiblePlayers()
+    setNewCandidatePresident()
+    updateStatus('choose-cancelour')
+    setPolicy(policy)
+  }
+
+  return (
+    <>
+      <main
+        className={clsx(
+          'page-main h-full pb-35',
+          showResults ?? 'mb-3 border-dashed border-stone-400 min-md:border'
+        )}
+        onClick={handleShow}
+      >
+        {showResults ? (
+          <PolicyCard />
+        ) : (
+          <h4 className="mt-[30vh] mb-auto">
+            Press the screen when
+            <br /> you ready to show results.
+          </h4>
+        )}
+      </main>
+
+      {showResults && (
+        <footer className="fixed-bottom">
+          <Button className="max-w-134" size="mobile" onClick={handleContinue}>
+            Continue
+          </Button>
+        </footer>
+      )}
+    </>
+  )
+}
