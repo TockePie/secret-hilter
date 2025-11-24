@@ -1,9 +1,9 @@
 import { Button } from '@ui/button'
 
+import InstructionCard from '@/components/InstructionCard'
 import useGameStore from '@/lib/store'
 
 import { SLEEP_STAGE_INSTR } from './constants'
-import InstructionCard from './instruction-card'
 
 export default function SleepStagePage() {
   const { players, updateStatus } = useGameStore.getState()

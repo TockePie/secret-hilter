@@ -5,8 +5,8 @@ import type { PolicyTilesProps } from '@/types/policy-tiles'
 import capitalizeFirstLetter from '@/utils/capital-word'
 
 interface TileCardProps extends PolicyTilesProps {
-  discarted: boolean
-  actionFn: () => void
+  discarted?: boolean
+  actionFn?: () => void
 }
 
 export default function TileCard({
@@ -21,11 +21,10 @@ export default function TileCard({
     <div
       className={clsx(
         'relative rounded-3xl border-2 p-8 text-center select-none',
-        discarted
-          ? 'cursor-not-allowed bg-stone-200'
-          : 'cursor-pointer bg-stone-50 hover:bg-stone-100 active:bg-stone-200',
+        discarted ? 'cursor-not-allowed bg-stone-200' : 'bg-stone-50',
         discarted ? 'text-stone-600' : roleConfig.text,
-        discarted ? 'border-stone-600' : roleConfig.border
+        discarted ? 'border-stone-600' : roleConfig.border,
+        actionFn ? 'cursor-pointer hover:bg-stone-100 active:bg-stone-200' : ''
       )}
       onClick={discarted ? undefined : actionFn}
     >

@@ -76,12 +76,15 @@ const useGameStore = create<Store & Actions>()(
           electionTracker: (state.electionTracker + 1) % 4
         }))
       },
-      //TODO
       handleChaos: () => {
         const { policyTiles, setPolicy, clearIneligiblePlayers } = get()
 
         setPolicy(policyTiles[0])
         clearIneligiblePlayers()
+
+        set({
+          electionTracker: 0
+        })
       },
       setVictoryDetails: (obj) => {
         set({
