@@ -7,6 +7,7 @@ export type Store = {
   // Players-related state
   players: Player[]
   ineligiblePlayers: Player['id'][]
+  investigatedPlayers: Player['id'][]
   killedPlayers: Player[]
   president: Player['id'] | undefined
   chancellor: Player['id'] | undefined
@@ -14,6 +15,7 @@ export type Store = {
   candidateChancellor: Player['id'] | undefined
 
   // Game status-related state
+  mode: '5to6' | '7to8' | '9to10' | undefined
   status:
     | 'new-game'
     | 'role-revealing'
@@ -25,6 +27,10 @@ export type Store = {
     | 'prechancellor-move'
     | 'chancellor-move'
     | 'results'
+    | 'investigate-loyalty'
+    | 'special-election'
+    | 'policy-peek'
+    | 'execution'
     | 'chaos'
     | 'victory'
   electionTracker: number
@@ -45,6 +51,7 @@ export const initialState: Store = {
   // Initializing players state
   players: [],
   ineligiblePlayers: [],
+  investigatedPlayers: [],
   killedPlayers: [],
   president: undefined,
   chancellor: undefined,
@@ -52,6 +59,7 @@ export const initialState: Store = {
   candidateChancellor: undefined,
 
   // Initializing game status
+  mode: undefined,
   status: 'new-game',
   electionTracker: 0,
   victoryDetails: null,

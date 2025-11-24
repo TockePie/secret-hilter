@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 
-import { POLICY_TILES } from '@/common/constants'
+import { POLICY_TILES, POWERS } from '@/common/constants'
 import shuffleArray from '@/utils/shuffle-array'
 
 import type { Actions } from './actions'
@@ -55,12 +55,28 @@ const useGameStore = create<Store & Actions>()(
       },
 
       // Game state management actions
-      abortGame: () =>
-        set({ ...initialState, policyTiles: shuffleArray(POLICY_TILES) }),
+      abortGame: () => {
+        set({ ...initialState, policyTiles: shuffleArray(POLICY_TILES) })
+      },
       initiateGame: (players) => {
+        const count = players.length
+
+        let mode: Store['mode']
+
+        if (count === 5 || count === 6) {
+          mode = '5to6'
+        } else if (count === 7 || count === 8) {
+          mode = '7to8'
+        } else if (count === 9 || count === 10) {
+          mode = '9to10'
+        } else {
+          throw new Error(`Invalid player count: ${count}`)
+        }
+
         set((state) => ({
           players: [...state.players, ...players],
-          candidatePresident: players[0].id
+          candidatePresident: players[0].id,
+          mode
         }))
       },
 
@@ -88,7 +104,16 @@ const useGameStore = create<Store & Actions>()(
           electionTracker: 0
         })
       },
+      nextRound: () => {
+        const { mode, fascistPolicy, updateStatus } = get()
+        if (!mode) return
+
+        const status = POWERS[mode]?.[fascistPolicy] ?? 'choose-cancelour'
+        updateStatus(status)
+      },
       setVictoryDetails: (obj) => {
+        if (!obj) return
+
         set({
           victoryDetails: {
             whoWon: obj.whoWon,
@@ -100,13 +125,11 @@ const useGameStore = create<Store & Actions>()(
       // Government management actions
       setNewCandidatePresident: () => {
         const { players, candidatePresident } = get()
-
         if (players.length === 0) return
 
         const index = players.findIndex(
           (player) => player.id === candidatePresident
         )
-
         if (index === -1) return
 
         const newCandidate = players[(index + 1) % players.length].id

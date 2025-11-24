@@ -3,6 +3,7 @@ import { Button } from '@ui/button'
 import clsx from 'clsx'
 
 import useGameStore from '@/lib/store'
+import type { PolicyTilesProps } from '@/types/policy-tiles'
 
 import PolicyCard from './policy-card'
 
@@ -14,7 +15,7 @@ export default function ResultsPage() {
     setPolicy,
     setIneligiblePlayers,
     setNewCandidatePresident,
-    updateStatus
+    nextRound
   } = useGameStore.getState()
 
   const policy = tilesSnapshot.find((tile) => !('disabled' in tile))
@@ -29,8 +30,8 @@ export default function ResultsPage() {
     clearIneligiblePlayers()
     setIneligiblePlayers()
     setNewCandidatePresident()
-    updateStatus('choose-cancelour')
-    setPolicy(policy)
+    setPolicy(policy as PolicyTilesProps)
+    nextRound()
   }
 
   return (

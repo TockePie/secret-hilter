@@ -1,3 +1,4 @@
+import type { Store } from '@/lib/store/store'
 import type { Player } from '@/types/player'
 import type { PolicyTilesProps } from '@/types/policy-tiles'
 
@@ -123,5 +124,28 @@ export const ROLE_CONFIG: Record<
     image: '/hitler.png',
     text: 'text-red-800',
     border: 'border-red-800'
+  }
+}
+
+export const POWERS: Record<
+  '5to6' | '7to8' | '9to10',
+  Record<number, Store['status']>
+> = {
+  '5to6': {
+    3: 'policy-peek',
+    4: 'execution',
+    5: 'execution'
+  },
+  '7to8': {
+    3: 'investigate-loyalty',
+    4: 'special-election',
+    5: 'execution'
+  },
+  '9to10': {
+    1: 'investigate-loyalty',
+    2: 'investigate-loyalty',
+    3: 'special-election',
+    4: 'execution',
+    5: 'execution'
   }
 }

@@ -15,10 +15,8 @@ export type Actions = {
   updateStatus: (status: Store['status']) => void
   increaseElectionTracker: () => void
   handleChaos: () => void
-  setVictoryDetails: (obj: {
-    whoWon: 'liberals' | 'fascists'
-    whatHappened: string
-  }) => void
+  nextRound: () => void
+  setVictoryDetails: (obj: Store['victoryDetails']) => void
 
   // Government management actions
   setNewCandidatePresident: () => void
