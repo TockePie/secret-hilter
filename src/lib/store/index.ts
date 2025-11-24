@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 
+import { POLICY_TILES } from '@/common/constants'
 import shuffleArray from '@/utils/shuffle-array'
 
 import type { Actions } from './actions'
@@ -54,7 +55,8 @@ const useGameStore = create<Store & Actions>()(
       },
 
       // Game state management actions
-      abortGame: () => set({ ...initialState }),
+      abortGame: () =>
+        set({ ...initialState, policyTiles: shuffleArray(POLICY_TILES) }),
       initiateGame: (players) => {
         set((state) => ({
           players: [...state.players, ...players],
