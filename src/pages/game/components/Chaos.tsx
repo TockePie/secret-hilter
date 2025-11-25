@@ -1,9 +1,8 @@
 import { Button } from '@ui/button'
 
 import InstructionCard from '@/components/InstructionCard'
+import TileCard from '@/components/TileCard'
 import useGameStore from '@/lib/store'
-
-import TileCard from './PlayersMove/tile-card'
 
 export default function ChaosPage() {
   const { policyTiles, handleChaos, updateStatus } = useGameStore.getState()

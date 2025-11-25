@@ -17,7 +17,7 @@ const useGameStore = create<Store & Actions>()(
         const { players, killedPlayers, updateStatus, setVictoryDetails } =
           get()
 
-        const killedPlayerObj = players.find((player) => player.id === playerId)
+        const killedPlayerObj = players.find((p) => p.id === playerId)
         if (!killedPlayerObj) return
 
         set({
@@ -55,9 +55,7 @@ const useGameStore = create<Store & Actions>()(
       },
 
       // Game state management actions
-      abortGame: () => {
-        set({ ...initialState, policyTiles: shuffleArray(POLICY_TILES) })
-      },
+      abortGame: () => set({ ...initialState }),
       initiateGame: (players) => {
         const count = players.length
 
@@ -76,6 +74,7 @@ const useGameStore = create<Store & Actions>()(
         set((state) => ({
           players: [...state.players, ...players],
           candidatePresident: players[0].id,
+          policyTiles: shuffleArray(POLICY_TILES),
           mode
         }))
       },

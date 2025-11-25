@@ -1,6 +1,5 @@
+import TileCard from '@/components/TileCard'
 import useGameStore from '@/lib/store'
-
-import TileCard from './tile-card'
 
 export default function PlayersMove() {
   const { status, tilesSnapshot, discardTile, updateStatus } =

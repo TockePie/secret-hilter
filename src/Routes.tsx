@@ -4,7 +4,8 @@ import ChaosPage from './pages/game/components/Chaos.tsx'
 import ChooseCancelourPage from './pages/game/components/ChooseChancellor'
 import ConfirmCandidates from './pages/game/components/ConfirmCandidates'
 import NoGamePage from './pages/game/components/NoGamePage.tsx'
-import PlayersMove from './pages/game/components/PlayersMove'
+import PlayersMove from './pages/game/components/PlayersMove.tsx'
+import PolicyPeek from './pages/game/components/PolicyPeek.tsx'
 import PrePlayersMove from './pages/game/components/PrePlayersMove.tsx'
 import ResultsPage from './pages/game/components/ResultsPage'
 import RolesPage from './pages/game/components/RolesPage'
@@ -37,6 +38,7 @@ export default function RouteTree() {
         />
         <Route path="chancellor-move" element={<PlayersMove />} />
         <Route path="results" element={<ResultsPage />} />
+        <Route path="policy-peek" element={<PolicyPeek />} />
       </Route>
     </Routes>
   )

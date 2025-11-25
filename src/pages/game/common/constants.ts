@@ -10,5 +10,6 @@ export const TITLE_MAP: { [key in Store['status']]: string } = {
   'president-move': 'Enacting',
   'prechancellor-move': 'Enacting',
   'chancellor-move': 'Enacting',
-  results: 'Results'
+  results: 'Results',
+  'policy-peek': 'Policy peek'
 } as const
