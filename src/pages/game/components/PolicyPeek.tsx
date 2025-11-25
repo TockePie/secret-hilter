@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Button } from '@ui/button'
+import { Eye } from 'lucide-react'
 
 import TileCard from '@/components/TileCard'
 import useGameStore from '@/lib/store'
@@ -14,8 +15,8 @@ export default function PolicyPeek() {
 
   return (
     <>
-      <main className="page-main h-full pb-35">
-        <div className="text-con my-auto">
+      <main className="page-main h-full pb-46">
+        <div className="text-con my-auto h-34">
           <h1
             className={playerTextColorClasses[currentPlayer?.color ?? 'slate']}
           >
@@ -32,6 +33,15 @@ export default function PolicyPeek() {
       </main>
 
       <footer className="fixed-bottom">
+        {!showPolicies && (
+          <div className="mx-auto flex justify-between">
+            <Eye size={32} className="flex-2 text-stone-500" />
+            <span className="body-2 max-w-[84%]">
+              Make sure, nobody looks in your screen before you press ‘Show’.
+            </span>
+          </div>
+        )}
+
         {showPolicies ? (
           <Button
             className="max-w-134"

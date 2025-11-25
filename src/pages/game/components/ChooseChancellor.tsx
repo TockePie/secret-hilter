@@ -1,8 +1,7 @@
+import PlayerListItem from '@/components/PlayerListItem'
 import useGameStore from '@/lib/store'
 import { playerTextColorClasses } from '@/styles/color-classes'
 import type { Player } from '@/types/player'
-
-import PlayerListItem from './player-list-item'
 
 export default function ChooseCancelourPage() {
   const {

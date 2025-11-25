@@ -6,7 +6,7 @@ import type { LobbyPlayer } from '@/types/player'
 
 interface PlayerListItemProps extends LobbyPlayer {
   disabled?: boolean
-  actionFn: () => void | undefined
+  actionFn?: () => void
 }
 
 export default function PlayerListItem({
@@ -39,7 +39,7 @@ export default function PlayerListItem({
       <div
         className={clsx(
           disabled ? 'text-2xl text-wrap text-stone-500' : 'body-1',
-          'flex flex-1 flex-col truncate sm:max-w-64 md:max-w-96'
+          'flex flex-1 flex-col truncate text-left sm:max-w-64 md:max-w-96'
         )}
       >
         <p>{name}</p>

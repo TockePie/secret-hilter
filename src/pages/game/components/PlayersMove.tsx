@@ -25,7 +25,7 @@ export default function PlayersMove() {
             <TileCard
               key={props.id}
               actionFn={handleDiscard(props.id)}
-              discarted={!!props.disabled}
+              state={props.disabled ? 'discarted' : 'default'}
               {...props}
             />
           ))}

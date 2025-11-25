@@ -19,11 +19,11 @@ const ConfirmCandidates = () => {
   } = useGameStore.getState()
 
   const handleYes = () => {
-    setNewGovernment()
-    setCandidateChancellor(undefined)
     checkTiles()
     setTilesSnapshot()
     updateStatus('prepresident-move')
+    setNewGovernment()
+    setCandidateChancellor(undefined)
   }
 
   const handleNo = () => {
