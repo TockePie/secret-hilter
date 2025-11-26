@@ -11,6 +11,7 @@ import {
 import clsx from 'clsx'
 
 import { ROLE_CONFIG } from '@/common/constants'
+import useGameStore from '@/lib/store'
 import { playerTextColorClasses } from '@/styles/color-classes'
 import type { Player } from '@/types/player'
 
@@ -18,21 +19,31 @@ interface InvestigateDialogProps extends Player {
   triggerComp: React.ReactElement
 }
 
-//TODO: remove close button
 export default function InvestigateDialog({
   triggerComp,
+  id,
   name,
   color,
   role
 }: InvestigateDialogProps) {
-  const closeRef = useRef(null)
+  const closeRef = useRef<HTMLButtonElement>(null)
+  const { updateStatus, setInvestigatedPlayers } = useGameStore.getState()
 
-  const handleContinue = () => {}
+  const handleContinue = () => {
+    closeRef.current?.click()
+    setInvestigatedPlayers(id)
+    updateStatus('choose-cancelour')
+  }
 
   return (
     <Dialog>
       <DialogTrigger>{triggerComp}</DialogTrigger>
-      <DialogContent>
+      <DialogContent
+        className="[&>button]:hidden"
+        onInteractOutside={(e) => {
+          e.preventDefault()
+        }}
+      >
         <DialogTitle>
           <span className={playerTextColorClasses[color]}>{name}</span>
           's party membership

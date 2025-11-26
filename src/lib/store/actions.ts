@@ -8,6 +8,7 @@ export type Actions = {
   killPlayer: (id: Player['id']) => void // Removes a player from an array. If it's hitler - sets a victory
   setIneligiblePlayers: () => void
   clearIneligiblePlayers: () => void
+  setInvestigatedPlayers: (id: Player['id']) => void
 
   // Game state management actions
   abortGame: () => void

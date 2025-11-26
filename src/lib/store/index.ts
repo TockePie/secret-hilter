@@ -53,6 +53,11 @@ const useGameStore = create<Store & Actions>()(
           ineligiblePlayers: []
         })
       },
+      setInvestigatedPlayers: (id) => {
+        set((state) => ({
+          investigatedPlayers: [...state.investigatedPlayers, id]
+        }))
+      },
 
       // Game state management actions
       abortGame: () => set({ ...initialState }),

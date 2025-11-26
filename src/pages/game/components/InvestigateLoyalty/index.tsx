@@ -25,12 +25,12 @@ export default function InvestigateLoyalty() {
         <div className="flex w-full flex-col gap-3">
           {noPresidentPlayers.map((player) => (
             <InvestigateDialog
+              key={player.id}
               triggerComp={
                 <PlayerListItem
                   id={player.id}
                   name={player.name}
                   color={player.color}
-                  key={player.id}
                 />
               }
               {...player}
