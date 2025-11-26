@@ -15,7 +15,7 @@ export default function PolicyPeek() {
 
   return (
     <>
-      <main className="page-main h-full pb-46">
+      <main className="page-main h-full pb-40">
         <div className="text-con my-auto h-34">
           <h1
             className={playerTextColorClasses[currentPlayer?.color ?? 'slate']}
@@ -25,14 +25,6 @@ export default function PolicyPeek() {
           <h4>must look top 3 policy tiles</h4>
         </div>
 
-        <div className="flex w-full flex-col gap-3">
-          {policyTiles.slice(0, 3).map((tile) => (
-            <TileCard {...tile} state={showPolicies ? 'default' : 'hidden'} />
-          ))}
-        </div>
-      </main>
-
-      <footer className="fixed-bottom">
         {!showPolicies && (
           <div className="mx-auto flex justify-between">
             <Eye size={32} className="flex-2 text-stone-500" />
@@ -42,6 +34,14 @@ export default function PolicyPeek() {
           </div>
         )}
 
+        <div className="flex w-full flex-col gap-3">
+          {policyTiles.slice(0, 3).map((tile) => (
+            <TileCard {...tile} state={showPolicies ? 'default' : 'hidden'} />
+          ))}
+        </div>
+      </main>
+
+      <footer className="fixed-bottom">
         {showPolicies ? (
           <Button
             className="max-w-134"

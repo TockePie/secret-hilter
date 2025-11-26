@@ -16,8 +16,8 @@ export default function PlayersMove() {
   }
 
   return (
-    <main className="page-main max-sm:standalone:pb-10 h-full justify-between pb-6">
-      <h4>Which policy you would like to discard?</h4>
+    <main className="page-main max-sm:standalone:pb-10 flex-grow justify-between pb-6">
+      <h4 className="my-auto">Which policy you would like to discard?</h4>
 
       <div className="flex w-full flex-col gap-3">
         {tilesSnapshot &&

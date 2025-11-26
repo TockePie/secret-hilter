@@ -108,22 +108,25 @@ export const POLICY_TILES: PolicyTilesProps[] = [
 
 export const ROLE_CONFIG: Record<
   Player['role'],
-  { image: string; text: string; border: string }
+  { image: string; text: string; border: string; party: string }
 > = {
   liberal: {
     image: '/liberal.png',
     text: 'text-blue-800',
-    border: 'border-blue-800'
+    border: 'border-blue-800',
+    party: 'Liberal'
   },
   fascist: {
     image: '/fascist.png',
     text: 'text-red-800',
-    border: 'border-red-800'
+    border: 'border-red-800',
+    party: 'Fascist'
   },
   hitler: {
     image: '/hitler.png',
     text: 'text-red-800',
-    border: 'border-red-800'
+    border: 'border-red-800',
+    party: 'Fascist'
   }
 }
 

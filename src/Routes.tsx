@@ -4,6 +4,7 @@ import ChaosPage from './pages/game/components/Chaos.tsx'
 import ChooseCancelourPage from './pages/game/components/ChooseChancellor.tsx'
 import ConfirmCandidates from './pages/game/components/ConfirmCandidates'
 import Execution from './pages/game/components/Execution'
+import InvestigateLoyalty from './pages/game/components/InvestigateLoyalty'
 import NoGamePage from './pages/game/components/NoGamePage.tsx'
 import PlayersMove from './pages/game/components/PlayersMove.tsx'
 import PolicyPeek from './pages/game/components/PolicyPeek.tsx'
@@ -39,6 +40,7 @@ export default function RouteTree() {
         />
         <Route path="chancellor-move" element={<PlayersMove />} />
         <Route path="results" element={<ResultsPage />} />
+        <Route path="investigate-loyalty" element={<InvestigateLoyalty />} />
         <Route path="policy-peek" element={<PolicyPeek />} />
         <Route path="execution" element={<Execution />} />
       </Route>
