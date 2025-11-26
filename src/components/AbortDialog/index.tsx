@@ -17,8 +17,10 @@ interface AbortDialogProps {
   onAbort?: () => void
 }
 
-//TODO: Make a dialog in design of the app
-const AbortDialog: React.FC<AbortDialogProps> = ({ triggerComp, onAbort }) => {
+export default function AbortDialog({
+  triggerComp,
+  onAbort
+}: AbortDialogProps) {
   const navigate = useNavigate()
   const abortGame = useGameStore((state) => state.abortGame)
 
@@ -34,14 +36,14 @@ const AbortDialog: React.FC<AbortDialogProps> = ({ triggerComp, onAbort }) => {
       <DialogTrigger asChild>{triggerComp}</DialogTrigger>
 
       <DialogContent
-        className="text-stone-800"
+        className="gap-10 text-stone-800"
         aria-describedby="abort game dialog"
         showCloseButton={false}
       >
         <DialogTitle>Do you really want to abort this game?</DialogTitle>
 
         <DialogDescription>
-          All the progress will be terminated
+          <h4>All the progress will be terminated</h4>
         </DialogDescription>
 
         <DialogFooter className="flex flex-col flex-wrap gap-3">
@@ -58,5 +60,3 @@ const AbortDialog: React.FC<AbortDialogProps> = ({ triggerComp, onAbort }) => {
     </Dialog>
   )
 }
-
-export default AbortDialog

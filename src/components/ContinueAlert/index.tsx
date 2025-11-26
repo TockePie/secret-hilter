@@ -1,7 +1,6 @@
 import { Link } from 'react-router'
+import { Button } from '@ui/button'
 import { Info } from 'lucide-react'
-
-import { Button } from '../ui/button'
 
 export default function ContinueAlert() {
   return (

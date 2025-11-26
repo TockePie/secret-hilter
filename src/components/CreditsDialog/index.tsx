@@ -8,14 +8,14 @@ import {
   DialogTrigger
 } from '@ui/dialog'
 
-export default function CreditsDialog() {
+interface Props {
+  triggerComp: React.ReactNode
+}
+
+export default function CreditsDialog({ triggerComp }: Props) {
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        <Button size="mobile" variant="ghost">
-          Credits
-        </Button>
-      </DialogTrigger>
+      <DialogTrigger asChild>{triggerComp}</DialogTrigger>
 
       <DialogContent
         className="text-stone-800"
