@@ -8,10 +8,7 @@ import {
 } from '@ui/dropdown-menu'
 import { Globe } from 'lucide-react'
 
-const LANGUAGES = {
-  en: 'English',
-  ua: 'Українська'
-}
+import { LANGUAGES } from '@/common/constants'
 
 export default function LanguageDropdown() {
   const { i18n } = useTranslation()

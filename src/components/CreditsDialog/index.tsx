@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
 import { Button } from '@ui/button'
 import {
@@ -13,6 +14,8 @@ interface Props {
 }
 
 export default function CreditsDialog({ triggerComp }: Props) {
+  const { t } = useTranslation()
+
   return (
     <Dialog>
       <DialogTrigger asChild>{triggerComp}</DialogTrigger>
@@ -22,7 +25,7 @@ export default function CreditsDialog({ triggerComp }: Props) {
         aria-describedby="credits dialog"
         showCloseButton={false}
       >
-        <DialogTitle>Credits</DialogTitle>
+        <DialogTitle>{t('credits-dialog.title')}</DialogTitle>
         <div>
           <ul>
             <li>
@@ -56,7 +59,7 @@ export default function CreditsDialog({ triggerComp }: Props) {
 
         <DialogClose asChild>
           <Button size="mobile" variant="outline">
-            Close
+            {t('credits-dialog.close-btn')}
           </Button>
         </DialogClose>
       </DialogContent>

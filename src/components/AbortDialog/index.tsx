@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router'
 import { Button } from '@ui/button'
 import {
@@ -21,6 +22,7 @@ export default function AbortDialog({
   triggerComp,
   onAbort
 }: AbortDialogProps) {
+  const { t } = useTranslation()
   const navigate = useNavigate()
   const abortGame = useGameStore((state) => state.abortGame)
 
@@ -40,19 +42,19 @@ export default function AbortDialog({
         aria-describedby="abort game dialog"
         showCloseButton={false}
       >
-        <DialogTitle>Do you really want to abort this game?</DialogTitle>
+        <DialogTitle>{t('abort-dialog.title')}</DialogTitle>
 
         <DialogDescription>
-          <h4>All the progress will be terminated</h4>
+          <h4>{t('abort-dialog.description')}</h4>
         </DialogDescription>
 
         <DialogFooter className="flex flex-col flex-wrap gap-3">
           <Button variant="destructive" size="mobile" onClick={handleAbort}>
-            Abort
+            {t('abort-dialog.yes-btn')}
           </Button>
           <DialogClose asChild>
             <Button variant="ghost" size="mobile">
-              No
+              {t('abort-dialog.no-btn')}
             </Button>
           </DialogClose>
         </DialogFooter>

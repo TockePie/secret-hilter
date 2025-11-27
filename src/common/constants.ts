@@ -152,3 +152,8 @@ export const POWERS: Record<
     5: 'execution'
   }
 }
+
+export const LANGUAGES = {
+  en: 'English',
+  ua: 'Українська'
+}

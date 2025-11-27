@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import clsx from 'clsx'
 import { Ban } from 'lucide-react'
 
@@ -15,6 +16,8 @@ export default function PlayerListItem({
   disabled = false,
   actionFn
 }: PlayerListItemProps) {
+  const { t } = useTranslation()
+
   return (
     <div
       onClick={disabled ? undefined : actionFn}
@@ -43,7 +46,7 @@ export default function PlayerListItem({
         )}
       >
         <p>{name}</p>
-        {disabled && <p className="body-2">Was elected in previous round</p>}
+        {disabled && <p className="body-2">{t('player-list-item.disabled')}</p>}
       </div>
     </div>
   )

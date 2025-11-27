@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Button } from '@ui/button'
 import {
   DropdownMenu,
@@ -10,6 +11,8 @@ import { BookOpen, Github, Info, Users } from 'lucide-react'
 import CreditsDialog from '../CreditsDialog'
 
 export default function InfoDropdownMenu() {
+  const { t } = useTranslation()
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -28,14 +31,14 @@ export default function InfoDropdownMenu() {
           }
         >
           <BookOpen />
-          Rules
+          {t('info-dropdown.rules')}
         </DropdownMenuItem>
         <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
           <CreditsDialog
             triggerComp={
               <div className="flex items-center gap-2">
                 <Users />
-                Credits
+                {t('info-dropdown.credits')}
               </div>
             }
           />

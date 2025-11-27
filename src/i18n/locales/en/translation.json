@@ -1,8 +1,25 @@
 {
+  "abort-dialog": {
+    "title": "Do you really want to abort this game?",
+    "description": "All the progress will be terminated",
+    "yes-btn": "Abort",
+    "no-btn": "No"
+  },
   "continue-alert": {
     "title": "The game is still going",
-    "description": "Press to return to your game.",
+    "description": "Press button to return to your game.",
     "return-btn": "Return"
+  },
+  "credits-dialog": {
+    "title": "Credits",
+    "close-btn": "Close"
+  },
+  "info-dropdown": {
+    "rules": "Rules",
+    "credits": "Credits"
+  },
+  "player-list-item": {
+    "disabled": "Was elected in previous round"
   },
   "app-description": "Web app by Maxim Rocky"
 }

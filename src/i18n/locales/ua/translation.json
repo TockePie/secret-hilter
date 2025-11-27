@@ -1,8 +1,25 @@
 {
+  "abort-dialog": {
+    "title": "Ви дійсно хочете припинити цю гру?",
+    "description": "Весь прогрес буде припинений",
+    "yes-btn": "Припинити",
+    "no-btn": "Ні"
+  },
   "continue-alert": {
     "title": "Гра продовжується",
     "description": "Натисніть кнопку, щоб повернутися до гри.",
     "return-btn": "Повернутися"
+  },
+  "credits-dialog": {
+    "title": "Подяки (англійською)",
+    "close-btn": "Зрозуміло"
+  },
+  "info-dropdown": {
+    "rules": "Правила",
+    "credits": "Подяки"
+  },
+  "player-list-item": {
+    "disabled": "Був обраний у попередньому турі"
   },
   "app-description": "Вебзастосунок від Максима Рокі"
 }
