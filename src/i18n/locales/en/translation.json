@@ -1,0 +1,8 @@
+{
+  "continue-alert": {
+    "title": "The game is still going",
+    "description": "Press to return to your game.",
+    "return-btn": "Return"
+  },
+  "app-description": "Web app by Maxim Rocky"
+}
