@@ -1,4 +1,20 @@
 {
+  "player": {
+    "role": {
+      "liberal": "Liberal",
+      "fascist": "Fascist",
+      "hitler": "Hitler"
+    },
+    "party": {
+      "liberal": "Liberal",
+      "fascist": "Fascist"
+    }
+  },
+  "policy": {
+    "liberal": "Liberal",
+    "fascist": "Fascist"
+  },
+  "continue-btn": "Continue",
   "abort-dialog": {
     "title": "Do you really want to abort this game?",
     "description": "All the progress will be terminated",
@@ -21,5 +37,98 @@
   "player-list-item": {
     "disabled": "Was elected in previous round"
   },
-  "app-description": "Web app by Maxim Rocky"
+  "use-players": {
+    "players-name": "Player"
+  },
+  "app-description": "Web app by Maxim Rocky",
+  "new-game-page": {
+    "navbar": "Players",
+    "footer-annotation": "Recommended to have from 5 to 10 players.",
+    "start-game-btn": "Start game"
+  },
+  "game-navbar-title": {
+    "new-game": "",
+    "role-revealing": "Roles",
+    "sleep-stage": "Sleep stage",
+    "choose-cancelour": "",
+    "confirm-candidates": "Voting",
+    "chaos": "",
+    "prepresident-move": "Enacting",
+    "president-move": "Enacting",
+    "prechancellor-move": "Enacting",
+    "chancellor-move": "Enacting",
+    "results": "Results",
+    "investigate-loyalty": "Investigation",
+    "policy-peek": "Policy peek",
+    "execution": "Execution",
+    "special-election": "",
+    "victory": ""
+  },
+  "role-revealing-page": {
+    "front-annotation": "Press to reveal role",
+    "back-annotation": "Press to move to the next player"
+  },
+  "sleep-stage-page": {
+    "title": "Get ready for the next stage! \n Instruction for All Players:",
+    "instruction": {
+      "smallTeam": {
+        "1": {
+          "title": "Close your eyes",
+          "content": "(Wait for everyone to do this.)"
+        },
+        "2": {
+          "title": "Fascists and Hitler, open your eyes and acknowledge each other",
+          "content": "(Take a moment to connect silently.)"
+        },
+        "3": {
+          "title": "Open your eyes",
+          "content": "(When everyone is ready, proceed.)"
+        }
+      },
+      "bigTeam": {
+        "1": {
+          "title": "Close your eyes and make a fist",
+          "content": "(Hold your fist in front of you until everyone is ready.)"
+        },
+        "2": {
+          "title": "Fascists (NOT Hitler), open your eyes",
+          "content": "(Acknowledge each other silently while keeping track of the thumbs-up.)"
+        },
+        "3": {
+          "title": "Hitler, show your thumb",
+          "content": "(Keep your eyes closed but extend your thumb for Fascists to recognize.)"
+        },
+        "4": {
+          "title": "Everyone close your eyes and lower your hands",
+          "content": "(Pause for a moment before moving on.)"
+        },
+        "5": {
+          "title": "Open your eyes",
+          "content": "(If anything is unclear or went wrong, speak up now.)"
+        }
+      }
+    }
+  },
+  "choose-chancellor-page": {
+    "player-status": "is a president candidate",
+    "choose-chancellor": "Choose a cancelour"
+  },
+  "confirm-candidates-page": {
+    "government": "The government for the next term:",
+    "question": "Did the majority of players vote to accept new government?",
+    "candidates-card": {
+      "as-president": "as president",
+      "as-chancellor": "as chancellor"
+    },
+    "election-alert": "If the government is rejected, the upper policy will be enacted."
+  },
+  "chaos-page": {
+    "title": "Chaos!",
+    "description": "3 failed elections just reached.",
+    "list": {
+      "1": "The next policy will be enacted:",
+      "2": "Election Tracker will be resetted to 0.",
+      "3": "Term limits will be cleaned."
+    }
+  }
 }

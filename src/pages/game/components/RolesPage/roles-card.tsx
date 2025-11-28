@@ -1,9 +1,9 @@
+import { useTranslation } from 'react-i18next'
 import clsx from 'clsx'
 
 import { ROLE_CONFIG } from '@/common/constants'
 import { playerTextColorClasses } from '@/styles/color-classes'
 import type { Player } from '@/types/player'
-import capitalizeFirstLetter from '@/utils/capital-word'
 
 import Flip from './flip'
 
@@ -17,6 +17,7 @@ export default function RolesCard({
   role,
   nextFn
 }: RolesCardProps) {
+  const { t } = useTranslation()
   const roleConfig = ROLE_CONFIG[role]
 
   const FrontPart = () => (
@@ -24,7 +25,7 @@ export default function RolesCard({
       <h1 className={clsx('my-auto w-full', playerTextColorClasses[color])}>
         {name}
       </h1>
-      <p className="body-2 mb-2">Press to reveal role</p>
+      <p className="body-2 mb-2">{t('role-revealing-page.front-annotation')}</p>
     </div>
   )
 
@@ -40,10 +41,10 @@ export default function RolesCard({
           className="mx-auto mt-4 size-[256px]"
         />
         <h1 className={clsx('w-full', roleConfig.text)}>
-          {capitalizeFirstLetter(role)}
+          {t(`player.role.${role}`)}
         </h1>
       </div>
-      <p className="body-2 mb-2">Press to move to the next player</p>
+      <p className="body-2 mb-2">{t('role-revealing-page.back-annotation')}</p>
     </div>
   )
 

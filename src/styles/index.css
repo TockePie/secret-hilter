@@ -53,6 +53,10 @@
   }
 }
 
+#root {
+  white-space: pre-line;
+}
+
 .body-1 {
   @apply text-2xl text-stone-700;
 }

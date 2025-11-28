@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router'
 import { Button } from '@ui/button'
 import { Plus } from 'lucide-react'
@@ -9,6 +10,7 @@ import useGameStore from '@/lib/store'
 import PlayerCard from './player-card'
 
 export default function NewGamePage() {
+  const { t } = useTranslation()
   const navigate = useNavigate()
   const {
     players,
@@ -32,7 +34,7 @@ export default function NewGamePage() {
     <div className="page">
       <nav className="flex w-full items-center justify-between p-6 text-center">
         <div className="size-8" />
-        <h2>Players</h2>
+        <h2>{t('new-game-page.navbar')}</h2>
         <Button
           size="icon"
           variant="ghost"
@@ -60,14 +62,14 @@ export default function NewGamePage() {
       </main>
 
       <footer className="fixed-bottom">
-        <p className="body-3">Recommended to have from 5 to 10 players.</p>
+        <p className="body-3">{t('new-game-page.footer-annotation')}</p>
 
         <Button
           size="mobile"
           disabled={players.length < 5}
           onClick={handleStartGame}
         >
-          Start game
+          {t('new-game-page.start-game-btn')}
         </Button>
       </footer>
     </div>

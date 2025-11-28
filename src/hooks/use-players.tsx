@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import useGameStore from '@/lib/store'
 import type { LobbyPlayer } from '@/types/player'
@@ -7,6 +8,7 @@ import getRoles from '@/utils/get-roles-array'
 import shuffleArray from '@/utils/shuffle-array'
 
 export default function usePlayers() {
+  const { t } = useTranslation()
   const initiateGame = useGameStore((state) => state.initiateGame)
   const [players, setPlayers] = useState<LobbyPlayer[]>([])
 
@@ -20,7 +22,7 @@ export default function usePlayers() {
       // XXX: Removed as it causes crash on local network. Return when the app will be released
       // id: crypto.randomUUID(),
       id: `${Date.now()}-${Math.floor(Math.random() * 10000)}`,
-      name: `Player ${players.length + 1}`,
+      name: `${t('use-players.players-name')} ${players.length + 1}`,
       color: randomColor
     } as LobbyPlayer
     setPlayers([...players, newPlayer])

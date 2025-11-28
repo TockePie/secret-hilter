@@ -1,9 +1,12 @@
+import { useTranslation } from 'react-i18next'
+
 import PlayerListItem from '@/components/PlayerListItem'
 import useGameStore from '@/lib/store'
 import { playerTextColorClasses } from '@/styles/color-classes'
 import type { Player } from '@/types/player'
 
 export default function ChooseCancelourPage() {
+  const { t } = useTranslation()
   const {
     players,
     candidatePresident,
@@ -31,11 +34,11 @@ export default function ChooseCancelourPage() {
         <h1 className={playerTextColorClasses[presidentData?.color ?? 'slate']}>
           {presidentData?.name}
         </h1>
-        <p className="body-2">is a president candidate</p>
+        <p className="body-2">{t('choose-chancellor-page.player-status')}</p>
       </div>
 
       <div className="flex w-full flex-col items-center gap-4">
-        <h4>Choose a cancelour</h4>
+        <h4>{t('choose-chancellor-page.choose-chancellor')}</h4>
         <div className="flex w-full flex-col gap-3">
           {noPresidentPlayers.map((player) => (
             <PlayerListItem

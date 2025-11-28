@@ -1,9 +1,11 @@
+import { useTranslation } from 'react-i18next'
 import { Crown, Landmark } from 'lucide-react'
 
 import useGameStore from '@/lib/store'
 import { playerTextColorClasses } from '@/styles/color-classes'
 
 const CandidatesCard = () => {
+  const { t } = useTranslation()
   const { players, candidatePresident, candidateChancellor } =
     useGameStore.getState()
 
@@ -33,7 +35,9 @@ const CandidatesCard = () => {
           >
             {candidates.president?.name}
           </h2>
-          <p className="body-2">as president</p>
+          <p className="body-2">
+            {t('confirm-candidates-page.candidates-card.as-president')}
+          </p>
         </div>
       </div>
 
@@ -55,7 +59,9 @@ const CandidatesCard = () => {
           >
             {candidates.chancellor?.name}
           </h2>
-          <p className="body-2">as chancellor</p>
+          <p className="body-2">
+            {t('confirm-candidates-page.candidates-card.as-chancellor')}
+          </p>
         </div>
       </div>
     </div>

@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Outlet, useNavigate } from 'react-router'
 import { Button } from '@ui/button'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -7,9 +8,8 @@ import { X } from 'lucide-react'
 import AbortDialog from '@/components/AbortDialog'
 import useGameStore from '@/lib/store'
 
-import { TITLE_MAP } from './common/constants'
-
 export default function GameLayout() {
+  const { t } = useTranslation()
   const navigate = useNavigate()
   const status = useGameStore((state) => state.status)
 
@@ -21,7 +21,7 @@ export default function GameLayout() {
     <div className="page">
       <nav className="flex w-full items-center justify-between p-6">
         <div className="size-8"></div>
-        <h2 className="min-h-10">{TITLE_MAP[status]}</h2>
+        <h2 className="min-h-10">{t(`game-navbar-title.${[status]}`)}</h2>
         <AbortDialog
           triggerComp={
             <Button size="icon" variant="ghost">

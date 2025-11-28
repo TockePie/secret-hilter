@@ -44,8 +44,8 @@ export default function AbortDialog({
       >
         <DialogTitle>{t('abort-dialog.title')}</DialogTitle>
 
-        <DialogDescription>
-          <h4>{t('abort-dialog.description')}</h4>
+        <DialogDescription className="body-2">
+          {t('abort-dialog.description')}
         </DialogDescription>
 
         <DialogFooter className="flex flex-col flex-wrap gap-3">
@@ -54,7 +54,7 @@ export default function AbortDialog({
           </Button>
           <DialogClose asChild>
             <Button variant="ghost" size="mobile">
-              {t('abort-dialog.no-btn')}
+              {t('no-btn')}
             </Button>
           </DialogClose>
         </DialogFooter>
