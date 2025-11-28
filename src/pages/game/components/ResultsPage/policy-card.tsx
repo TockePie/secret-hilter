@@ -1,10 +1,12 @@
+import { useTranslation } from 'react-i18next'
 import clsx from 'clsx'
 
 import useGameStore from '@/lib/store'
-import capitalizeFirstLetter from '@/utils/capital-word'
 
 export default function PolicyCard() {
+  const { t, i18n } = useTranslation()
   const { tilesSnapshot } = useGameStore.getState()
+  const lang = i18n.language
 
   const policy = tilesSnapshot.find((tile) => !('disabled' in tile))
 
@@ -28,8 +30,12 @@ export default function PolicyCard() {
 
   return (
     <div className={borderColor}>
-      <h1>{capitalizeFirstLetter(policy?.type ?? 'Unknown')}</h1>
-      <p className={textColor}>Policy enacted</p>
+      {lang === 'ua' ? (
+        <h2>{t(`policy.${policy?.type}`)}</h2>
+      ) : (
+        <h1>{t(`policy.${policy?.type}`)}</h1>
+      )}
+      <p className={textColor}>{t('results-page.policy-enacted')}</p>
     </div>
   )
 }

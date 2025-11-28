@@ -1,5 +1,5 @@
 import type { Player } from '@/types/player'
-import type { PolicyTilesProps } from '@/types/policy-tiles'
+import type { PolicyTilesProps, TilesSnapshotProps } from '@/types/policy-tiles'
 
 import type { Store } from './store'
 
@@ -16,7 +16,7 @@ export type Actions = {
   updateStatus: (status: Store['status']) => void
   increaseElectionTracker: () => void
   handleChaos: () => void
-  nextRound: () => void
+  nextRound: (type: TilesSnapshotProps['type']) => void
   setVictoryDetails: (obj: Store['victoryDetails']) => void
 
   // Government management actions

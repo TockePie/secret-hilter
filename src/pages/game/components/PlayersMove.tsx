@@ -1,7 +1,10 @@
+import { useTranslation } from 'react-i18next'
+
 import TileCard from '@/components/TileCard'
 import useGameStore from '@/lib/store'
 
 export default function PlayersMove() {
+  const { t } = useTranslation()
   const { status, tilesSnapshot, discardTile, updateStatus } =
     useGameStore.getState()
 
@@ -17,7 +20,7 @@ export default function PlayersMove() {
 
   return (
     <main className="page-main max-sm:standalone:pb-10 flex-grow justify-between pb-6">
-      <h4 className="my-auto">Which policy you would like to discard?</h4>
+      <h4 className="my-auto">{t('players-move.question')}</h4>
 
       <div className="flex w-full flex-col gap-3">
         {tilesSnapshot &&

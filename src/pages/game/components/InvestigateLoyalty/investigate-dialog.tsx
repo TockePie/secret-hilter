@@ -1,4 +1,5 @@
 import { useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Button } from '@ui/button'
 import {
   Dialog,
@@ -27,6 +28,7 @@ export default function InvestigateDialog({
   role
 }: InvestigateDialogProps) {
   const closeRef = useRef<HTMLButtonElement>(null)
+  const { t } = useTranslation()
   const { updateStatus, setInvestigatedPlayers } = useGameStore.getState()
 
   const handleContinue = () => {
@@ -46,16 +48,16 @@ export default function InvestigateDialog({
       >
         <DialogTitle>
           <span className={playerTextColorClasses[color]}>{name}</span>
-          's party membership
+          {t('investigate-loyalty.dialog.title')}
         </DialogTitle>
 
         <h1 className={clsx(ROLE_CONFIG[role].text, 'my-10 text-center')}>
-          {ROLE_CONFIG[role].party}
+          {t(`player.role.${role}.party`)}
         </h1>
 
         <DialogFooter>
           <Button size="mobile" onClick={handleContinue}>
-            Continue
+            {t('continue-btn')}
           </Button>
         </DialogFooter>
 

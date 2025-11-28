@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Button } from '@ui/button'
 import clsx from 'clsx'
 
@@ -9,6 +10,7 @@ import PolicyCard from './policy-card'
 
 export default function ResultsPage() {
   const [showResults, setShowResults] = useState(false)
+  const { t } = useTranslation()
   const {
     tilesSnapshot,
     clearIneligiblePlayers,
@@ -31,7 +33,7 @@ export default function ResultsPage() {
     setIneligiblePlayers()
     setNewCandidatePresident()
     setPolicy(policy as PolicyTilesProps)
-    nextRound()
+    nextRound(policy?.type ?? 'liberal')
   }
 
   return (
@@ -47,8 +49,7 @@ export default function ResultsPage() {
           <PolicyCard />
         ) : (
           <h4 className="mt-[30vh] mb-auto">
-            Press the screen when
-            <br /> you ready to show results.
+            {t('results-page.press-screen')}
           </h4>
         )}
       </main>
@@ -56,7 +57,7 @@ export default function ResultsPage() {
       {showResults && (
         <footer className="fixed-bottom">
           <Button className="max-w-134" size="mobile" onClick={handleContinue}>
-            Continue
+            {t('continue-btn')}
           </Button>
         </footer>
       )}

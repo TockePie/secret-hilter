@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next'
+
 import PlayerListItem from '@/components/PlayerListItem'
 import useGameStore from '@/lib/store'
 import { playerTextColorClasses } from '@/styles/color-classes'
@@ -5,6 +7,7 @@ import { playerTextColorClasses } from '@/styles/color-classes'
 import InvestigateDialog from './investigate-dialog'
 
 export default function InvestigateLoyalty() {
+  const { t } = useTranslation()
   const { players, president } = useGameStore.getState()
 
   const noPresidentPlayers = players.filter((player) => player.id !== president)
@@ -17,11 +20,11 @@ export default function InvestigateLoyalty() {
         <h1 className={playerTextColorClasses[presidentData?.color ?? 'slate']}>
           {presidentData?.name}
         </h1>
-        <p className="body-2">should choose a player to investigate.</p>
+        <p className="body-2">{t('investigate-loyalty.description')}</p>
       </div>
 
       <div className="flex w-full flex-col items-center gap-4">
-        <h4>Choose a player</h4>
+        <h4>{t('investigate-loyalty.choose-player')}</h4>
         <div className="flex w-full flex-col gap-3">
           {noPresidentPlayers.map((player) => (
             <InvestigateDialog

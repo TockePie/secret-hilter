@@ -108,11 +108,14 @@ const useGameStore = create<Store & Actions>()(
           electionTracker: 0
         })
       },
-      nextRound: () => {
+      nextRound: (type) => {
         const { mode, fascistPolicy, updateStatus } = get()
         if (!mode) return
 
-        const status = POWERS[mode]?.[fascistPolicy] ?? 'choose-cancelour'
+        const status =
+          type === 'fascist' && POWERS[mode]
+            ? POWERS[mode][fascistPolicy]
+            : 'choose-cancelour'
         updateStatus(status)
       },
       setVictoryDetails: (obj) => {

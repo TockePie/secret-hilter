@@ -1,13 +1,9 @@
 {
   "player": {
     "role": {
-      "liberal": "Liberal",
-      "fascist": "Fascist",
-      "hitler": "Hitler"
-    },
-    "party": {
-      "liberal": "Liberal",
-      "fascist": "Fascist"
+      "liberal": { "title": "Liberal", "party": "Liberal" },
+      "fascist": { "title": "Fascist", "party": "Fascist" },
+      "hitler": { "title": "Hitler", "party": "Fascist" }
     }
   },
   "policy": {
@@ -36,6 +32,10 @@
   },
   "player-list-item": {
     "disabled": "Was elected in previous round"
+  },
+  "tile-card": {
+    "hidden": "Hidden",
+    "discarted": "Discarted"
   },
   "use-players": {
     "players-name": "Player"
@@ -129,6 +129,25 @@
       "1": "The next policy will be enacted:",
       "2": "Election Tracker will be resetted to 0.",
       "3": "Term limits will be cleaned."
+    }
+  },
+  "preplayers-move": {
+    "player": "{{name}} 's",
+    "move": "move",
+    "annotation": "Make sure, nobody looks in your screen before you press ‘Continue’."
+  },
+  "players-move": {
+    "question": "Which policy you would like to discard?"
+  },
+  "results-page": {
+    "press-screen": "Press the screen when\nyou ready to show results.",
+    "policy-enacted": "Policy enacted"
+  },
+  "investigate-loyalty": {
+    "description": "should choose a player to investigate.",
+    "choose-player": "Choose a player",
+    "dialog": {
+      "title": "'s party membership"
     }
   }
 }

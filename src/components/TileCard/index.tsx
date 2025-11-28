@@ -1,8 +1,8 @@
+import { useTranslation } from 'react-i18next'
 import clsx from 'clsx'
 
 import { ROLE_CONFIG } from '@/common/constants'
 import type { PolicyTilesProps } from '@/types/policy-tiles'
-import capitalizeFirstLetter from '@/utils/capital-word'
 
 interface TileCardProps extends PolicyTilesProps {
   state?: 'hidden' | 'discarted' | 'default'
@@ -15,6 +15,9 @@ export default function TileCard({
   state = 'default',
   actionFn
 }: TileCardProps) {
+  const { t, i18n } = useTranslation()
+
+  const lang = i18n.language
   const roleConfig = ROLE_CONFIG[type]
   const isDisabled = state === 'discarted' || state === 'hidden'
 
@@ -28,13 +31,11 @@ export default function TileCard({
       'cursor-pointer hover:bg-stone-100 active:bg-stone-200'
   )
 
-  const title = isDisabled
-    ? capitalizeFirstLetter(state)
-    : capitalizeFirstLetter(type)
+  const title = isDisabled ? t(`tile-card.${[state]}`) : t(`policy.${[type]}`)
 
   return (
     <div className={cardClasses} onClick={isDisabled ? undefined : actionFn}>
-      <h1>{title}</h1>
+      {lang === 'ua' ? <h2>{t(title)}</h2> : <h1>{t(title)}</h1>}
       {!isDisabled && (
         <p className="absolute top-3 right-5 text-lg text-stone-500">#{id}</p>
       )}

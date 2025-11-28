@@ -41,7 +41,7 @@ export default function RolesCard({
           className="mx-auto mt-4 size-[256px]"
         />
         <h1 className={clsx('w-full', roleConfig.text)}>
-          {t(`player.role.${role}`)}
+          {t(`player.role.${role}.title`)}
         </h1>
       </div>
       <p className="body-2 mb-2">{t('role-revealing-page.back-annotation')}</p>

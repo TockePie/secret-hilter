@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Button } from '@ui/button'
 import { Eye } from 'lucide-react'
 
@@ -9,6 +10,7 @@ export default function PrePlayersMove({
 }: {
   role: 'president' | 'chancellor'
 }) {
+  const { t } = useTranslation()
   const { players, president, chancellor, updateStatus } =
     useGameStore.getState()
 
@@ -17,7 +19,7 @@ export default function PrePlayersMove({
       ? players.find((player) => player.id === president)
       : players.find((player) => player.id === chancellor)
 
-  const handleNext = () => {
+  const handleContinue = () => {
     updateStatus(role === 'president' ? 'president-move' : 'chancellor-move')
   }
 
@@ -28,9 +30,9 @@ export default function PrePlayersMove({
           <h1
             className={playerTextColorClasses[currentPlayer?.color ?? 'slate']}
           >
-            {currentPlayer?.name} 's
+            {t('preplayers-move.player', { name: currentPlayer?.name })}
           </h1>
-          <h3>move</h3>
+          <h3>{t('preplayers-move.move')}</h3>
         </div>
       </main>
 
@@ -38,12 +40,12 @@ export default function PrePlayersMove({
         <div className="mx-auto flex justify-between">
           <Eye size={32} className="flex-2 text-stone-500" />
           <span className="body-2 max-w-[84%]">
-            Make sure, nobody looks in your screen before you press ‘Next’.
+            {t('preplayers-move.annotation')}
           </span>
         </div>
 
-        <Button size="mobile" onClick={handleNext}>
-          Next
+        <Button size="mobile" onClick={handleContinue}>
+          {t('continue-btn')}
         </Button>
       </footer>
     </>
