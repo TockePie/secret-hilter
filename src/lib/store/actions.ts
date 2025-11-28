@@ -1,7 +1,7 @@
 import type { Player } from '@/types/player'
 import type { PolicyTilesProps, TilesSnapshotProps } from '@/types/policy-tiles'
 
-import type { Store } from './store'
+import type { Store, UIState } from './store'
 
 export type Actions = {
   // Player management actions
@@ -27,4 +27,8 @@ export type Actions = {
   discardTile: (tileId: PolicyTilesProps['id']) => void
   checkTiles: () => void
   setPolicy: (obj: PolicyTilesProps) => void // Checks if there are enought tiles to win; if so - sets a victory. Then, sets new policy and moves to discartedTiles
+
+  setUIState: (
+    updater: Partial<UIState> | ((prev: UIState) => Partial<UIState>)
+  ) => void
 }

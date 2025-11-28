@@ -149,5 +149,20 @@
     "dialog": {
       "title": "'s party membership"
     }
+  },
+  "policy-peek": {
+    "description": "must look top 3 policy tiles",
+    "annotation": "Make sure, nobody looks in your screen before you press ‘Show’.",
+    "show-btn": "Show"
+  },
+  "execution": {
+    "description": "must kill a player",
+    "choose-player": "Choose a player",
+    "dialog": {
+      "title": "Do you really want to kill",
+      "description-1": "This player will be removed from the game.",
+      "description-2": "If removed player was a hitler, liberals win.",
+      "kill-btn": "Kill"
+    }
   }
 }

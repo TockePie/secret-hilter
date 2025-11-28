@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next'
+
 import PlayerListItem from '@/components/PlayerListItem'
 import useGameStore from '@/lib/store'
 import { playerTextColorClasses } from '@/styles/color-classes'
@@ -5,10 +7,10 @@ import { playerTextColorClasses } from '@/styles/color-classes'
 import KillDialog from './kill-dialog'
 
 export default function Execution() {
+  const { t } = useTranslation()
   const { players, president } = useGameStore.getState()
 
   const noPresidentPlayers = players.filter((player) => player.id !== president)
-
   const presidentData = players.find((player) => player.id === president)
 
   return (
@@ -17,11 +19,11 @@ export default function Execution() {
         <h1 className={playerTextColorClasses[presidentData?.color ?? 'slate']}>
           {presidentData?.name}
         </h1>
-        <p className="body-2">must kill a player</p>
+        <p className="body-2">{t('execution.description')}</p>
       </div>
 
       <div className="flex w-full flex-col items-center gap-4">
-        <h4>Choose a player</h4>
+        <h4>{t('execution.choose-player')}</h4>
         <div className="flex w-full flex-col gap-3">
           {noPresidentPlayers.map((player) => (
             <KillDialog

@@ -10,7 +10,6 @@ export default function ConfirmCandidates() {
   const { t } = useTranslation()
   const {
     electionTracker,
-    handleChaos,
     checkTiles,
     setNewGovernment,
     setNewCandidatePresident,
@@ -35,8 +34,6 @@ export default function ConfirmCandidates() {
 
     if (electionTracker === 2) {
       updateStatus('chaos')
-      handleChaos()
-
       return
     }
 

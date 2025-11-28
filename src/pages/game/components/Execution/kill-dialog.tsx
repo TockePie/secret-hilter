@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Button } from '@ui/button'
 import {
   Dialog,
@@ -22,11 +23,14 @@ export default function KillDialog({
   name,
   color
 }: KillDialogProps) {
-  const { killPlayer, updateStatus } = useGameStore.getState()
+  const { t } = useTranslation()
+  const { killPlayer, updateStatus, setNewCandidatePresident } =
+    useGameStore.getState()
 
   const handleKill = () => {
-    updateStatus('choose-cancelour')
     killPlayer(id)
+    setNewCandidatePresident()
+    updateStatus('choose-cancelour')
   }
 
   return (
@@ -34,7 +38,7 @@ export default function KillDialog({
       <DialogTrigger>{triggerComp}</DialogTrigger>
       <DialogContent className="gap-10">
         <DialogTitle>
-          Do you really want to kill{' '}
+          {t('execution.dialog.title')}{' '}
           <span className={playerTextColorClasses[color]}>{name}</span>?
         </DialogTitle>
 
@@ -42,21 +46,21 @@ export default function KillDialog({
           <div className="flex items-center justify-between gap-3">
             <Trash2 size={32} className="flex-1 text-stone-500" />
             <span className="body-2 flex-7">
-              This player will be removed from the game.
+              {t('execution.dialog.description-1')}
             </span>
           </div>
 
           <div className="flex items-center justify-between gap-3">
             <Trophy size={32} className="flex-1 text-stone-500" />
             <span className="body-2 flex-7">
-              If removed player was a hitler, liberals win.
+              {t('execution.dialog.description-2')}
             </span>
           </div>
         </div>
 
         <DialogFooter className="flex flex-col flex-wrap gap-3">
           <Button variant="destructive" size="mobile" onClick={handleKill}>
-            Kill
+            {t('execution.dialog.kill-btn')}
           </Button>
         </DialogFooter>
       </DialogContent>

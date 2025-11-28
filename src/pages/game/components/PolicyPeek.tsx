@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Button } from '@ui/button'
 import { Eye } from 'lucide-react'
 
@@ -8,6 +9,7 @@ import { playerTextColorClasses } from '@/styles/color-classes'
 
 export default function PolicyPeek() {
   const [showPolicies, setShowPolicies] = useState(false)
+  const { t } = useTranslation()
   const { players, president, policyTiles, updateStatus } =
     useGameStore.getState()
 
@@ -22,17 +24,15 @@ export default function PolicyPeek() {
           >
             {currentPlayer?.name}
           </h1>
-          <h4>must look top 3 policy tiles</h4>
+          <h4>{t('policy-peek.description')}</h4>
         </div>
 
-        {!showPolicies && (
-          <div className="mx-auto flex justify-between">
-            <Eye size={32} className="flex-2 text-stone-500" />
-            <span className="body-2 max-w-[84%]">
-              Make sure, nobody looks in your screen before you press ‘Show’.
-            </span>
-          </div>
-        )}
+        <div className="mx-auto flex justify-between">
+          <Eye size={32} className="flex-2 text-stone-500" />
+          <span className="body-2 max-w-[84%]">
+            {t('policy-peek.annotation')}
+          </span>
+        </div>
 
         <div className="flex w-full flex-col gap-3">
           {policyTiles.slice(0, 3).map((tile) => (
@@ -48,7 +48,7 @@ export default function PolicyPeek() {
             size="mobile"
             onClick={() => updateStatus('choose-cancelour')}
           >
-            Continue
+            {t('continue-btn')}
           </Button>
         ) : (
           <Button
@@ -56,7 +56,7 @@ export default function PolicyPeek() {
             size="mobile"
             onClick={() => setShowPolicies(true)}
           >
-            Show
+            {t('policy-peek.show-btn')}
           </Button>
         )}
       </footer>

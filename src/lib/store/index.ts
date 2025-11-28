@@ -17,15 +17,18 @@ const useGameStore = create<Store & Actions>()(
         const { players, killedPlayers, updateStatus, setVictoryDetails } =
           get()
 
-        const killedPlayerObj = players.find((p) => p.id === playerId)
-        if (!killedPlayerObj) return
+        const victim = players.find((p) => p.id === playerId)
+        if (!victim) return
+
+        const updatedPlayers = players.filter((p) => p.id !== playerId)
+        const updatedKilled = [...killedPlayers, victim]
 
         set({
-          players: players.filter((p) => p.id !== playerId),
-          killedPlayers: [...killedPlayers, killedPlayerObj]
+          players: updatedPlayers,
+          killedPlayers: updatedKilled
         })
 
-        if (killedPlayerObj.role === 'hitler') {
+        if (victim.role === 'hitler') {
           updateStatus('victory')
           setVictoryDetails({
             whoWon: 'liberals',
@@ -35,18 +38,12 @@ const useGameStore = create<Store & Actions>()(
       },
       setIneligiblePlayers: () => {
         const { president, chancellor, players } = get()
+        if (!chancellor || !president) return
 
-        if (chancellor === undefined || president === undefined) return
+        const ineligible =
+          players.length <= 5 ? [chancellor] : [chancellor, president]
 
-        if (players.length <= 5) {
-          set({
-            ineligiblePlayers: [chancellor]
-          })
-        } else {
-          set({
-            ineligiblePlayers: [chancellor, president]
-          })
-        }
+        set({ ineligiblePlayers: ineligible })
       },
       clearIneligiblePlayers: () => {
         set({
@@ -64,15 +61,16 @@ const useGameStore = create<Store & Actions>()(
       initiateGame: (players) => {
         const count = players.length
 
-        let mode: Store['mode']
+        const mode =
+          count === 5 || count === 6
+            ? '5to6'
+            : count === 7 || count === 8
+              ? '7to8'
+              : count === 9 || count === 10
+                ? '9to10'
+                : null
 
-        if (count === 5 || count === 6) {
-          mode = '5to6'
-        } else if (count === 7 || count === 8) {
-          mode = '7to8'
-        } else if (count === 9 || count === 10) {
-          mode = '9to10'
-        } else {
+        if (!mode) {
           throw new Error(`Invalid player count: ${count}`)
         }
 
@@ -112,11 +110,11 @@ const useGameStore = create<Store & Actions>()(
         const { mode, fascistPolicy, updateStatus } = get()
         if (!mode) return
 
-        const status =
-          type === 'fascist' && POWERS[mode]
-            ? POWERS[mode][fascistPolicy]
-            : 'choose-cancelour'
-        updateStatus(status)
+        updateStatus(
+          type === 'liberal'
+            ? 'choose-cancelour'
+            : (POWERS[mode]?.[fascistPolicy] ?? 'choose-cancelour')
+        )
       },
       setVictoryDetails: (obj) => {
         if (!obj) return
@@ -184,18 +182,15 @@ const useGameStore = create<Store & Actions>()(
       },
       discardTile: (tileId) => {
         const { policyTiles, tilesSnapshot, discartedTiles } = get()
-
-        if (tilesSnapshot.length === 0) return
-
-        const tileToDiscard = policyTiles.find((tile) => tile.id === tileId)
-        if (!tileToDiscard) return
+        const tile = policyTiles.find((t) => t.id === tileId)
+        if (!tile || !tilesSnapshot.length) return
 
         set({
-          policyTiles: policyTiles.filter((tile) => tile.id !== tileId),
-          tilesSnapshot: tilesSnapshot.map((tile) =>
-            tile.id === tileId ? { ...tile, disabled: true } : tile
+          policyTiles: policyTiles.filter((t) => t.id !== tileId),
+          tilesSnapshot: tilesSnapshot.map((t) =>
+            t.id === tileId ? { ...t, disabled: true } : t
           ),
-          discartedTiles: [...discartedTiles, tileToDiscard]
+          discartedTiles: [...discartedTiles, tile]
         })
       },
       checkTiles: () => {
@@ -244,8 +239,19 @@ const useGameStore = create<Store & Actions>()(
         }
 
         set({
-          policyTiles: policyTiles.filter((tile) => tile.id !== obj.id)
+          policyTiles: policyTiles.filter((t) => t.id !== obj.id)
         })
+      },
+
+      setUIState: (updater) => {
+        set((state) => ({
+          uiState: {
+            ...state.uiState,
+            ...(typeof updater === 'function'
+              ? updater(state.uiState)
+              : updater)
+          }
+        }))
       }
     }),
     {

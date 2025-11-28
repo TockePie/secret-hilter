@@ -45,6 +45,14 @@ export type Store = {
   discartedTiles: PolicyTilesProps[]
   fascistPolicy: number
   liberalPolicy: number
+
+  //UI related-state
+  uiState: UIState
+}
+
+export type UIState = {
+  lastViewedRoleIndex: number | null
+  policyResultsRevealed: boolean
 }
 
 export const initialState: Store = {
@@ -69,5 +77,11 @@ export const initialState: Store = {
   tilesSnapshot: [],
   discartedTiles: [],
   fascistPolicy: 0,
-  liberalPolicy: 0
+  liberalPolicy: 0,
+
+  // Initializing UI state
+  uiState: {
+    lastViewedRoleIndex: null,
+    policyResultsRevealed: false
+  }
 }
