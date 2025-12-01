@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import clsx from 'clsx'
 
 import PlayerListItem from '@/components/PlayerListItem'
 import useGameStore from '@/lib/store'
@@ -31,7 +32,12 @@ export default function ChooseCancelourPage() {
   return (
     <main className="page-main max-sm:standalone:pb-10 gap-8 pb-5">
       <div className="text-con">
-        <h1 className={playerTextColorClasses[presidentData?.color ?? 'slate']}>
+        <h1
+          className={clsx(
+            playerTextColorClasses[presidentData?.color ?? 'slate'],
+            'w-full max-md:max-w-56'
+          )}
+        >
           {presidentData?.name}
         </h1>
         <p className="body-2">{t('choose-chancellor-page.player-status')}</p>

@@ -15,22 +15,22 @@ import type { Player } from '@/types/player'
 
 interface KillDialogProps extends Player {
   triggerComp: React.ReactElement
+  onKill?: () => void
 }
 
 export default function KillDialog({
   triggerComp,
   id,
   name,
-  color
+  color,
+  onKill
 }: KillDialogProps) {
   const { t } = useTranslation()
-  const { killPlayer, updateStatus, setNewCandidatePresident } =
-    useGameStore.getState()
+  const { killPlayer } = useGameStore.getState()
 
   const handleKill = () => {
     killPlayer(id)
-    setNewCandidatePresident()
-    updateStatus('choose-cancelour')
+    onKill?.()
   }
 
   return (

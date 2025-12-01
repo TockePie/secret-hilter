@@ -42,7 +42,11 @@
   "use-players": {
     "players-name": "Player"
   },
-  "app-description": "Web app by Maxim Rocky",
+  "main-age": {
+    "description": "Web app by Maxim Rocky",
+    "new-game-btn": "New game",
+    "abort-game-btn": "Abort game"
+  },
   "new-game-page": {
     "navbar": "Players",
     "footer-annotation": "Recommended to have from 5 to 10 players.",

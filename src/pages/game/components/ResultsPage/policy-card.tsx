@@ -1,14 +1,15 @@
 import { useTranslation } from 'react-i18next'
 import clsx from 'clsx'
 
-import useGameStore from '@/lib/store'
+import type { TilesSnapshotProps } from '@/types/policy-tiles'
 
-export default function PolicyCard() {
+export default function PolicyCard({
+  policy
+}: {
+  policy: TilesSnapshotProps | undefined
+}) {
   const { t, i18n } = useTranslation()
-  const { tilesSnapshot } = useGameStore.getState()
   const lang = i18n.language
-
-  const policy = tilesSnapshot.find((tile) => !('disabled' in tile))
 
   const borderColor = clsx(
     policy?.type === 'fascist'

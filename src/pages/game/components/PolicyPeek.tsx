@@ -20,7 +20,8 @@ export default function PolicyPeek() {
 
   const handleContinue = () => {
     updateStatus('choose-cancelour')
-    setUIState({ policyPeekRevealed: false })
+
+    setTimeout(() => setUIState({ policyPeekRevealed: false }), 1000)
   }
 
   return (
@@ -44,7 +45,11 @@ export default function PolicyPeek() {
 
         <div className="flex w-full flex-col gap-3">
           {policyTiles.slice(0, 3).map((tile) => (
-            <TileCard {...tile} state={uiState ? 'default' : 'hidden'} />
+            <TileCard
+              key={tile.id}
+              state={uiState ? 'default' : 'hidden'}
+              {...tile}
+            />
           ))}
         </div>
       </main>

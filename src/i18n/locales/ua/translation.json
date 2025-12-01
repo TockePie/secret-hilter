@@ -41,7 +41,11 @@
   "use-players": {
     "players-name": "Гравець"
   },
-  "app-description": "Вебзастосунок від Максима Рокі",
+  "main-page": {
+    "description": "Вебзастосунок від Максима Рокі",
+    "new-game-btn": "Нова гра",
+    "abort-game-btn": "Припинити гру"
+  },
   "new-game-page": {
     "navbar": "Гравці",
     "footer-annotation": "Бажано мати від 5 до 10 гравців.",

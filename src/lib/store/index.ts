@@ -135,12 +135,14 @@ const useGameStore = create<Store & Actions>()(
         const { players, candidatePresident } = get()
         if (players.length === 0) return
 
-        const index = players.findIndex(
-          (player) => player.id === candidatePresident
+        const currentIndex = players.findIndex(
+          (p) => p.id === candidatePresident
         )
-        if (index === -1) return
 
-        const newCandidate = players[(index + 1) % players.length].id
+        const newCandidate =
+          currentIndex === -1
+            ? players[0].id
+            : players[(currentIndex + 1) % players.length].id
 
         set({
           candidatePresident: newCandidate

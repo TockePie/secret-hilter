@@ -8,7 +8,8 @@ import KillDialog from './kill-dialog'
 
 export default function Execution() {
   const { t } = useTranslation()
-  const { players, president } = useGameStore.getState()
+  const { players, president, setNewCandidatePresident, updateStatus } =
+    useGameStore.getState()
 
   const noPresidentPlayers = players.filter((player) => player.id !== president)
   const presidentData = players.find((player) => player.id === president)
@@ -35,6 +36,10 @@ export default function Execution() {
                   key={player.id}
                 />
               }
+              onKill={() => {
+                setNewCandidatePresident()
+                updateStatus('choose-cancelour')
+              }}
               {...player}
             />
           ))}

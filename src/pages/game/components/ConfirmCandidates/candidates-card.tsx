@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import clsx from 'clsx'
 import { Crown, Landmark } from 'lucide-react'
 
 import useGameStore from '@/lib/store'
@@ -29,9 +30,10 @@ const CandidatesCard = () => {
         />
         <div className="flex flex-col">
           <h2
-            className={
-              playerTextColorClasses[candidates.president?.color ?? 'slate']
-            }
+            className={clsx(
+              playerTextColorClasses[candidates.president?.color ?? 'slate'],
+              'w-full max-w-56 break-words'
+            )}
           >
             {candidates.president?.name}
           </h2>
@@ -53,9 +55,10 @@ const CandidatesCard = () => {
         />
         <div className="flex flex-col">
           <h2
-            className={
-              playerTextColorClasses[candidates.chancellor?.color ?? 'slate']
-            }
+            className={clsx(
+              playerTextColorClasses[candidates.chancellor?.color ?? 'slate'],
+              'w-full max-w-56 break-words'
+            )}
           >
             {candidates.chancellor?.name}
           </h2>

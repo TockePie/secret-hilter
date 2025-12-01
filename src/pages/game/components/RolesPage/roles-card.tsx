@@ -22,7 +22,12 @@ export default function RolesCard({
 
   const FrontPart = () => (
     <div className="flex size-full flex-col rounded-3xl border border-stone-400 bg-stone-50 text-center">
-      <h1 className={clsx('my-auto w-full', playerTextColorClasses[color])}>
+      <h1
+        className={clsx(
+          'm-auto w-full max-w-84',
+          playerTextColorClasses[color]
+        )}
+      >
         {name}
       </h1>
       <p className="body-2 mb-2">{t('role-revealing-page.front-annotation')}</p>

@@ -51,7 +51,7 @@ export default function ResultsPage() {
         onClick={handleShow}
       >
         {uiState ? (
-          <PolicyCard />
+          <PolicyCard policy={policy} />
         ) : (
           <h4 className="mt-[30vh] mb-auto">
             {t('results-page.press-screen')}

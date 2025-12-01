@@ -46,6 +46,7 @@ export default function PlayerCard({
             onBlur={() => setIsEditing(false)}
             onKeyDown={handleEnter}
             className="body-1 max-w-fit flex-1 sm:max-w-64 md:max-w-96"
+            maxLength={16}
             autoFocus
           />
         ) : (

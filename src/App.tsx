@@ -33,7 +33,7 @@ export default function App() {
           />
           <div className="text-con">
             <h1>Secret Hitler</h1>
-            <p className="body-2">{t('app-description')}</p>
+            <p className="body-2">{t('main-page.description')}</p>
           </div>
         </div>
 
@@ -43,7 +43,7 @@ export default function App() {
             <AbortDialog
               triggerComp={
                 <Button size="mobile" variant="ghost-destructive">
-                  Abort game
+                  {t('main-page.abort-game-btn')}
                 </Button>
               }
               onAbort={() => {
@@ -54,7 +54,7 @@ export default function App() {
           </div>
         ) : (
           <Link to="/newgame" className="w-full">
-            <Button size="mobile">New game</Button>
+            <Button size="mobile">{t('main-page.new-game-btn')}</Button>
           </Link>
         )}
       </main>

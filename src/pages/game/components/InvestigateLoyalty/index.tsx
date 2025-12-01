@@ -11,7 +11,6 @@ export default function InvestigateLoyalty() {
   const { players, president } = useGameStore.getState()
 
   const noPresidentPlayers = players.filter((player) => player.id !== president)
-
   const presidentData = players.find((player) => player.id === president)
 
   return (
