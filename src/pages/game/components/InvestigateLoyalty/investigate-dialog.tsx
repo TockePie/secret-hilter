@@ -1,9 +1,8 @@
-import { useRef } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@ui/button'
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogFooter,
   DialogTitle,
@@ -12,36 +11,36 @@ import {
 import clsx from 'clsx'
 
 import { ROLE_CONFIG } from '@/common/constants'
-import useGameStore from '@/lib/store'
 import { playerTextColorClasses } from '@/styles/color-classes'
 import type { Player } from '@/types/player'
 
 interface InvestigateDialogProps extends Player {
   triggerComp: React.ReactElement
+  autoOpen?: boolean
+  onInvestigate?: () => void
 }
 
 export default function InvestigateDialog({
   triggerComp,
-  id,
   name,
   color,
-  role
+  role,
+  autoOpen = false,
+  onInvestigate
 }: InvestigateDialogProps) {
-  const closeRef = useRef<HTMLButtonElement>(null)
+  const [open, setOpen] = useState(autoOpen)
   const { t } = useTranslation()
-  const { updateStatus, setInvestigatedPlayers } = useGameStore.getState()
 
   const handleContinue = () => {
-    closeRef.current?.click()
-    setInvestigatedPlayers(id)
-    updateStatus('choose-cancelour')
+    onInvestigate?.()
+    setOpen(false)
   }
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger>{triggerComp}</DialogTrigger>
       <DialogContent
-        className="[&>button]:hidden"
+        className="[&>button]:hiddenc"
         onInteractOutside={(e) => {
           e.preventDefault()
         }}
@@ -60,8 +59,6 @@ export default function InvestigateDialog({
             {t('continue-btn')}
           </Button>
         </DialogFooter>
-
-        <DialogClose className="hidden" ref={closeRef} />
       </DialogContent>
     </Dialog>
   )

@@ -54,6 +54,7 @@ export type UIState = {
   lastViewedRoleIndex: number | null
   policyResultsRevealed: boolean
   policyPeekRevealed: boolean
+  lastInvestigatedPlayer: Player['id'] | undefined
 }
 
 export const initialState: Store = {
@@ -84,6 +85,7 @@ export const initialState: Store = {
   uiState: {
     lastViewedRoleIndex: null,
     policyResultsRevealed: false,
-    policyPeekRevealed: false
+    policyPeekRevealed: false,
+    lastInvestigatedPlayer: undefined
   }
 }

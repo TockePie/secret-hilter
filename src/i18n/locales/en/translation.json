@@ -42,7 +42,7 @@
   "use-players": {
     "players-name": "Player"
   },
-  "main-age": {
+  "main-page": {
     "description": "Web app by Maxim Rocky",
     "new-game-btn": "New game",
     "abort-game-btn": "Abort game"

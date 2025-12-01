@@ -8,10 +8,22 @@ import InvestigateDialog from './investigate-dialog'
 
 export default function InvestigateLoyalty() {
   const { t } = useTranslation()
-  const { players, president } = useGameStore.getState()
+  const {
+    players,
+    president,
+    investigatedPlayers,
+    setUIState,
+    setInvestigatedPlayers,
+    updateStatus
+  } = useGameStore.getState()
+  const lastInvestigatedPlayer = useGameStore(
+    (state) => state.uiState.lastInvestigatedPlayer
+  )
 
-  const noPresidentPlayers = players.filter((player) => player.id !== president)
-  const presidentData = players.find((player) => player.id === president)
+  const playersList = players.filter(
+    (p) => p.id !== president && !(p.id in investigatedPlayers)
+  )
+  const presidentData = players.find((p) => p.id === president)
 
   return (
     <main className="page-main max-sm:standalone:pb-10 gap-8 pb-5">
@@ -25,17 +37,29 @@ export default function InvestigateLoyalty() {
       <div className="flex w-full flex-col items-center gap-4">
         <h4>{t('investigate-loyalty.choose-player')}</h4>
         <div className="flex w-full flex-col gap-3">
-          {noPresidentPlayers.map((player) => (
+          {playersList.map((p) => (
             <InvestigateDialog
-              key={player.id}
+              key={p.id}
               triggerComp={
                 <PlayerListItem
-                  id={player.id}
-                  name={player.name}
-                  color={player.color}
+                  id={p.id}
+                  name={p.name}
+                  color={p.color}
+                  actionFn={() => {
+                    setUIState({ lastInvestigatedPlayer: p.id })
+                  }}
                 />
               }
-              {...player}
+              onInvestigate={() => {
+                setInvestigatedPlayers(p.id)
+                updateStatus('choose-cancelour')
+
+                setTimeout(() => {
+                  setUIState({ lastInvestigatedPlayer: undefined })
+                }, 1000)
+              }}
+              autoOpen={lastInvestigatedPlayer === p.id}
+              {...p}
             />
           ))}
         </div>
