@@ -31,11 +31,14 @@ export default function ResultsPage() {
     clearIneligiblePlayers()
     setIneligiblePlayers()
     setPolicy(policy as PolicyTilesProps)
-    setUIState({ policyResultsRevealed: false })
     nextRound(policy?.type ?? 'liberal')
 
     if (status === 'execution') return
     setNewCandidatePresident()
+
+    setTimeout(() => {
+      setUIState({ policyResultsRevealed: false })
+    }, 1000)
   }
 
   return (

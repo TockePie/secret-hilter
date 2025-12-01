@@ -18,16 +18,20 @@ export default function PlayerListItem({
 }: PlayerListItemProps) {
   const { t } = useTranslation()
 
+  const disabledCard = clsx(
+    disabled
+      ? 'cursor-not-allowed border-stone-200 bg-stone-200'
+      : 'cursor-pointer border-stone-400 bg-stone-50 hover:bg-stone-100 active:bg-stone-200',
+    'flex items-center gap-3 rounded-3xl border-2 p-5 select-none'
+  )
+
+  const titleContainer = clsx(
+    disabled ? 'text-2xl text-wrap text-stone-500' : 'body-1',
+    'flex flex-1 flex-col truncate text-left sm:max-w-64 md:max-w-96'
+  )
+
   return (
-    <div
-      onClick={disabled ? undefined : actionFn}
-      className={clsx(
-        disabled
-          ? 'cursor-not-allowed border-stone-200 bg-stone-200'
-          : 'cursor-pointer border-stone-400 bg-stone-50 hover:bg-stone-100 active:bg-stone-200',
-        'flex items-center gap-3 rounded-3xl border-2 p-5 select-none'
-      )}
-    >
+    <div onClick={disabled ? undefined : actionFn} className={disabledCard}>
       {disabled ? (
         <Ban strokeWidth={2.5} className="text-stone-500" />
       ) : (
@@ -39,12 +43,7 @@ export default function PlayerListItem({
         />
       )}
 
-      <div
-        className={clsx(
-          disabled ? 'text-2xl text-wrap text-stone-500' : 'body-1',
-          'flex flex-1 flex-col truncate text-left sm:max-w-64 md:max-w-96'
-        )}
-      >
+      <div className={titleContainer}>
         <p>{name}</p>
         {disabled && <p className="body-2">{t('player-list-item.disabled')}</p>}
       </div>

@@ -57,7 +57,10 @@ const useGameStore = create<Store & Actions>()(
       },
 
       // Game state management actions
-      abortGame: () => set({ ...initialState }),
+      abortGame: () => {
+        set({ ...initialState })
+        sessionStorage.removeItem('game-storage')
+      },
       initiateGame: (players) => {
         const count = players.length
 
@@ -83,7 +86,7 @@ const useGameStore = create<Store & Actions>()(
       },
 
       // updateStatus: (status) => set({ status }),
-      //XXX: Used for controllig state, remove on prod
+      //XXX: Used for controlling state, remove on prod
       updateStatus: (status) => {
         const states = get()
 

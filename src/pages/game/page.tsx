@@ -6,12 +6,14 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { X } from 'lucide-react'
 
 import AbortDialog from '@/components/AbortDialog'
+import useHasGame from '@/hooks/use-has-game'
 import useGameStore from '@/lib/store'
 
 export default function GameLayout() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const status = useGameStore((state) => state.status)
+  const { setHasGame } = useHasGame()
 
   useEffect(() => {
     navigate(status === 'new-game' ? '/' : `/game/${status}`, { replace: true })
@@ -28,6 +30,10 @@ export default function GameLayout() {
               <X className="size-7" strokeWidth={2.5} />
             </Button>
           }
+          onAbort={() => {
+            setHasGame(false)
+            navigate('/', { replace: true })
+          }}
         />
       </nav>
 

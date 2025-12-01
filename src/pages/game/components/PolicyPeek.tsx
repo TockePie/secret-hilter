@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@ui/button'
 import { Eye } from 'lucide-react'
@@ -8,12 +7,21 @@ import useGameStore from '@/lib/store'
 import { playerTextColorClasses } from '@/styles/color-classes'
 
 export default function PolicyPeek() {
-  const [showPolicies, setShowPolicies] = useState(false)
   const { t } = useTranslation()
-  const { players, president, policyTiles, updateStatus } =
+  const { players, president, policyTiles, updateStatus, setUIState } =
     useGameStore.getState()
+  const uiState = useGameStore((state) => state.uiState.policyPeekRevealed)
 
   const currentPlayer = players.find((player) => player.id === president)
+
+  const handleShow = () => {
+    setUIState({ policyPeekRevealed: true })
+  }
+
+  const handleContinue = () => {
+    updateStatus('choose-cancelour')
+    setUIState({ policyPeekRevealed: false })
+  }
 
   return (
     <>
@@ -36,26 +44,18 @@ export default function PolicyPeek() {
 
         <div className="flex w-full flex-col gap-3">
           {policyTiles.slice(0, 3).map((tile) => (
-            <TileCard {...tile} state={showPolicies ? 'default' : 'hidden'} />
+            <TileCard {...tile} state={uiState ? 'default' : 'hidden'} />
           ))}
         </div>
       </main>
 
       <footer className="fixed-bottom">
-        {showPolicies ? (
-          <Button
-            className="max-w-134"
-            size="mobile"
-            onClick={() => updateStatus('choose-cancelour')}
-          >
+        {uiState ? (
+          <Button className="max-w-134" size="mobile" onClick={handleContinue}>
             {t('continue-btn')}
           </Button>
         ) : (
-          <Button
-            className="max-w-134"
-            size="mobile"
-            onClick={() => setShowPolicies(true)}
-          >
+          <Button className="max-w-134" size="mobile" onClick={handleShow}>
             {t('policy-peek.show-btn')}
           </Button>
         )}

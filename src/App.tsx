@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import { Button } from '@ui/button'
 
 import AbortDialog from '@/components/AbortDialog'
@@ -10,6 +10,7 @@ import InfoContextMenu from './components/InfoDropdownMenu'
 import LanguageDropdown from './components/LanguageDropdown'
 
 export default function App() {
+  const navigate = useNavigate()
   const { t } = useTranslation()
   const { hasGame, setHasGame } = useHasGame()
 
@@ -45,7 +46,10 @@ export default function App() {
                   Abort game
                 </Button>
               }
-              onAbort={() => setHasGame(false)}
+              onAbort={() => {
+                setHasGame(false)
+                navigate('/', { replace: true })
+              }}
             />
           </div>
         ) : (

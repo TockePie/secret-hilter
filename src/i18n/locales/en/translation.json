@@ -11,6 +11,8 @@
     "fascist": "Fascist"
   },
   "continue-btn": "Continue",
+  "yes-btn": "Yes",
+  "no-btn": "No",
   "abort-dialog": {
     "title": "Do you really want to abort this game?",
     "description": "All the progress will be terminated",
@@ -71,7 +73,7 @@
   "sleep-stage-page": {
     "title": "Get ready for the next stage! \n Instruction for All Players:",
     "instruction": {
-      "smallTeam": {
+      "small-team": {
         "1": {
           "title": "Close your eyes",
           "content": "(Wait for everyone to do this.)"
@@ -85,7 +87,7 @@
           "content": "(When everyone is ready, proceed.)"
         }
       },
-      "bigTeam": {
+      "big-team": {
         "1": {
           "title": "Close your eyes and make a fist",
           "content": "(Hold your fist in front of you until everyone is ready.)"

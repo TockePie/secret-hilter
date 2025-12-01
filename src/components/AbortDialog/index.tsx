@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router'
 import { Button } from '@ui/button'
 import {
   Dialog,
@@ -23,14 +22,11 @@ export default function AbortDialog({
   onAbort
 }: AbortDialogProps) {
   const { t } = useTranslation()
-  const navigate = useNavigate()
   const abortGame = useGameStore((state) => state.abortGame)
 
   const handleAbort = () => {
     abortGame()
-    sessionStorage.removeItem('game-storage')
     onAbort?.()
-    navigate('/', { replace: true })
   }
 
   return (
