@@ -14,10 +14,9 @@ export default function PrePlayersMove({
   const { players, president, chancellor, updateStatus } =
     useGameStore.getState()
 
-  const currentPlayer =
-    role === 'president'
-      ? players.find((player) => player.id === president)
-      : players.find((player) => player.id === chancellor)
+  const currentPlayer = players.find(
+    (p) => p.id === (role === 'president' ? president : chancellor)
+  )
 
   const handleContinue = () => {
     updateStatus(role === 'president' ? 'president-move' : 'chancellor-move')

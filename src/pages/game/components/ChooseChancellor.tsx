@@ -5,6 +5,7 @@ import PlayerListItem from '@/components/PlayerListItem'
 import useGameStore from '@/lib/store'
 import { playerTextColorClasses } from '@/styles/color-classes'
 import type { Player } from '@/types/player'
+import arraySplitter from '@/utils/array-splitter'
 
 export default function ChooseCancelourPage() {
   const { t } = useTranslation()
@@ -16,12 +17,9 @@ export default function ChooseCancelourPage() {
     updateStatus
   } = useGameStore.getState()
 
-  const noPresidentPlayers = players.filter(
-    (player) => player.id !== candidatePresident
-  )
-
-  const presidentData = players.find(
-    (player) => player.id === candidatePresident
+  const [presidentData, playersList] = arraySplitter(
+    players,
+    candidatePresident
   )
 
   const handleCandidates = (id: Player['id']) => () => {
@@ -46,14 +44,12 @@ export default function ChooseCancelourPage() {
       <div className="flex w-full flex-col items-center gap-4">
         <h4>{t('choose-chancellor-page.choose-chancellor')}</h4>
         <div className="flex w-full flex-col gap-3">
-          {noPresidentPlayers.map((player) => (
+          {playersList.map((p) => (
             <PlayerListItem
-              id={player.id}
-              name={player.name}
-              color={player.color}
-              key={player.id}
-              disabled={ineligiblePlayers.some((item) => item === player.id)}
-              actionFn={handleCandidates(player.id)}
+              key={p.id}
+              disabled={ineligiblePlayers.some((item) => item === p.id)}
+              actionFn={handleCandidates(p.id)}
+              {...p}
             />
           ))}
         </div>

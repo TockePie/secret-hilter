@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import PlayerListItem from '@/components/PlayerListItem'
 import useGameStore from '@/lib/store'
 import { playerTextColorClasses } from '@/styles/color-classes'
+import arraySplitter from '@/utils/array-splitter'
 
 import InvestigateDialog from './investigate-dialog'
 
@@ -20,10 +21,10 @@ export default function InvestigateLoyalty() {
     (state) => state.uiState.lastInvestigatedPlayer
   )
 
-  const playersList = players.filter(
-    (p) => p.id !== president && !(p.id in investigatedPlayers)
+  const [presidentData, playersList] = arraySplitter(
+    players.filter((p) => !(p.id in investigatedPlayers)),
+    president
   )
-  const presidentData = players.find((p) => p.id === president)
 
   return (
     <main className="page-main max-sm:standalone:pb-10 gap-8 pb-5">
@@ -42,12 +43,10 @@ export default function InvestigateLoyalty() {
               key={p.id}
               triggerComp={
                 <PlayerListItem
-                  id={p.id}
-                  name={p.name}
-                  color={p.color}
                   actionFn={() => {
                     setUIState({ lastInvestigatedPlayer: p.id })
                   }}
+                  {...p}
                 />
               }
               onInvestigate={() => {
