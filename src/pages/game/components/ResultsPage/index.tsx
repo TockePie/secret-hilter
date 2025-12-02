@@ -13,7 +13,6 @@ export default function ResultsPage() {
   const {
     mode,
     tilesSnapshot,
-    fascistPolicy,
     setUIState,
     clearIneligiblePlayers,
     setPolicy,
@@ -33,12 +32,20 @@ export default function ResultsPage() {
   const handleContinue = () => {
     clearIneligiblePlayers()
     setIneligiblePlayers()
+
+    const newFascistCount =
+      policy?.type === 'fascist'
+        ? useGameStore.getState().fascistPolicy + 1
+        : useGameStore.getState().fascistPolicy
+
     setPolicy(policy as PolicyTilesProps)
-    updateStatus(
+
+    const newStatus =
       policy?.type === 'liberal'
         ? 'choose-cancelour'
-        : (POWERS[mode!]?.[fascistPolicy] ?? 'choose-cancelour')
-    )
+        : POWERS[mode!][newFascistCount]
+
+    updateStatus(newStatus)
 
     if (status === 'execution') return
     setNewCandidatePresident()

@@ -18,6 +18,8 @@ export default function RolesPage() {
 
     if (index === players.length - 1) {
       updateStatus('sleep-stage')
+
+      setTimeout(() => setUIState({ lastViewedRoleIndex: null }), 1000)
     } else {
       nextButton.current?.click()
     }

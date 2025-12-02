@@ -9,24 +9,27 @@ export default function SleepStagePage() {
   const { players, updateStatus } = useGameStore.getState()
 
   const content = Object.entries(
-    players.length >= 7
-      ? t('sleep-stage-page.instruction.big-team', { returnObjects: true })
-      : t('sleep-stage-page.instruction.small-team', { returnObjects: true })
-  ).map(([key, stage]) => (
-    <InstructionCard
-      number={Number(key)}
-      key={key}
-      title={stage.title}
-      content={stage.content}
-    />
-  ))
+    t(
+      `sleep-stage-page.instruction.${players.length >= 7 ? 'big-team' : 'small-team'}`,
+      { returnObjects: true }
+    )
+  )
 
   return (
     <>
       <main className="page-main gap-6 pb-35">
         <span className="text-8xl">😴</span>
         <h4>{t('sleep-stage-page.title')}</h4>
-        <div className="flex flex-col gap-5">{content}</div>
+        <div className="flex flex-col gap-5">
+          {content.map(([key, stage]) => (
+            <InstructionCard
+              number={Number(key)}
+              key={key}
+              title={stage.title}
+              content={stage.content}
+            />
+          ))}
+        </div>
       </main>
 
       <footer className="fixed-bottom">
