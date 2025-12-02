@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router'
 import { Button } from '@ui/button'
@@ -20,6 +20,8 @@ export default function NewGamePage() {
     recordPlayers
   } = usePlayers()
   const { abortGame, updateStatus } = useGameStore.getState()
+  const containerRef = useRef<HTMLDivElement>(null)
+  const prevLength = useRef(players.length)
 
   const handleStartGame = () => {
     abortGame()
@@ -29,6 +31,17 @@ export default function NewGamePage() {
   }
 
   useEffect(() => handleAddPlayer(), [])
+
+  useEffect(() => {
+    if (!containerRef.current) return
+
+    if (players.length > prevLength.current) {
+      const lastChild = containerRef.current.lastElementChild
+      lastChild?.scrollIntoView({ behavior: 'smooth' })
+    }
+
+    prevLength.current = players.length
+  }, [players])
 
   return (
     <div className="page">
@@ -45,18 +58,14 @@ export default function NewGamePage() {
         </Button>
       </nav>
 
-      <main className="standalone:pb-39 page-main pb-35">
-        {players.map((player) => (
+      <main ref={containerRef} className="standalone:pb-39 page-main pb-35">
+        {players.map((p) => (
           <PlayerCard
-            key={player.id}
-            id={player.id}
-            name={player.name}
-            color={player.color}
-            renameFn={(newName: string) =>
-              handleRenamePlayer(player.id, newName)
-            }
-            removeFn={handleRemovePlayer(player.id)}
+            key={p.id}
+            renameFn={(newName: string) => handleRenamePlayer(p.id, newName)}
+            removeFn={handleRemovePlayer(p.id)}
             addPlayerFn={handleAddPlayer}
+            {...p}
           />
         ))}
       </main>
