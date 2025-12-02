@@ -7,12 +7,20 @@ import useGameStore from '@/lib/store'
 
 export default function ChaosPage() {
   const { t } = useTranslation()
-  const { policyTiles, handleChaos, updateStatus } = useGameStore.getState()
+  const {
+    policyTiles,
+    clearIneligiblePlayers,
+    clearElectionTracker,
+    setPolicy,
+    updateStatus
+  } = useGameStore.getState()
 
   const upperTile = policyTiles[0]
 
   const handleNext = () => {
-    handleChaos()
+    setPolicy(upperTile)
+    clearIneligiblePlayers()
+    clearElectionTracker()
     updateStatus('choose-cancelour')
   }
 

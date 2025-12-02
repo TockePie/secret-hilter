@@ -1,7 +1,8 @@
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 
-import { POLICY_TILES, POWERS } from '@/common/constants'
+import { GAME_MODE, POLICY_TILES, POWERS } from '@/common/constants'
+import arraySplitter from '@/utils/array-splitter'
 import shuffleArray from '@/utils/shuffle-array'
 
 import type { Actions } from './actions'
@@ -17,15 +18,12 @@ const useGameStore = create<Store & Actions>()(
         const { players, killedPlayers, updateStatus, setVictoryDetails } =
           get()
 
-        const victim = players.find((p) => p.id === playerId)
+        const [victim, updatedPlayers] = arraySplitter(players, playerId)
         if (!victim) return
-
-        const updatedPlayers = players.filter((p) => p.id !== playerId)
-        const updatedKilled = [...killedPlayers, victim]
 
         set({
           players: updatedPlayers,
-          killedPlayers: updatedKilled
+          killedPlayers: [...killedPlayers, victim]
         })
 
         if (victim.role === 'hitler') {
@@ -50,9 +48,9 @@ const useGameStore = create<Store & Actions>()(
           ineligiblePlayers: []
         })
       },
-      setInvestigatedPlayers: (id) => {
+      setInvestigatedPlayers: (playerId) => {
         set((state) => ({
-          investigatedPlayers: [...state.investigatedPlayers, id]
+          investigatedPlayers: [...state.investigatedPlayers, playerId]
         }))
       },
 
@@ -62,20 +60,8 @@ const useGameStore = create<Store & Actions>()(
         sessionStorage.removeItem('game-storage')
       },
       initiateGame: (players) => {
-        const count = players.length
-
-        const mode =
-          count === 5 || count === 6
-            ? '5to6'
-            : count === 7 || count === 8
-              ? '7to8'
-              : count === 9 || count === 10
-                ? '9to10'
-                : null
-
-        if (!mode) {
-          throw new Error(`Invalid player count: ${count}`)
-        }
+        const mode = GAME_MODE[players.length]
+        if (!mode) return
 
         set((state) => ({
           players: [...state.players, ...players],
@@ -99,25 +85,10 @@ const useGameStore = create<Store & Actions>()(
           electionTracker: (state.electionTracker + 1) % 4
         }))
       },
-      handleChaos: () => {
-        const { policyTiles, setPolicy, clearIneligiblePlayers } = get()
-
-        setPolicy(policyTiles[0])
-        clearIneligiblePlayers()
-
+      clearElectionTracker: () => {
         set({
           electionTracker: 0
         })
-      },
-      nextRound: (type) => {
-        const { mode, fascistPolicy, updateStatus } = get()
-        if (!mode) return
-
-        updateStatus(
-          type === 'liberal'
-            ? 'choose-cancelour'
-            : (POWERS[mode]?.[fascistPolicy] ?? 'choose-cancelour')
-        )
       },
       setVictoryDetails: (obj) => {
         if (!obj) return
@@ -151,6 +122,9 @@ const useGameStore = create<Store & Actions>()(
       setCandidateChancellor: (playerId) => {
         set({ candidateChancellor: playerId })
       },
+      setNewCandidatePresidentSnapshot: (playerId) => {
+        set({ candidatePresidentSnapshot: playerId })
+      },
       setNewGovernment: () => {
         const {
           players,
@@ -167,7 +141,7 @@ const useGameStore = create<Store & Actions>()(
         })
 
         const getChancellorProps = players.find(
-          (player) => player.id === candidateChancellor
+          (p) => p.id === candidateChancellor
         )
         if (!getChancellorProps) return
 

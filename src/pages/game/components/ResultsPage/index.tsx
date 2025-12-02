@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '@ui/button'
 import clsx from 'clsx'
 
+import { POWERS } from '@/common/constants'
 import useGameStore from '@/lib/store'
 import type { PolicyTilesProps } from '@/types/policy-tiles'
 
@@ -10,13 +11,15 @@ import PolicyCard from './policy-card'
 export default function ResultsPage() {
   const { t } = useTranslation()
   const {
+    mode,
     tilesSnapshot,
+    fascistPolicy,
     setUIState,
     clearIneligiblePlayers,
     setPolicy,
     setIneligiblePlayers,
     setNewCandidatePresident,
-    nextRound
+    updateStatus
   } = useGameStore.getState()
   const status = useGameStore((state) => state.status)
   const uiState = useGameStore((state) => state.uiState.policyResultsRevealed)
@@ -31,7 +34,11 @@ export default function ResultsPage() {
     clearIneligiblePlayers()
     setIneligiblePlayers()
     setPolicy(policy as PolicyTilesProps)
-    nextRound(policy?.type ?? 'liberal')
+    updateStatus(
+      policy?.type === 'liberal'
+        ? 'choose-cancelour'
+        : (POWERS[mode!]?.[fascistPolicy] ?? 'choose-cancelour')
+    )
 
     if (status === 'execution') return
     setNewCandidatePresident()

@@ -66,7 +66,7 @@
     "investigate-loyalty": "Розслідування",
     "policy-peek": "Політика",
     "execution": "Вбивство",
-    "special-election": "",
+    "special-election": "Голосування",
     "victory": ""
   },
   "role-revealing-page": {
@@ -169,5 +169,9 @@
       "description-2": "Якщо вилучений гравець був Гітлером, то ліберали перемагають.",
       "kill-btn": "Вбити"
     }
+  },
+  "special-election": {
+    "description": "має обрати наступного президента",
+    "choose-player": "Оберіть гравця"
   }
 }

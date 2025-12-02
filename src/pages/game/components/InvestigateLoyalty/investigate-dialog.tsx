@@ -40,7 +40,7 @@ export default function InvestigateDialog({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger>{triggerComp}</DialogTrigger>
       <DialogContent
-        className="[&>button]:hiddenc"
+        showCloseButton={false}
         onInteractOutside={(e) => {
           e.preventDefault()
         }}

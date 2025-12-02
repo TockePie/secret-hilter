@@ -67,7 +67,7 @@
     "investigate-loyalty": "Investigation",
     "policy-peek": "Policy peek",
     "execution": "Execution",
-    "special-election": "",
+    "special-election": "Special enacting",
     "victory": ""
   },
   "role-revealing-page": {
@@ -170,5 +170,9 @@
       "description-2": "If removed player was a hitler, liberals win.",
       "kill-btn": "Kill"
     }
+  },
+  "special-election": {
+    "description": "must elect the next president",
+    "choose-player": "Choose a player"
   }
 }

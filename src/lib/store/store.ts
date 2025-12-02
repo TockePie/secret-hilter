@@ -13,6 +13,7 @@ export type Store = {
   chancellor: Player['id'] | undefined
   candidatePresident: Player['id'] | undefined
   candidateChancellor: Player['id'] | undefined
+  candidatePresidentSnapshot: Player['id'] | undefined
 
   // Game status-related state
   mode: '5to6' | '7to8' | '9to10' | undefined
@@ -67,6 +68,7 @@ export const initialState: Store = {
   chancellor: undefined,
   candidatePresident: undefined,
   candidateChancellor: undefined,
+  candidatePresidentSnapshot: undefined,
 
   // Initializing game status
   mode: undefined,

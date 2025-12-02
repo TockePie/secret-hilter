@@ -53,10 +53,6 @@
   }
 }
 
-button[data-slot='dialog-close'] {
-  @apply hidden;
-}
-
 #root {
   white-space: pre-line;
 }

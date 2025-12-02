@@ -27,6 +27,7 @@ export default function LanguageDropdown() {
       <DropdownMenuContent className="w-36">
         {Object.entries(LANGUAGES).map(([key, value]) => (
           <DropdownMenuItem
+            key={key}
             onSelect={handleChoose(key as keyof typeof LANGUAGES)}
           >
             {value}
