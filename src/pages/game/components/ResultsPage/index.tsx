@@ -3,6 +3,7 @@ import { Button } from '@ui/button'
 import clsx from 'clsx'
 
 import { POWERS } from '@/common/constants'
+import MotionWrapper from '@/components/MotionWrapper'
 import useGameStore from '@/lib/store'
 import type { PolicyTilesProps } from '@/types/policy-tiles'
 
@@ -43,7 +44,7 @@ export default function ResultsPage() {
     const newStatus =
       policy?.type === 'liberal'
         ? 'choose-cancelour'
-        : POWERS[mode!][newFascistCount]
+        : (POWERS[mode!][newFascistCount] ?? 'choose-cancelour')
 
     updateStatus(newStatus)
 
@@ -57,15 +58,23 @@ export default function ResultsPage() {
 
   return (
     <>
+      <Button
+        className="absolute top-4 left-4"
+        onClick={() => setUIState({ policyResultsRevealed: false })}
+      >
+        Unset
+      </Button>
       <main
         className={clsx(
           'page-main h-full pb-35',
-          uiState ?? 'mb-3 border-dashed border-stone-400 min-md:border'
+          uiState ?? 'mb-3 border border-dashed border-stone-400'
         )}
         onClick={handleShow}
       >
         {uiState ? (
-          <PolicyCard policy={policy} />
+          <MotionWrapper type="bounce-in">
+            <PolicyCard policy={policy} />
+          </MotionWrapper>
         ) : (
           <h4 className="mt-[30vh] mb-auto">
             {t('results-page.press-screen')}
@@ -75,9 +84,15 @@ export default function ResultsPage() {
 
       {uiState && (
         <footer className="fixed-bottom">
-          <Button className="max-w-134" size="mobile" onClick={handleContinue}>
-            {t('continue-btn')}
-          </Button>
+          <MotionWrapper type="fade-in">
+            <Button
+              className="max-w-134"
+              size="mobile"
+              onClick={handleContinue}
+            >
+              {t('continue-btn')}
+            </Button>
+          </MotionWrapper>
         </footer>
       )}
     </>
