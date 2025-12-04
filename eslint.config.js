@@ -7,13 +7,12 @@ import { defineConfig, globalIgnores } from 'eslint/config'
 import simpleImportSort from 'eslint-plugin-simple-import-sort'
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores(['dist, dev-dist']),
   {
     files: ['**/*.{ts,tsx}'],
     extends: [
       js.configs.recommended,
       tseslint.configs.recommended,
-      reactHooks.configs['recommended-latest'],
       reactRefresh.configs.vite
     ],
     languageOptions: {
@@ -21,7 +20,8 @@ export default defineConfig([
       globals: globals.browser
     },
     plugins: {
-      'simple-import-sort': simpleImportSort
+      'simple-import-sort': simpleImportSort,
+      'react-hooks': reactHooks
     },
     rules: {
       'simple-import-sort/exports': 'error',
@@ -37,7 +37,9 @@ export default defineConfig([
             ['^.+\\.?(css)$']
           ]
         }
-      ]
+      ],
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn'
     }
   }
 ])
