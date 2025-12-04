@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 
-import { GAME_MODE, POLICY_TILES, POWERS } from '@/common/constants'
+import { GAME_MODE, POLICY_TILES } from '@/common/constants'
 import arraySplitter from '@/utils/array-splitter'
 import shuffleArray from '@/utils/shuffle-array'
 
@@ -63,12 +63,14 @@ const useGameStore = create<Store & Actions>()(
         const mode = GAME_MODE[players.length]
         if (!mode) return
 
-        set((state) => ({
-          players: [...state.players, ...players],
+        set({
+          players,
+          rotation: players.map((p) => p.id),
+          rotationIndex: 0,
           candidatePresident: players[0].id,
           policyTiles: shuffleArray(POLICY_TILES),
           mode
-        }))
+        })
       },
 
       // updateStatus: (status) => set({ status }),
@@ -103,27 +105,35 @@ const useGameStore = create<Store & Actions>()(
 
       // Government management actions
       setNewCandidatePresident: () => {
-        const { players, candidatePresident } = get()
-        if (players.length === 0) return
+        const { rotation, rotationIndex, forcedCandidate } = get()
+        if (rotation.length === 0) return
 
-        const currentIndex = players.findIndex(
-          (p) => p.id === candidatePresident
-        )
+        if (forcedCandidate) {
+          set({
+            candidatePresident: forcedCandidate,
+            forcedCandidate: undefined
+          })
+          return
+        }
 
-        const newCandidate =
-          currentIndex === -1
-            ? players[0].id
-            : players[(currentIndex + 1) % players.length].id
+        const newIndex = (rotationIndex + 1) % rotation.length
+        const newCandidate = rotation[newIndex]
 
         set({
+          rotationIndex: newIndex,
           candidatePresident: newCandidate
         })
       },
       setCandidateChancellor: (playerId) => {
         set({ candidateChancellor: playerId })
       },
-      setNewCandidatePresidentSnapshot: (playerId) => {
-        set({ candidatePresidentSnapshot: playerId })
+      setSpecialCandidate: (playerId) => {
+        const { candidatePresident } = get()
+
+        set({
+          forcedCandidate: candidatePresident,
+          candidatePresident: playerId
+        })
       },
       setNewGovernment: () => {
         const {

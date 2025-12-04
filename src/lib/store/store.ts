@@ -13,7 +13,7 @@ export type Store = {
   chancellor: Player['id'] | undefined
   candidatePresident: Player['id'] | undefined
   candidateChancellor: Player['id'] | undefined
-  candidatePresidentSnapshot: Player['id'] | undefined
+  forcedCandidate: Player['id'] | undefined
 
   // Game status-related state
   mode: '5to6' | '7to8' | '9to10' | undefined
@@ -39,6 +39,8 @@ export type Store = {
     whoWon: 'liberals' | 'fascists'
     whatHappened: string
   } | null
+  rotation: Player['id'][]
+  rotationIndex: number
 
   // Policy tiles-related state
   policyTiles: PolicyTilesProps[]
@@ -56,6 +58,7 @@ export type UIState = {
   policyResultsRevealed: boolean
   policyPeekRevealed: boolean
   lastInvestigatedPlayer: Player['id'] | undefined
+  hasConfettiFallen: 'no' | 'in-process' | 'yes'
 }
 
 export const initialState: Store = {
@@ -68,13 +71,15 @@ export const initialState: Store = {
   chancellor: undefined,
   candidatePresident: undefined,
   candidateChancellor: undefined,
-  candidatePresidentSnapshot: undefined,
+  forcedCandidate: undefined,
 
   // Initializing game status
   mode: undefined,
   status: 'new-game',
   electionTracker: 0,
   victoryDetails: null,
+  rotation: [],
+  rotationIndex: 0,
 
   // Initializing policy tiles
   policyTiles: shuffleArray(POLICY_TILES),
@@ -88,6 +93,7 @@ export const initialState: Store = {
     lastViewedRoleIndex: null,
     policyResultsRevealed: false,
     policyPeekRevealed: false,
-    lastInvestigatedPlayer: undefined
+    lastInvestigatedPlayer: undefined,
+    hasConfettiFallen: 'no'
   }
 }

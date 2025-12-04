@@ -20,10 +20,8 @@ export type Actions = {
 
   // Government management actions
   setNewCandidatePresident: () => void
-  setCandidateChancellor: (id: Store['candidateChancellor']) => void
-  setNewCandidatePresidentSnapshot: (
-    id: Store['candidatePresidentSnapshot']
-  ) => void
+  setCandidateChancellor: (playerId: Store['candidateChancellor']) => void
+  setSpecialCandidate: (playerId: Store['forcedCandidate']) => void
   setNewGovernment: () => void // Sets new president and chancellor. If 3 fascist policy is enacted and hitler is chosen as a chancellor - sets a victory
   setTilesSnapshot: () => void
   discardTile: (tileId: PolicyTilesProps['id']) => void
