@@ -28,6 +28,7 @@ export default function Execution() {
         <div className="flex w-full flex-col gap-3">
           {playersList.map((p) => (
             <KillDialog
+              key={p.id}
               triggerComp={<PlayerListItem key={p.id} {...p} />}
               onKill={() => {
                 setNewCandidatePresident()

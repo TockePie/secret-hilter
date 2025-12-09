@@ -4,13 +4,20 @@ import clsx from 'clsx'
 import PlayerListItem from '@/components/PlayerListItem'
 import useGameStore from '@/lib/store'
 import { playerTextColorClasses } from '@/styles/color-classes'
+import type { Player } from '@/types/player'
 import arraySplitter from '@/utils/array-splitter'
 
 export default function SpecialElection() {
   const { t } = useTranslation()
-  const { players, president } = useGameStore.getState()
+  const { players, president, setSpecialCandidate, updateStatus } =
+    useGameStore.getState()
 
   const [currentPresident, allPlayers] = arraySplitter(players, president)
+
+  const handleSelect = (playerId: Player['id']) => () => {
+    setSpecialCandidate(playerId)
+    updateStatus('choose-cancelour')
+  }
 
   return (
     <main className="page-main max-sm:standalone:pb-10 gap-8 pb-5">
@@ -30,7 +37,7 @@ export default function SpecialElection() {
         <h4>{t('special-election.choose-player')}</h4>
         <div className="flex w-full flex-col gap-3">
           {allPlayers.map((p) => (
-            <PlayerListItem key={p.id} {...p} />
+            <PlayerListItem key={p.id} actionFn={handleSelect(p.id)} {...p} />
           ))}
         </div>
       </div>

@@ -30,7 +30,7 @@ const useGameStore = create<Store & Actions>()(
           updateStatus('victory')
           setVictoryDetails({
             whoWon: 'liberals',
-            whatHappened: 'Hitler was killed'
+            whatHappened: 'hitler-killed'
           })
         }
       },
@@ -56,14 +56,15 @@ const useGameStore = create<Store & Actions>()(
 
       // Game state management actions
       abortGame: () => {
-        set({ ...initialState })
         sessionStorage.removeItem('game-storage')
+        useGameStore.persist.clearStorage()
       },
       initiateGame: (players) => {
         const mode = GAME_MODE[players.length]
         if (!mode) return
 
         set({
+          ...initialState,
           players,
           rotation: players.map((p) => p.id),
           rotationIndex: 0,
@@ -159,8 +160,7 @@ const useGameStore = create<Store & Actions>()(
           updateStatus('victory')
           setVictoryDetails({
             whoWon: 'fascists',
-            whatHappened:
-              'Hitler was enacted as a chancellor after 3 Fascist Policies'
+            whatHappened: '3-policies'
           })
         }
       },
@@ -210,7 +210,7 @@ const useGameStore = create<Store & Actions>()(
             updateStatus('victory')
             setVictoryDetails({
               whoWon: 'fascists',
-              whatHappened: '6 Fascist Policies have been enacted'
+              whatHappened: '6-fascist-policies'
             })
           }
         } else if (obj.type === 'liberal') {
@@ -222,7 +222,7 @@ const useGameStore = create<Store & Actions>()(
             updateStatus('victory')
             setVictoryDetails({
               whoWon: 'liberals',
-              whatHappened: '5 Liberal Policies have been enacted'
+              whatHappened: '5-liberal-policies'
             })
           }
         }

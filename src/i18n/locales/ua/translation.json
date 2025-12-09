@@ -173,5 +173,19 @@
   "special-election": {
     "description": "має обрати наступного президента",
     "choose-player": "Оберіть гравця"
+  },
+  "victory-page": {
+    "victory": "Перемога",
+    "who-won": {
+      "liberals": "Ліберали виграли",
+      "fascists": "Фашисти виграли"
+    },
+    "what-happened": {
+      "hitler-killed": "Гітлера було вбито",
+      "3-policies": "Гітлер був призначений канцлером після 3 фашистських політик",
+      "6-fascist-policies": "6 Фашистських законів було прийнято",
+      "5-liberal-policies": "5 Ліберальних законів було прийнято"
+    },
+    "finish-game-btn": "Закінчити гру"
   }
 }

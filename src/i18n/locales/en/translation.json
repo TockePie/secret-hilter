@@ -174,5 +174,19 @@
   "special-election": {
     "description": "must elect the next president",
     "choose-player": "Choose a player"
+  },
+  "victory-page": {
+    "victory": "Victory",
+    "who-won": {
+      "liberals": "Liberals won",
+      "fascists": "Fascists won"
+    },
+    "what-happened": {
+      "hitler-killed": "Hitler was killed",
+      "3-policies": "Hitler was enacted as a chancellor after 3 Fascist Policies",
+      "6-fascist-policies": "6 Fascist Policies have been enacted",
+      "5-liberal-policies": "5 Liberal Policies have been enacted"
+    },
+    "finish-game-btn": "Finish game"
   }
 }

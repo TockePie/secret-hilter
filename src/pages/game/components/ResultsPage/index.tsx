@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@ui/button'
 import clsx from 'clsx'
@@ -10,6 +11,7 @@ import type { PolicyTilesProps } from '@/types/policy-tiles'
 import PolicyCard from './policy-card'
 
 export default function ResultsPage() {
+  const [isContinuing, setIsContinuing] = useState(false)
   const { t } = useTranslation()
   const {
     mode,
@@ -31,6 +33,9 @@ export default function ResultsPage() {
   }
 
   const handleContinue = () => {
+    if (isContinuing) return
+    setIsContinuing(true)
+
     clearIneligiblePlayers()
     setIneligiblePlayers()
 
@@ -39,20 +44,20 @@ export default function ResultsPage() {
         ? useGameStore.getState().fascistPolicy + 1
         : useGameStore.getState().fascistPolicy
 
-    setPolicy(policy as PolicyTilesProps)
-
     const newStatus =
       policy?.type === 'liberal'
         ? 'choose-cancelour'
         : (POWERS[mode!][newFascistCount] ?? 'choose-cancelour')
 
     updateStatus(newStatus)
+    setPolicy(policy as PolicyTilesProps)
 
     if (status === 'execution') return
     setNewCandidatePresident()
 
     setTimeout(() => {
       setUIState({ policyResultsRevealed: false })
+      setIsContinuing(false)
     }, 1000)
   }
 
@@ -88,6 +93,7 @@ export default function ResultsPage() {
             <Button
               className="max-w-134"
               size="mobile"
+              disabled={isContinuing}
               onClick={handleContinue}
             >
               {t('continue-btn')}

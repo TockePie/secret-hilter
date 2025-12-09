@@ -33,7 +33,7 @@ export default function ChooseCancelourPage() {
         <h1
           className={clsx(
             playerTextColorClasses[presidentData?.color ?? 'slate'],
-            'w-full max-md:max-w-56'
+            'w-full max-md:max-w-70'
           )}
         >
           {presidentData?.name}

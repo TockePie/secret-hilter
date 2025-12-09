@@ -13,6 +13,7 @@ import ResultsPage from './pages/game/components/ResultsPage'
 import RolesPage from './pages/game/components/RolesPage'
 import SleepStagePage from './pages/game/components/SleepStagePage.tsx'
 import SpecialElection from './pages/game/components/SpecialElection.tsx'
+import Victory from './pages/game/components/Victory.tsx'
 import GameLayout from './pages/game/page.tsx'
 import NewGamePage from './pages/newgame'
 import App from './App.tsx'
@@ -45,6 +46,7 @@ export default function RouteTree() {
         <Route path="policy-peek" element={<PolicyPeek />} />
         <Route path="special-election" element={<SpecialElection />} />
         <Route path="execution" element={<Execution />} />
+        <Route path="victory" element={<Victory />} />
       </Route>
     </Routes>
   )

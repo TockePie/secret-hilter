@@ -29,8 +29,8 @@ export default function KillDialog({
   const { killPlayer } = useGameStore.getState()
 
   const handleKill = () => {
-    killPlayer(id)
     onKill?.()
+    killPlayer(id)
   }
 
   return (
