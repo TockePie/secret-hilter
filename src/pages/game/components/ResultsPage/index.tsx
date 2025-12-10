@@ -63,12 +63,6 @@ export default function ResultsPage() {
 
   return (
     <>
-      <Button
-        className="absolute top-4 left-4"
-        onClick={() => setUIState({ policyResultsRevealed: false })}
-      >
-        Unset
-      </Button>
       <main
         className={clsx(
           'page-main h-full pb-35',

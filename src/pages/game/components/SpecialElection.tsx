@@ -25,7 +25,7 @@ export default function SpecialElection() {
         <h1
           className={clsx(
             playerTextColorClasses[currentPresident?.color ?? 'slate'],
-            'w-full max-md:max-w-56'
+            'mx-auto w-full max-md:max-w-70'
           )}
         >
           {currentPresident?.name}

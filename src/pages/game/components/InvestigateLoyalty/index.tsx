@@ -22,7 +22,7 @@ export default function InvestigateLoyalty() {
   )
 
   const [presidentData, playersList] = arraySplitter(
-    players.filter((p) => !(p.id in investigatedPlayers)),
+    players.filter((p) => !investigatedPlayers.includes(p.id)),
     president
   )
 
