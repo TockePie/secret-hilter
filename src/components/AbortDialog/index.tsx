@@ -12,15 +12,12 @@ import {
 } from '@ui/dialog'
 import { AlertTriangle } from 'lucide-react'
 
-interface AbortDialogProps {
+interface Props {
   triggerComp: React.ReactNode
   onAbort?: () => void
 }
 
-export default function AbortDialog({
-  triggerComp,
-  onAbort
-}: AbortDialogProps) {
+export default function AbortDialog({ triggerComp, onAbort }: Props) {
   const { t } = useTranslation()
 
   return (
@@ -28,7 +25,7 @@ export default function AbortDialog({
       <DialogTrigger asChild>{triggerComp}</DialogTrigger>
 
       <DialogContent
-        className="max-w-[400px] gap-6 text-stone-800"
+        className="max-w-100 gap-6 text-stone-800"
         aria-describedby="abort-game-description"
         showCloseButton={false}
       >
