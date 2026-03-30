@@ -14,6 +14,7 @@ export default function GameLayout() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const status = useGameStore((state) => state.status)
+  const abortGame = useGameStore((state) => state.abortGame)
   const { setHasGame } = useHasGame()
 
   useEffect(() => {
@@ -33,6 +34,7 @@ export default function GameLayout() {
               </Button>
             }
             onAbort={() => {
+              abortGame()
               setHasGame(false)
               navigate('/', { replace: true })
             }}

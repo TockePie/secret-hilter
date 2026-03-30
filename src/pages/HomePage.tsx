@@ -4,13 +4,12 @@ import { Button } from '@ui/button'
 
 import ContinueAlert from '@/components/ContinueAlert'
 import AbortDialog from '@/components/dialogs/AbortDialog'
+import InfoDropdownMenu from '@/components/dropdowns/InfoDropdownMenu'
+import LanguageDropdown from '@/components/dropdowns/LanguageDropdown'
 import useHasGame from '@/hooks/use-has-game'
+import useGameStore from '@/lib/store'
 
-import InfoContextMenu from './components/dropdowns/InfoDropdownMenu'
-import LanguageDropdown from './components/dropdowns/LanguageDropdown'
-import useGameStore from './lib/store'
-
-export default function App() {
+export default function HomePage() {
   const navigate = useNavigate()
   const { t } = useTranslation()
   const { hasGame, setHasGame } = useHasGame()
@@ -22,7 +21,7 @@ export default function App() {
         <div className="size-8"></div>
         <div className="space-x-5">
           <LanguageDropdown />
-          <InfoContextMenu />
+          <InfoDropdownMenu />
         </div>
       </nav>
 

@@ -20,7 +20,7 @@ export default function InfoDropdownMenu() {
           <Info className="size-7" strokeWidth={2} />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-36">
+      <DropdownMenuContent className="w-36 rounded-xl">
         <DropdownMenuItem
           onClick={() =>
             window.open(

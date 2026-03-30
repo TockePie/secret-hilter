@@ -2,64 +2,79 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '@ui/button'
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogFooter,
+  DialogHeader,
   DialogTitle,
   DialogTrigger
 } from '@ui/dialog'
-import { Trash2, Trophy } from 'lucide-react'
+import { Skull, Trash2, Trophy } from 'lucide-react'
 
-import useGameStore from '@/lib/store'
 import { playerTextColorClasses } from '@/styles/color-classes'
 import type { Player } from '@/types/player'
 
-interface KillDialogProps extends Player {
-  triggerComp: React.ReactElement
+interface Props extends Player {
+  triggerComp: React.ReactNode
   onKill?: () => void
 }
 
 export default function KillDialog({
   triggerComp,
-  id,
   name,
   color,
   onKill
-}: KillDialogProps) {
+}: Props) {
   const { t } = useTranslation()
-  const { killPlayer } = useGameStore.getState()
-
-  const handleKill = () => {
-    onKill?.()
-    killPlayer(id)
-  }
 
   return (
     <Dialog>
       <DialogTrigger>{triggerComp}</DialogTrigger>
-      <DialogContent className="gap-10">
-        <DialogTitle>
-          {t('execution.dialog.title')}{' '}
-          <span className={playerTextColorClasses[color]}>{name}</span>?
-        </DialogTitle>
-
-        <div className="flex flex-col gap-5">
-          <div className="flex items-center justify-between gap-3">
-            <Trash2 size={32} className="flex-1 text-stone-500" />
-            <span className="body-2 flex-7">
-              {t('execution.dialog.description-1')}
-            </span>
+      <DialogContent
+        className="max-w-100 gap-6 text-stone-800"
+        aria-describedby="kill-player-description"
+        showCloseButton={false}
+      >
+        <DialogHeader className="flex flex-col items-center gap-6 text-center">
+          <div className="flex size-16 items-center justify-center rounded-full bg-red-100 text-red-600">
+            <Skull size={32} />
           </div>
 
-          <div className="flex items-center justify-between gap-3">
-            <Trophy size={32} className="flex-1 text-stone-500" />
-            <span className="body-2 flex-7">
-              {t('execution.dialog.description-2')}
-            </span>
-          </div>
-        </div>
+          <DialogTitle className="text-center">
+            {t('execution.dialog.title')}{' '}
+            <span className={playerTextColorClasses[color]}>{name}</span>?
+          </DialogTitle>
 
-        <DialogFooter className="flex flex-col flex-wrap gap-3">
-          <Button variant="destructive" size="mobile" onClick={handleKill}>
+          <div className="flex flex-col gap-5">
+            <div className="flex items-center justify-between gap-3">
+              <Trash2 size={32} className="flex-1 text-stone-500" />
+              <span className="body-2 flex-7 text-left">
+                {t('execution.dialog.description-1')}
+              </span>
+            </div>
+
+            <div className="flex items-center justify-between gap-3">
+              <Trophy size={32} className="flex-1 text-stone-500" />
+              <span className="body-2 flex-7 text-left">
+                {t('execution.dialog.description-2')}
+              </span>
+            </div>
+          </div>
+        </DialogHeader>
+
+        <DialogFooter className="flex flex-row justify-center gap-3 sm:justify-center">
+          <DialogClose asChild>
+            <Button size="mobile" variant="outline" className="flex-1">
+              {t('no-btn')}
+            </Button>
+          </DialogClose>
+
+          <Button
+            variant="destructive"
+            size="mobile"
+            className="flex-1"
+            onClick={onKill}
+          >
             {t('execution.dialog.kill-btn')}
           </Button>
         </DialogFooter>

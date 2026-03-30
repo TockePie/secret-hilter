@@ -24,10 +24,13 @@ export default function LanguageDropdown() {
           <Globe className="size-7" strokeWidth={2} />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-36">
+      <DropdownMenuContent className="w-36 rounded-xl">
         {Object.entries(LANGUAGES).map(([key, value]) => (
           <DropdownMenuItem
             key={key}
+            className={
+              i18n.language === key ? 'bg-accent text-accent-foreground' : ''
+            }
             onSelect={handleChoose(key as keyof typeof LANGUAGES)}
           >
             {value}

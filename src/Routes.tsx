@@ -15,15 +15,15 @@ import SleepStagePage from './pages/game/components/SleepStagePage.tsx'
 import SpecialElection from './pages/game/components/SpecialElection.tsx'
 import Victory from './pages/game/components/Victory.tsx'
 import GameLayout from './pages/game/page.tsx'
+import HomePage from './pages/HomePage.tsx'
 import NewGamePage from './pages/newgame'
-import App from './App.tsx'
 
 export default function RouteTree() {
   const location = useLocation()
 
   return (
     <Routes location={location} key={location.pathname}>
-      <Route index element={<App />} />
+      <Route index element={<HomePage />} />
       <Route path="newgame" element={<NewGamePage />} />
       <Route path="game" element={<GameLayout />} errorElement={<NoGamePage />}>
         <Route path="role-revealing" element={<RolesPage />} />

@@ -9,8 +9,13 @@ import KillDialog from './kill-dialog'
 
 export default function Execution() {
   const { t } = useTranslation()
-  const { players, president, setNewCandidatePresident, updateStatus } =
-    useGameStore.getState()
+  const {
+    players,
+    president,
+    setNewCandidatePresident,
+    updateStatus,
+    killPlayer
+  } = useGameStore.getState()
 
   const [presidentData, playersList] = arraySplitter(players, president)
 
@@ -33,6 +38,7 @@ export default function Execution() {
               onKill={() => {
                 setNewCandidatePresident()
                 updateStatus('choose-cancelour')
+                killPlayer(p.id)
               }}
               {...p}
             />
