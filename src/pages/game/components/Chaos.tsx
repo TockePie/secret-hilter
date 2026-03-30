@@ -37,7 +37,7 @@ export default function ChaosPage() {
           <TileCard {...upperTile} />
         </div>
 
-        <ul className="flex w-full flex-col gap-6">
+        <ul className="w-full space-y-6">
           <InstructionCard number={2} title={t('chaos-page.list.2')} />
           <InstructionCard number={3} title={t('chaos-page.list.3')} />
         </ul>

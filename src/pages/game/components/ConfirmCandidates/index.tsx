@@ -9,6 +9,9 @@ import ElectionAlert from './election-alert'
 export default function ConfirmCandidates() {
   const { t } = useTranslation()
   const {
+    players,
+    candidatePresident,
+    candidateChancellor,
     electionTracker,
     checkTiles,
     setNewGovernment,
@@ -40,11 +43,21 @@ export default function ConfirmCandidates() {
     updateStatus('choose-cancelour')
   }
 
+  const presidentObj = players.find((p) => p.id === candidatePresident)
+  const chancellorObj = players.find((p) => p.id === candidateChancellor)
+
+  if (!presidentObj || !chancellorObj) {
+    return null
+  }
+
   return (
     <main className="page-main h-full justify-between">
       <div className="flex w-full flex-col items-center gap-4">
         <h4>{t('confirm-candidates-page.government')}</h4>
-        <CandidatesCard />
+        <CandidatesCard
+          presidentData={presidentObj}
+          chancellorData={chancellorObj}
+        />
       </div>
 
       <div className="max-sm:standalone:pb-10 flex w-full flex-col gap-3 pb-6 text-center">

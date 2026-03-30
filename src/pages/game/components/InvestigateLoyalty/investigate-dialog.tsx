@@ -45,7 +45,7 @@ export default function InvestigateDialog({
           e.preventDefault()
         }}
       >
-        <DialogTitle>
+        <DialogTitle className="text-center">
           <span className={playerTextColorClasses[color]}>{name}</span>
           {t('investigate-loyalty.dialog.title')}
         </DialogTitle>
