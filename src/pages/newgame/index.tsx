@@ -20,7 +20,7 @@ export default function NewGamePage() {
     recordPlayers
   } = usePlayers()
   const { abortGame, updateStatus } = useGameStore.getState()
-  const containerRef = useRef<HTMLDivElement>(null)
+  const mainRef = useRef<HTMLDivElement>(null)
   const prevLength = useRef(players.length)
 
   const handleStartGame = () => {
@@ -30,14 +30,15 @@ export default function NewGamePage() {
     navigate('/game/role-revealing', { replace: true })
   }
 
-  useEffect(() => handleAddPlayer(), [])
+  useEffect(() => {
+    if (players.length === 0) handleAddPlayer()
+  }, [])
 
   useEffect(() => {
-    if (!containerRef.current) return
+    if (!mainRef.current) return
 
     if (players.length > prevLength.current) {
-      const lastChild = containerRef.current.lastElementChild
-      lastChild?.scrollIntoView({ behavior: 'smooth' })
+      mainRef.current?.lastElementChild?.scrollIntoView({ behavior: 'smooth' })
     }
 
     prevLength.current = players.length
@@ -58,7 +59,7 @@ export default function NewGamePage() {
         </Button>
       </nav>
 
-      <main ref={containerRef} className="standalone:pb-39 page-main pb-35">
+      <main ref={mainRef} className="standalone:pb-39 page-main pb-35">
         {players.map((p) => (
           <PlayerCard
             key={p.id}
