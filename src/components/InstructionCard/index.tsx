@@ -1,16 +1,12 @@
 import clsx from 'clsx'
 
-interface InstructionCardProps {
+interface Props {
   number: number
   title: string
   content?: string
 }
 
-export default function InstructionCard({
-  number,
-  title,
-  content
-}: InstructionCardProps) {
+export default function InstructionCard({ number, title, content }: Props) {
   return (
     <div className={clsx(!content && 'items-center', 'flex gap-6')}>
       <h1 className="w-8 text-center">{number}</h1>

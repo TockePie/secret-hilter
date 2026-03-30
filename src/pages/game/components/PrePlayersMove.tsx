@@ -25,7 +25,7 @@ export default function PrePlayersMove({
   return (
     <>
       <main className="page-main h-full pb-35">
-        <div className="my-auto flex flex-col gap-4 text-center">
+        <div className="my-auto space-y-4 text-center">
           <h1
             className={playerTextColorClasses[currentPlayer?.color ?? 'slate']}
           >

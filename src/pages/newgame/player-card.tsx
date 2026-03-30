@@ -96,7 +96,7 @@ export default function PlayerCard({
               e.stopPropagation()
               removeFn()
             }}
-            className="rounded-md p-1 hover:bg-stone-200 focus:outline-emerald-800"
+            className="cursor-pointer rounded-md p-1 focus:outline-emerald-800"
             aria-label={`Delete ${name}`}
           >
             <Trash2 className="size-5 text-stone-500 hover:text-stone-700" />

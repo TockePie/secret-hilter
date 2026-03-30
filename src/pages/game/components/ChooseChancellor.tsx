@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next'
-import clsx from 'clsx'
 
 import PlayerListItem from '@/components/PlayerListItem'
 import useGameStore from '@/lib/store'
+import { cn } from '@/lib/utils'
 import { playerTextColorClasses } from '@/styles/color-classes'
 import type { Player } from '@/types/player'
 import arraySplitter from '@/utils/array-splitter'
@@ -31,9 +31,9 @@ export default function ChooseCancelourPage() {
     <main className="page-main max-sm:standalone:pb-10 gap-8 pb-5">
       <div className="text-con">
         <h1
-          className={clsx(
-            playerTextColorClasses[presidentData?.color ?? 'slate'],
-            'mx-auto w-full max-md:max-w-70'
+          className={cn(
+            'mx-auto w-full max-md:max-w-70',
+            playerTextColorClasses[presidentData?.color ?? 'slate']
           )}
         >
           {presidentData?.name}
@@ -43,7 +43,7 @@ export default function ChooseCancelourPage() {
 
       <div className="flex w-full flex-col items-center gap-4">
         <h4>{t('choose-chancellor-page.choose-chancellor')}</h4>
-        <div className="flex w-full flex-col gap-3">
+        <div className="w-full space-y-3">
           {playersList.map((p) => (
             <PlayerListItem
               key={p.id}

@@ -20,7 +20,7 @@ export default function SleepStagePage() {
       <main className="page-main gap-6 pb-35">
         <span className="text-8xl">😴</span>
         <h4>{t('sleep-stage-page.title')}</h4>
-        <div className="flex flex-col gap-5">
+        <div className="space-y-5">
           {content.map(([key, stage]) => (
             <InstructionCard
               number={Number(key)}

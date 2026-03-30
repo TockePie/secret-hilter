@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
-import clsx from 'clsx'
 import { Ban } from 'lucide-react'
 
+import { cn } from '@/lib/utils'
 import { playerBackgroundColorClasses } from '@/styles/color-classes'
 import type { LobbyPlayer } from '@/types/player'
 
@@ -18,27 +18,28 @@ export default function PlayerListItem({
 }: PlayerListItemProps) {
   const { t } = useTranslation()
 
-  const disabledCard = clsx(
-    disabled
-      ? 'cursor-not-allowed border-stone-200 bg-stone-200'
-      : 'cursor-pointer border-stone-400 bg-stone-50 hover:bg-stone-100 active:bg-stone-200',
-    'flex items-center gap-3 rounded-3xl border-2 p-5 select-none'
-  )
-
-  const titleContainer = clsx(
+  const titleContainer = cn(
     disabled ? 'text-2xl text-wrap text-stone-500' : 'body-1',
     'flex flex-1 flex-col truncate text-left sm:max-w-64 md:max-w-96'
   )
 
   return (
-    <div onClick={disabled ? undefined : actionFn} className={disabledCard}>
+    <button
+      onClick={disabled ? undefined : actionFn}
+      className={cn(
+        'flex w-full items-center gap-3 rounded-2xl border-2 p-5 transition-all select-none focus:outline-emerald-800',
+        disabled
+          ? 'cursor-not-allowed border-stone-200 bg-stone-200'
+          : 'cursor-pointer border-stone-400 bg-stone-50 hover:bg-stone-100 active:bg-stone-200'
+      )}
+    >
       {disabled ? (
         <Ban strokeWidth={2.5} className="text-stone-500" />
       ) : (
         <div
-          className={clsx(
+          className={cn(
             playerBackgroundColorClasses[color],
-            'h-4 w-4 rounded-full'
+            'size-4 rounded-full'
           )}
         />
       )}
@@ -47,6 +48,6 @@ export default function PlayerListItem({
         <p>{name}</p>
         {disabled && <p className="body-2">{t('player-list-item.disabled')}</p>}
       </div>
-    </div>
+    </button>
   )
 }

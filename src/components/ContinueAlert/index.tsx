@@ -7,14 +7,10 @@ export default function ContinueAlert() {
   const { t } = useTranslation()
 
   return (
-    <div className="flex w-full flex-col gap-6 rounded-2xl border-2 border-emerald-300 bg-emerald-100 p-3">
+    <div className="w-full space-y-6 rounded-2xl border-2 border-emerald-300 bg-emerald-100 p-3">
       <div className="flex gap-3">
-        <Info
-          className="size-8"
-          color="var(--color-emerald-800)"
-          strokeWidth={2}
-        />
-        <div className="flex flex-col gap-2 text-left max-md:max-w-[80%]">
+        <Info className="size-8 text-emerald-800" strokeWidth={2} />
+        <div className="space-y-1 text-left max-md:max-w-[80%]">
           <p className="text-xl font-medium text-emerald-800">
             {t('continue-alert.title')}
           </p>
