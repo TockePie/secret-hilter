@@ -2,12 +2,12 @@ import { useTranslation } from 'react-i18next'
 import { Link, useNavigate } from 'react-router'
 import { Button } from '@ui/button'
 
-import AbortDialog from '@/components/AbortDialog'
 import ContinueAlert from '@/components/ContinueAlert'
+import AbortDialog from '@/components/dialogs/AbortDialog'
 import useHasGame from '@/hooks/use-has-game'
 
-import InfoContextMenu from './components/InfoDropdownMenu'
-import LanguageDropdown from './components/LanguageDropdown'
+import InfoContextMenu from './components/dropdowns/InfoDropdownMenu'
+import LanguageDropdown from './components/dropdowns/LanguageDropdown'
 import useGameStore from './lib/store'
 
 export default function App() {
