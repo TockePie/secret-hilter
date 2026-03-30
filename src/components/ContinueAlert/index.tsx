@@ -12,7 +12,7 @@ export default function ContinueAlert() {
         <Info
           className="size-8"
           color="var(--color-emerald-800)"
-          strokeWidth={2.5}
+          strokeWidth={2}
         />
         <div className="flex flex-col gap-2 text-left max-md:max-w-[80%]">
           <p className="text-xl font-medium text-emerald-800">
