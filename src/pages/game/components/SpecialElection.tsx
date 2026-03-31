@@ -7,6 +7,8 @@ import { playerTextColorClasses } from '@/styles/color-classes'
 import type { Player } from '@/types/player'
 import arraySplitter from '@/utils/array-splitter'
 
+import ConfirmDialog from './SpecialElection/confirm-dialog'
+
 export default function SpecialElection() {
   const { t } = useTranslation()
   const { players, president, setSpecialCandidate, updateStatus } =
@@ -37,7 +39,12 @@ export default function SpecialElection() {
         <h4>{t('special-election.choose-player')}</h4>
         <div className="flex w-full flex-col gap-3">
           {allPlayers.map((p) => (
-            <PlayerListItem key={p.id} actionFn={handleSelect(p.id)} {...p} />
+            <ConfirmDialog
+              key={p.id}
+              triggerComp={<PlayerListItem key={p.id} {...p} />}
+              onConfirm={handleSelect(p.id)}
+              {...p}
+            />
           ))}
         </div>
       </div>

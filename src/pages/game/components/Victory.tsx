@@ -13,11 +13,11 @@ import useGameStore from '@/lib/store'
 export default function Victory() {
   const navigate = useNavigate()
   const { t } = useTranslation()
-  const victoryDetails = useGameStore((s) => s.victoryDetails)
+  const { setHasGame } = useHasGame()
   const setUIState = useGameStore((s) => s.setUIState)
   const abortGame = useGameStore((s) => s.abortGame)
-  const { setHasGame } = useHasGame()
   const uiState = useGameStore((s) => s.uiState.hasConfettiFallen)
+  const victoryDetails = useGameStore((s) => s.victoryDetails)
 
   useEffect(() => {
     if (uiState === 'no') {
@@ -52,7 +52,7 @@ export default function Victory() {
           <h4>{t(`victory-page.who-won.${victoryDetails.whoWon}`)}</h4>
         </div>
 
-        <div className="w-full border-y-2 border-stone-400 bg-stone-200 p-4 text-center max-md:w-screen md:rounded-2xl md:border-2">
+        <div className="mt-4 w-full border-y-2 border-stone-400 bg-stone-200 p-4 text-center max-md:w-screen md:rounded-2xl md:border-2">
           <p className="body-1 mx-auto w-full max-w-96">
             {t(`victory-page.what-happened.${victoryDetails.whatHappened}`)}
           </p>

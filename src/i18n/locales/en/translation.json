@@ -120,21 +120,21 @@
     "choose-chancellor": "Choose a cancelour"
   },
   "confirm-candidates-page": {
-    "government": "The government for the next term:",
-    "question": "Did the majority of players vote to accept new government?",
+    "government": "Proposed Government:",
+    "question": "Show this screen to everyone. Has a majority voted 'Ja!' to elect this government?",
     "candidates-card": {
       "as-president": "as president",
       "as-chancellor": "as chancellor"
     },
-    "election-alert": "If the government is rejected, the upper policy will be enacted."
+    "election-alert": "If this vote fails, a random policy will be enacted immediately!"
   },
   "chaos-page": {
     "title": "Chaos!",
-    "description": "3 failed elections just reached.",
+    "description": "3 failed elections just reached",
     "list": {
-      "1": "The next policy will be enacted:",
-      "2": "Election Tracker will be resetted to 0.",
-      "3": "Term limits will be cleaned."
+      "1": "The next policy is enacted immediately",
+      "2": "The Election Tracker is reset to 0",
+      "3": "All term limits for the previous President and Chancellor are cleared"
     }
   },
   "preplayers-move": {
@@ -172,8 +172,14 @@
     }
   },
   "special-election": {
-    "description": "must elect the next president",
-    "choose-player": "Choose a player"
+    "description": "is granted the power to appoint the next President manually",
+    "choose-player": "Choose a player",
+    "dialog": {
+      "title": "Appoint as the next President:",
+      "description-1": "This player will take an immediate special turn.",
+      "description-2": "After their term, the presidency will return to the original order (to the player after you).",
+      "confirm-btn": "Appoint"
+    }
   },
   "victory-page": {
     "victory": "Victory",
