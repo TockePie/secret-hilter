@@ -74,15 +74,15 @@ const useGameStore = create<Store & Actions>()(
         })
       },
 
-      // updateStatus: (status) => set({ status }),
+      updateStatus: (status) => set({ status }),
       //XXX: Used for controlling state, remove on prod
-      updateStatus: (status) => {
-        const states = get()
+      // updateStatus: (status) => {
+      //   const states = get()
 
-        console.log(states)
+      //   console.log(states)
 
-        set({ status })
-      },
+      //   set({ status })
+      // },
       increaseElectionTracker: () => {
         set((state) => ({
           electionTracker: (state.electionTracker + 1) % 4

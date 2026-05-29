@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react'
 import { Route, Routes, useLocation } from 'react-router'
 
 import ChaosPage from './pages/game/components/Chaos.tsx'
@@ -14,40 +15,48 @@ import RolesPage from './pages/game/components/RolesPage'
 import SleepStagePage from './pages/game/components/SleepStagePage.tsx'
 import SpecialElection from './pages/game/components/SpecialElection.tsx'
 import Victory from './pages/game/components/Victory.tsx'
-import GameLayout from './pages/game/page.tsx'
-import HomePage from './pages/HomePage.tsx'
-import NewGamePage from './pages/newgame'
+import Loading from './loading.tsx'
+
+const HomePage = lazy(() => import('./pages/HomePage.tsx'))
+const NewGamePage = lazy(() => import('./pages/newgame'))
+const GameLayout = lazy(() => import('./pages/game/page.tsx'))
 
 export default function RouteTree() {
   const location = useLocation()
 
   return (
-    <Routes location={location} key={location.pathname}>
-      <Route index element={<HomePage />} />
-      <Route path="newgame" element={<NewGamePage />} />
-      <Route path="game" element={<GameLayout />} errorElement={<NoGamePage />}>
-        <Route path="role-revealing" element={<RolesPage />} />
-        <Route path="sleep-stage" element={<SleepStagePage />} />
-        <Route path="choose-cancelour" element={<ChooseCancelourPage />} />
-        <Route path="confirm-candidates" element={<ConfirmCandidates />} />
-        <Route path="chaos" element={<ChaosPage />} />
+    <Suspense fallback={<Loading />}>
+      <Routes location={location} key={location.pathname}>
+        <Route index element={<HomePage />} />
+        <Route path="newgame" element={<NewGamePage />} />
         <Route
-          path="prepresident-move"
-          element={<PrePlayersMove role="president" />}
-        />
-        <Route path="president-move" element={<PlayersMove />} />
-        <Route
-          path="prechancellor-move"
-          element={<PrePlayersMove role="chancellor" />}
-        />
-        <Route path="chancellor-move" element={<PlayersMove />} />
-        <Route path="results" element={<ResultsPage />} />
-        <Route path="investigate-loyalty" element={<InvestigateLoyalty />} />
-        <Route path="policy-peek" element={<PolicyPeek />} />
-        <Route path="special-election" element={<SpecialElection />} />
-        <Route path="execution" element={<Execution />} />
-        <Route path="victory" element={<Victory />} />
-      </Route>
-    </Routes>
+          path="game"
+          element={<GameLayout />}
+          errorElement={<NoGamePage />}
+        >
+          <Route path="role-revealing" element={<RolesPage />} />
+          <Route path="sleep-stage" element={<SleepStagePage />} />
+          <Route path="choose-cancelour" element={<ChooseCancelourPage />} />
+          <Route path="confirm-candidates" element={<ConfirmCandidates />} />
+          <Route path="chaos" element={<ChaosPage />} />
+          <Route
+            path="prepresident-move"
+            element={<PrePlayersMove role="president" />}
+          />
+          <Route path="president-move" element={<PlayersMove />} />
+          <Route
+            path="prechancellor-move"
+            element={<PrePlayersMove role="chancellor" />}
+          />
+          <Route path="chancellor-move" element={<PlayersMove />} />
+          <Route path="results" element={<ResultsPage />} />
+          <Route path="investigate-loyalty" element={<InvestigateLoyalty />} />
+          <Route path="policy-peek" element={<PolicyPeek />} />
+          <Route path="special-election" element={<SpecialElection />} />
+          <Route path="execution" element={<Execution />} />
+          <Route path="victory" element={<Victory />} />
+        </Route>
+      </Routes>
+    </Suspense>
   )
 }

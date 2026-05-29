@@ -43,7 +43,15 @@ export default function InfoDropdownMenu() {
             }
           />
         </DropdownMenuItem>
-        <DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={() =>
+            window.open(
+              'https://github.com/TockePie',
+              '_blank',
+              'noopener,noreferrer'
+            )
+          }
+        >
           <Github /> GitHub
         </DropdownMenuItem>
       </DropdownMenuContent>
