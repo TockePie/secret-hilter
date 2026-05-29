@@ -31,15 +31,17 @@ export default function ConfirmCandidates() {
   }
 
   const handleNo = () => {
-    increaseElectionTracker()
-    setCandidateChancellor(undefined)
-    setNewCandidatePresident()
-
     if (electionTracker === 2) {
+      increaseElectionTracker()
+      setCandidateChancellor(undefined)
+      setNewCandidatePresident()
       updateStatus('chaos')
       return
     }
 
+    increaseElectionTracker()
+    setCandidateChancellor(undefined)
+    setNewCandidatePresident()
     updateStatus('choose-cancelour')
   }
 

@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
-import clsx from 'clsx'
+import { useState } from 'react'
+import { cx } from 'class-variance-authority'
 
-interface FlipProps {
+interface Props {
   frontPart: React.ReactNode
   backPart: React.ReactNode
 }
 
-export default function Flip({ frontPart, backPart }: FlipProps) {
+export default function Flip({ frontPart, backPart }: Props) {
   const [isFlipped, setFlipped] = useState(false)
 
   return (
@@ -15,7 +15,7 @@ export default function Flip({ frontPart, backPart }: FlipProps) {
       onClick={() => setFlipped(!isFlipped)}
     >
       <div
-        className={clsx(
+        className={cx(
           'relative size-full transition-transform duration-500 transform-3d',
           isFlipped && 'rotate-y-180'
         )}

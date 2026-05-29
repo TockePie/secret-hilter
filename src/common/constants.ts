@@ -164,4 +164,4 @@ export const NO_X_BTN_STATUS: Store['status'][] = ['victory']
 export const LANGUAGES = {
   en: 'English',
   ua: 'Українська'
-}
+} as const

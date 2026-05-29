@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import clsx from 'clsx'
+import { cx } from 'class-variance-authority'
 import { Crown, Landmark } from 'lucide-react'
 
 import { playerTextColorClasses } from '@/styles/color-classes'
@@ -26,7 +26,7 @@ export default function CandidatesCard({
         />
         <div className="flex flex-col">
           <h2
-            className={clsx(
+            className={cx(
               playerTextColorClasses[presidentData.color ?? 'slate'],
               'w-full max-w-56 wrap-break-word'
             )}
@@ -49,7 +49,7 @@ export default function CandidatesCard({
         />
         <div className="flex flex-col">
           <h2
-            className={clsx(
+            className={cx(
               playerTextColorClasses[chancellorData.color ?? 'slate'],
               'w-full max-w-56 wrap-break-word'
             )}

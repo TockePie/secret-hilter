@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Input } from '@ui/input'
+import { cx } from 'class-variance-authority'
 import { Trash2 } from 'lucide-react'
 
-import { cn } from '@/lib/utils'
 import { playerBackgroundColorClasses } from '@/styles/color-classes'
 import type { LobbyPlayer } from '@/types/player'
 
@@ -35,16 +35,16 @@ export default function PlayerCard({
     }
   }
 
-  const handleCardKeyDown = (event: React.KeyboardEvent) => {
-    if (!isEditing && (event.key === 'Enter' || event.key === ' ')) {
-      event.preventDefault()
+  const handleCardKeyDown = (e: React.KeyboardEvent) => {
+    if (!isEditing && (e.key === 'Enter' || e.key === ' ')) {
+      e.preventDefault()
       setIsEditing(true)
     }
   }
 
   return (
     <div
-      className={cn(
+      className={cx(
         'flex h-20 w-full items-center justify-between gap-3 rounded-2xl border-2 p-5 transition-all focus:outline-emerald-800',
         isEditing
           ? 'border-blue-500 bg-white ring-2 ring-blue-100'
@@ -55,7 +55,7 @@ export default function PlayerCard({
     >
       <div className="flex flex-1 items-center gap-3">
         <div
-          className={cn(
+          className={cx(
             'size-4 shrink-0 rounded-full',
             playerBackgroundColorClasses[color]
           )}

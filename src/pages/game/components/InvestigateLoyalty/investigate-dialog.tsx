@@ -8,13 +8,13 @@ import {
   DialogTitle,
   DialogTrigger
 } from '@ui/dialog'
-import clsx from 'clsx'
+import { cx } from 'class-variance-authority'
 
 import { ROLE_CONFIG } from '@/common/constants'
 import { playerTextColorClasses } from '@/styles/color-classes'
 import type { Player } from '@/types/player'
 
-interface InvestigateDialogProps extends Player {
+interface Props extends Player {
   triggerComp: React.ReactElement
   autoOpen?: boolean
   onInvestigate?: () => void
@@ -27,7 +27,7 @@ export default function InvestigateDialog({
   role,
   autoOpen = false,
   onInvestigate
-}: InvestigateDialogProps) {
+}: Props) {
   const [open, setOpen] = useState(autoOpen)
   const { t } = useTranslation()
 
@@ -50,7 +50,7 @@ export default function InvestigateDialog({
           {t('investigate-loyalty.dialog.title')}
         </DialogTitle>
 
-        <h1 className={clsx(ROLE_CONFIG[role].text, 'my-10 text-center')}>
+        <h1 className={cx(ROLE_CONFIG[role].text, 'my-10 text-center')}>
           {t(`player.role.${role}.party`)}
         </h1>
 

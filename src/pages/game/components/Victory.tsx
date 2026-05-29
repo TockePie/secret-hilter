@@ -3,7 +3,7 @@ import Confetti from 'react-confetti'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router'
 import { Button } from '@ui/button'
-import clsx from 'clsx'
+import { cx } from 'class-variance-authority'
 import { ChessQueen } from 'lucide-react'
 
 import { ROLE_CONFIG } from '@/common/constants'
@@ -14,6 +14,7 @@ export default function Victory() {
   const navigate = useNavigate()
   const { t } = useTranslation()
   const { setHasGame } = useHasGame()
+
   const setUIState = useGameStore((s) => s.setUIState)
   const abortGame = useGameStore((s) => s.abortGame)
   const uiState = useGameStore((s) => s.uiState.hasConfettiFallen)
@@ -43,10 +44,7 @@ export default function Victory() {
   return (
     <>
       <main className="page-main h-full pb-35">
-        <ChessQueen
-          className={clsx(accentColor, 'size-25')}
-          strokeWidth={1.25}
-        />
+        <ChessQueen className={cx(accentColor, 'size-25')} strokeWidth={1.25} />
         <div className="text-con">
           <h1 className={accentColor}>{t('victory-page.victory')}</h1>
           <h4>{t(`victory-page.who-won.${victoryDetails.whoWon}`)}</h4>

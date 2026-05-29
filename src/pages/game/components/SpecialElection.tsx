@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import clsx from 'clsx'
+import { cx } from 'class-variance-authority'
 
 import PlayerListItem from '@/components/PlayerListItem'
 import useGameStore from '@/lib/store'
@@ -25,7 +25,7 @@ export default function SpecialElection() {
     <main className="page-main max-sm:standalone:pb-10 gap-8 pb-5">
       <div className="text-con">
         <h1
-          className={clsx(
+          className={cx(
             playerTextColorClasses[currentPresident?.color ?? 'slate'],
             'mx-auto w-full max-md:max-w-70'
           )}

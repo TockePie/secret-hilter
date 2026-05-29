@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cx } from 'class-variance-authority'
 
 interface Props {
   number: number
@@ -8,7 +8,7 @@ interface Props {
 
 export default function InstructionCard({ number, title, content }: Props) {
   return (
-    <div className={clsx(!content && 'items-center', 'flex gap-6')}>
+    <div className={cx(!content && 'items-center', 'flex gap-6')}>
       <h1 className="w-8 text-center">{number}</h1>
       <div className="w-[90%]">
         <h4 className="text-left">«{title}»</h4>

@@ -36,9 +36,9 @@ export default function Execution() {
               key={p.id}
               triggerComp={<PlayerListItem key={p.id} {...p} />}
               onKill={() => {
+                killPlayer(p.id)
                 setNewCandidatePresident()
                 updateStatus('choose-cancelour')
-                killPlayer(p.id)
               }}
               {...p}
             />

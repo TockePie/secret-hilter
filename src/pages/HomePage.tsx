@@ -30,10 +30,10 @@ export default function HomePage() {
           <img
             src="/secret-hitler-logo.png"
             alt="Secret Hitler Logo"
-            className="size-[200px] rounded-full"
+            className="size-50 rounded-full"
           />
           <div className="text-con">
-            <h1>Shadow Cabinet</h1>
+            <h1>Secter Hitler</h1>
             <p className="body-2">{t('main-page.description')}</p>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import clsx from 'clsx'
+import { cva } from 'class-variance-authority'
 
 import { ROLE_CONFIG } from '@/common/constants'
 import type { PolicyTilesProps } from '@/types/policy-tiles'
@@ -21,15 +21,11 @@ export default function TileCard({
   const roleConfig = ROLE_CONFIG[type]
   const isDisabled = state === 'discarted' || state === 'hidden'
 
-  const cardClasses = clsx(
-    'relative rounded-3xl border-2 p-8 text-center select-none',
-    isDisabled
-      ? 'cursor-not-allowed bg-stone-200 text-stone-600 border-stone-600'
-      : `${roleConfig.text} ${roleConfig.border}`,
-    actionFn &&
-      !isDisabled &&
-      'cursor-pointer hover:bg-stone-100 active:bg-stone-200'
-  )
+  const cardClasses = tileCardVariants({
+    intent: state,
+    isClickable: !!actionFn && !isDisabled,
+    class: state === 'default' ? `${roleConfig.text} ${roleConfig.border}` : ''
+  })
 
   const title = isDisabled ? t(`tile-card.${[state]}`) : t(`policy.${[type]}`)
 
@@ -42,3 +38,26 @@ export default function TileCard({
     </div>
   )
 }
+
+const tileCardVariants = cva(
+  'relative rounded-3xl border-2 p-8 text-center select-none',
+  {
+    variants: {
+      intent: {
+        default: '',
+        hidden:
+          'cursor-not-allowed bg-stone-200 text-stone-600 border-stone-600',
+        discarted:
+          'cursor-not-allowed bg-stone-200 text-stone-600 border-stone-600'
+      },
+      isClickable: {
+        true: 'cursor-pointer hover:bg-stone-100 active:bg-stone-200',
+        false: ''
+      }
+    },
+    defaultVariants: {
+      intent: 'default',
+      isClickable: false
+    }
+  }
+)

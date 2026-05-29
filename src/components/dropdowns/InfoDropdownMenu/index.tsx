@@ -8,7 +8,7 @@ import {
 } from '@ui/dropdown-menu'
 import { BookOpen, Github, Info, Users } from 'lucide-react'
 
-import CreditsDialog from '../../dialogs/CreditsDialog'
+import CreditsDialog from '@/components/dialogs/CreditsDialog'
 
 export default function InfoDropdownMenu() {
   const { t } = useTranslation()

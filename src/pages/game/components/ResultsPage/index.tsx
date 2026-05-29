@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@ui/button'
-import clsx from 'clsx'
+import { cx } from 'class-variance-authority'
 
 import { POWERS } from '@/common/constants'
 import MotionWrapper from '@/components/MotionWrapper'
@@ -64,7 +64,7 @@ export default function ResultsPage() {
   return (
     <>
       <main
-        className={clsx(
+        className={cx(
           'page-main h-full pb-35',
           uiState ?? 'mb-3 border border-dashed border-stone-400'
         )}
