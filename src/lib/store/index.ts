@@ -106,7 +106,7 @@ const useGameStore = create<Store & Actions>()(
 
       // Government management actions
       setNewCandidatePresident: () => {
-        const { rotation, rotationIndex, forcedCandidate } = get()
+        const { players, rotation, rotationIndex, forcedCandidate } = get()
         if (rotation.length === 0) return
 
         if (forcedCandidate) {
@@ -117,13 +117,21 @@ const useGameStore = create<Store & Actions>()(
           return
         }
 
-        const newIndex = (rotationIndex + 1) % rotation.length
-        const newCandidate = rotation[newIndex]
+        const searchOrder = [
+          ...rotation.slice(rotationIndex + 1),
+          ...rotation.slice(0, rotationIndex + 1)
+        ]
 
-        set({
-          rotationIndex: newIndex,
-          candidatePresident: newCandidate
-        })
+        const nextLivingId = searchOrder.find((id) =>
+          players.some((p) => p.id === id)
+        )
+
+        if (nextLivingId) {
+          set({
+            candidatePresident: nextLivingId,
+            rotationIndex: rotation.indexOf(nextLivingId)
+          })
+        }
       },
       setCandidateChancellor: (playerId) => {
         set({ candidateChancellor: playerId })
