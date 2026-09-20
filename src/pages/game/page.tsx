@@ -4,7 +4,7 @@ import { Outlet, useNavigate } from 'react-router'
 import { Button } from '@ui/button'
 import { X } from 'lucide-react'
 
-import { NO_X_BTN_STATUS } from '@/common/constants'
+import { NO_X_BTN_STATUS } from '@/common/constants/no-x'
 import AbortDialog from '@/components/dialogs/AbortDialog'
 import MotionWrapper from '@/components/MotionWrapper'
 import useHasGame from '@/hooks/use-has-game'

@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { cva } from 'class-variance-authority'
 
-import { ROLE_CONFIG } from '@/common/constants'
+import { ROLE_CONFIG } from '@/common/constants/role-config'
 import type { PolicyTilesProps } from '@/types/policy-tiles'
 
 interface TileCardProps extends PolicyTilesProps {

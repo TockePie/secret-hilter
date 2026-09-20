@@ -10,7 +10,7 @@ import {
 } from '@ui/dialog'
 import { cx } from 'class-variance-authority'
 
-import { ROLE_CONFIG } from '@/common/constants'
+import { ROLE_CONFIG } from '@/common/constants/role-config'
 import { playerTextColorClasses } from '@/styles/color-classes'
 import type { Player } from '@/types/player'
 

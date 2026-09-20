@@ -1,7 +1,8 @@
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 
-import { GAME_MODE, POLICY_TILES } from '@/common/constants'
+import { GAME_MODE } from '@/common/constants/game-mode'
+import { POLICY_TILES } from '@/common/constants/policy-tiles'
 import arraySplitter from '@/utils/array-splitter'
 import shuffleArray from '@/utils/shuffle-array'
 

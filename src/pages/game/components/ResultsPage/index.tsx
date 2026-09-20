@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '@ui/button'
 import { cx } from 'class-variance-authority'
 
-import { POWERS } from '@/common/constants'
+import { POWERS } from '@/common/constants/powers'
 import MotionWrapper from '@/components/MotionWrapper'
 import useGameStore from '@/lib/store'
 import type { PolicyTilesProps } from '@/types/policy-tiles'

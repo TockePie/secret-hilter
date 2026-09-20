@@ -1,4 +1,4 @@
-import { POLICY_TILES } from '@/common/constants'
+import { POLICY_TILES } from '@/common/constants/policy-tiles'
 import type { Player } from '@/types/player'
 import type { PolicyTilesProps, TilesSnapshotProps } from '@/types/policy-tiles'
 import shuffleArray from '@/utils/shuffle-array'

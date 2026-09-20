@@ -6,7 +6,7 @@ import { Button } from '@ui/button'
 import { cx } from 'class-variance-authority'
 import { ChessQueen } from 'lucide-react'
 
-import { ROLE_CONFIG } from '@/common/constants'
+import { ROLE_CONFIG } from '@/common/constants/role-config'
 import useHasGame from '@/hooks/use-has-game'
 import useGameStore from '@/lib/store'
 

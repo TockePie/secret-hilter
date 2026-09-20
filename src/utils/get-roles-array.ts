@@ -1,4 +1,4 @@
-import { PLAYER_CONFIG } from '@/common/constants'
+import { PLAYER_CONFIG } from '@/common/constants/player-config'
 import type { Player } from '@/types/player'
 
 export default function getRoles(playerCount: number): Player['role'][] {
