@@ -11,7 +11,7 @@ import {
 } from '@ui/dialog'
 import { Skull, Trash2, Trophy } from 'lucide-react'
 
-import { playerTextColorClasses } from '@/styles/color-classes'
+import { PLAYER_COLOR_CLASSES } from '@/common/constants/color-classes'
 import type { Player } from '@/types/player'
 
 interface Props extends Player {
@@ -42,7 +42,7 @@ export default function KillDialog({
 
           <DialogTitle className="text-center">
             {t('execution.dialog.title')}{' '}
-            <span className={playerTextColorClasses[color]}>{name}</span>?
+            <span className={PLAYER_COLOR_CLASSES[color].text}>{name}</span>?
           </DialogTitle>
 
           <div className="flex flex-col gap-5">

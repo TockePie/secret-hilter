@@ -1,5 +1,4 @@
-import { useEffect } from 'react'
-import Confetti from 'react-confetti'
+import { lazy, Suspense, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router'
 import { Button } from '@ui/button'
@@ -9,6 +8,8 @@ import { ChessQueen } from 'lucide-react'
 import { ROLE_CONFIG } from '@/common/constants/role-config'
 import useHasGame from '@/hooks/use-has-game'
 import useGameStore from '@/lib/store'
+
+const Confetti = lazy(() => import('react-confetti'))
 
 export default function Victory() {
   const navigate = useNavigate()
@@ -64,10 +65,12 @@ export default function Victory() {
       </footer>
 
       {uiState === 'in-process' && (
-        <Confetti
-          recycle={false}
-          onConfettiComplete={() => setUIState({ hasConfettiFallen: 'yes' })}
-        />
+        <Suspense fallback={null}>
+          <Confetti
+            recycle={false}
+            onConfettiComplete={() => setUIState({ hasConfettiFallen: 'yes' })}
+          />
+        </Suspense>
       )}
     </>
   )

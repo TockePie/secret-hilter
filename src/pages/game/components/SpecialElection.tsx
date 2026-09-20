@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next'
 import { cx } from 'class-variance-authority'
 
+import { PLAYER_COLOR_CLASSES } from '@/common/constants/color-classes'
 import PlayerListItem from '@/components/PlayerListItem'
 import useGameStore from '@/lib/store'
-import { playerTextColorClasses } from '@/styles/color-classes'
 import type { Player } from '@/types/player'
 import arraySplitter from '@/utils/array-splitter'
 
@@ -26,7 +26,7 @@ export default function SpecialElection() {
       <div className="text-con">
         <h1
           className={cx(
-            playerTextColorClasses[currentPresident?.color ?? 'slate'],
+            PLAYER_COLOR_CLASSES[currentPresident?.color ?? 'slate'].text,
             'mx-auto w-full max-md:max-w-70'
           )}
         >

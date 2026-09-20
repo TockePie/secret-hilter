@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { cx } from 'class-variance-authority'
 import { Ban } from 'lucide-react'
 
-import { playerBackgroundColorClasses } from '@/styles/color-classes'
+import { PLAYER_COLOR_CLASSES } from '@/common/constants/color-classes'
 import type { LobbyPlayer } from '@/types/player'
 
 interface PlayerListItemProps extends LobbyPlayer {
@@ -31,15 +31,12 @@ export default function PlayerListItem({
   )
 
   return (
-    <button onClick={disabled ? undefined : actionFn} className={buttonClasses}>
+    <button onClick={actionFn} disabled={disabled} className={buttonClasses}>
       {disabled ? (
         <Ban strokeWidth={2.5} className="text-stone-500" />
       ) : (
         <div
-          className={cx(
-            playerBackgroundColorClasses[color],
-            'size-4 rounded-full'
-          )}
+          className={cx(PLAYER_COLOR_CLASSES[color].bg, 'size-4 rounded-full')}
         />
       )}
 

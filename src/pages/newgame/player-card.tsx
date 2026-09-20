@@ -3,7 +3,7 @@ import { Input } from '@ui/input'
 import { cx } from 'class-variance-authority'
 import { Trash2 } from 'lucide-react'
 
-import { playerBackgroundColorClasses } from '@/styles/color-classes'
+import { PLAYER_COLOR_CLASSES } from '@/common/constants/color-classes'
 import type { LobbyPlayer } from '@/types/player'
 
 interface Props extends LobbyPlayer {
@@ -57,7 +57,7 @@ export default function PlayerCard({
         <div
           className={cx(
             'size-4 shrink-0 rounded-full',
-            playerBackgroundColorClasses[color]
+            PLAYER_COLOR_CLASSES[color].bg
           )}
         />
 

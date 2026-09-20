@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { cx } from 'class-variance-authority'
 import { Crown, Landmark } from 'lucide-react'
 
-import { playerTextColorClasses } from '@/styles/color-classes'
+import { PLAYER_COLOR_CLASSES } from '@/common/constants/color-classes'
 import type { Player } from '@/types/player'
 
 interface Props {
@@ -22,12 +22,12 @@ export default function CandidatesCard({
         <Crown
           strokeWidth={2.5}
           size={48}
-          className={playerTextColorClasses[presidentData.color ?? 'slate']}
+          className={PLAYER_COLOR_CLASSES[presidentData.color ?? 'slate'].text}
         />
         <div className="flex flex-col">
           <h2
             className={cx(
-              playerTextColorClasses[presidentData.color ?? 'slate'],
+              PLAYER_COLOR_CLASSES[presidentData.color ?? 'slate'].text,
               'w-full max-w-56 wrap-break-word'
             )}
           >
@@ -45,12 +45,12 @@ export default function CandidatesCard({
         <Landmark
           strokeWidth={2.5}
           size={48}
-          className={playerTextColorClasses[chancellorData.color ?? 'slate']}
+          className={PLAYER_COLOR_CLASSES[chancellorData.color ?? 'slate'].text}
         />
         <div className="flex flex-col">
           <h2
             className={cx(
-              playerTextColorClasses[chancellorData.color ?? 'slate'],
+              PLAYER_COLOR_CLASSES[chancellorData.color ?? 'slate'].text,
               'w-full max-w-56 wrap-break-word'
             )}
           >

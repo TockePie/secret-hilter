@@ -10,8 +10,8 @@ import {
 } from '@ui/dialog'
 import { cx } from 'class-variance-authority'
 
+import { PLAYER_COLOR_CLASSES } from '@/common/constants/color-classes'
 import { ROLE_CONFIG } from '@/common/constants/role-config'
-import { playerTextColorClasses } from '@/styles/color-classes'
 import type { Player } from '@/types/player'
 
 interface Props extends Player {
@@ -46,7 +46,7 @@ export default function InvestigateDialog({
         }}
       >
         <DialogTitle className="text-center">
-          <span className={playerTextColorClasses[color]}>{name}</span>
+          <span className={PLAYER_COLOR_CLASSES[color].text}>{name}</span>
           {t('investigate-loyalty.dialog.title')}
         </DialogTitle>
 

@@ -2,8 +2,8 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '@ui/button'
 import { Eye } from 'lucide-react'
 
+import { PLAYER_COLOR_CLASSES } from '@/common/constants/color-classes'
 import useGameStore from '@/lib/store'
-import { playerTextColorClasses } from '@/styles/color-classes'
 
 export default function PrePlayersMove({
   role
@@ -27,7 +27,9 @@ export default function PrePlayersMove({
       <main className="page-main h-full pb-35">
         <div className="my-auto space-y-4 text-center">
           <h1
-            className={playerTextColorClasses[currentPlayer?.color ?? 'slate']}
+            className={
+              PLAYER_COLOR_CLASSES[currentPlayer?.color ?? 'slate'].text
+            }
           >
             {t('preplayers-move.player', { name: currentPlayer?.name })}
           </h1>

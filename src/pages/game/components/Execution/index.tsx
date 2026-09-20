@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next'
 
+import { PLAYER_COLOR_CLASSES } from '@/common/constants/color-classes'
 import PlayerListItem from '@/components/PlayerListItem'
 import useGameStore from '@/lib/store'
-import { playerTextColorClasses } from '@/styles/color-classes'
 import arraySplitter from '@/utils/array-splitter'
 
 import KillDialog from './kill-dialog'
@@ -22,7 +22,9 @@ export default function Execution() {
   return (
     <main className="page-main max-sm:standalone:pb-10 gap-8 pb-5">
       <div className="text-con">
-        <h1 className={playerTextColorClasses[presidentData?.color ?? 'slate']}>
+        <h1
+          className={PLAYER_COLOR_CLASSES[presidentData?.color ?? 'slate'].text}
+        >
           {presidentData?.name}
         </h1>
         <p className="body-2">{t('execution.description')}</p>

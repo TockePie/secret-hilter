@@ -11,7 +11,7 @@ import {
 } from '@ui/dialog'
 import { Crown, Info, Users } from 'lucide-react'
 
-import { playerTextColorClasses } from '@/styles/color-classes'
+import { PLAYER_COLOR_CLASSES } from '@/common/constants/color-classes'
 import type { LobbyPlayer } from '@/types/player'
 
 interface Props extends LobbyPlayer {
@@ -42,7 +42,7 @@ export default function ConfirmDialog({
 
           <DialogTitle className="text-center">
             {t('special-election.dialog.title')}{' '}
-            <span className={playerTextColorClasses[color]}>{name}</span>?
+            <span className={PLAYER_COLOR_CLASSES[color].text}>{name}</span>?
           </DialogTitle>
 
           <div className="flex flex-col gap-5">

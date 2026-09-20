@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import { cx } from 'class-variance-authority'
 
+import { PLAYER_COLOR_CLASSES } from '@/common/constants/color-classes'
 import { ROLE_CONFIG } from '@/common/constants/role-config'
-import { playerTextColorClasses } from '@/styles/color-classes'
 import type { Player } from '@/types/player'
 
 import Flip from './flip'
@@ -18,7 +18,10 @@ export default function RolesCard({ name, color, role, nextFn }: Props) {
   const FrontPart = () => (
     <div className="flex size-full flex-col rounded-3xl border border-stone-400 bg-stone-50 text-center">
       <h1
-        className={cx('m-auto w-full max-w-84', playerTextColorClasses[color])}
+        className={cx(
+          'm-auto w-full max-w-84',
+          PLAYER_COLOR_CLASSES[color].text
+        )}
       >
         {name}
       </h1>

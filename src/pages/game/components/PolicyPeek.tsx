@@ -2,9 +2,9 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '@ui/button'
 import { Eye } from 'lucide-react'
 
+import { PLAYER_COLOR_CLASSES } from '@/common/constants/color-classes'
 import TileCard from '@/components/TileCard'
 import useGameStore from '@/lib/store'
-import { playerTextColorClasses } from '@/styles/color-classes'
 
 export default function PolicyPeek() {
   const { t } = useTranslation()
@@ -29,7 +29,9 @@ export default function PolicyPeek() {
       <main className="page-main h-full pb-40">
         <div className="text-con my-auto h-34">
           <h1
-            className={playerTextColorClasses[currentPlayer?.color ?? 'slate']}
+            className={
+              PLAYER_COLOR_CLASSES[currentPlayer?.color ?? 'slate'].text
+            }
           >
             {currentPlayer?.name}
           </h1>

@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next'
 
+import { PLAYER_COLOR_CLASSES } from '@/common/constants/color-classes'
 import PlayerListItem from '@/components/PlayerListItem'
 import useGameStore from '@/lib/store'
 import { cn } from '@/lib/utils'
-import { playerTextColorClasses } from '@/styles/color-classes'
 import type { Player } from '@/types/player'
 import arraySplitter from '@/utils/array-splitter'
 
@@ -33,7 +33,7 @@ export default function ChooseCancelourPage() {
         <h1
           className={cn(
             'mx-auto w-full max-md:max-w-70',
-            playerTextColorClasses[presidentData?.color ?? 'slate']
+            PLAYER_COLOR_CLASSES[presidentData?.color ?? 'slate'].text
           )}
         >
           {presidentData?.name}
