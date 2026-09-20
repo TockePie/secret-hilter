@@ -54,6 +54,24 @@ export default defineConfig({
     host: true, // needed for the Docker Container port mapping to work
     strictPort: true,
     port: 5173 // you can replace this port with any port
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom', 'react-router'],
+          'vendor-motion': ['framer-motion'],
+          'vendor-ui': [
+            '@radix-ui/react-dialog',
+            '@radix-ui/react-dropdown-menu',
+            'lucide-react',
+            'class-variance-authority',
+            'tailwind-merge'
+          ],
+          'vendor-core': ['zustand', 'i18next', 'react-i18next']
+        }
+      }
+    }
   }
   // base: '/secret-hitler/'
 })
